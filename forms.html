@@ -6,8 +6,8 @@
     </head>
     <body>
         <form method="POST" action="https://request-inspector.glitch.me/">
-            <div><label for="username">Username</label>
-                <input type="text" id="username" name="username" placeholder="Type your username">
+            <div><label for="email">E-mail</label>
+                <input type="text" id="email" name="email" placeholder="Type your e-mail">
                 <br>
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="Type your password">
@@ -16,37 +16,36 @@
 
             <div>
                 <label for="bio">
-                    Please tell us a little about yourself!
+                    Bio:
                 </label>
                 <br>
                 <textarea name="bio" id="bio" cols="30" rows="10" placeholder="Enter bio here"></textarea>
             </div>
             <br>
             <div>
-                How did you hear about us?
+                How did you hear about us? (Check all that apply)
                 <br>
-                <label for="billboard-ad">Billboard </label><input type="radio" value="billboard" name="learn-about" id="billboard-ad">
-                <label for="radio-ad">Radio advertisement </label><input type="radio" value="radio" name="learn-about" id="radio-ad">
-                <label for="internet-ad"> Internet advertisement </label><input type="radio" value="internet" name="learn-about" id="internet-ad">
-                <label for="other">Other </label><input type="radio" value="other" name="learn-about" id="other">
+                <label for="billboard-ad">Billboard </label><input type="checkbox" value="billboard" name="learn-about" id="billboard-ad">
+                <label for="radio-ad">Radio advertisement </label><input type="checkbox" value="radio" name="learn-about" id="radio-ad">
+                <label for="internet-ad"> Internet advertisement </label><input type="checkbox" value="internet" name="learn-about" id="internet-ad">
+                <label for="other">Other </label><input type="checkbox" value="other" name="learn-about" id="other">
             </div>
             <br>
             <div>
-                What browser are you using?
+                <label for="browser">What browser are you using?</label>
                 <br>
                 <select name="browser" id="browser">
                     <option value="chrome">Google Chrome</option>
                     <option value="firefox">Mozilla Firefox</option>
                     <option value="safari">Safari</option>
                     <option value="opera">Opera</option>
+                    <option value="other">Other</option>
                 </select>
             </div>
             <br>
             <div>
                 <button type="submit">Submit!</button>
             </div>
-
-
         </form>
     </body>
 </html>
