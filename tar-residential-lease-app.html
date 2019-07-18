@@ -1,10 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Texas Association of Realtors - Residential Lease Application</title>
+    </head>
+    <body>
+        <header>
+            <h3>Texas Association of Realtors&trade;</h3>
+            <h2>Residential Lease Application</h2>
+            <hr>
+        </header>
+        <main>
+            <form method="post" action="https://request-inspector.glitch.me/" >
+                <!--------------------------------- Section: Property Information ---------------------->
+                <section>
+                    <div><label for="prop-address">Property Address: <input type="text" name="prop-address"
+                                                                          id="prop-address"></label><br>
+                        <label for="move-date">Anticipated Move-In Date: <input type="text" name="move-date"
+                                                                                id="move-date"></label><br>
+                        <label for="rent">Monthly Rent: $ <input type="text" name="rent" id="rent"></label><br>
+                        <label for="deposit">Security Deposit: $ <input type="text" name="deposit" id="deposit"></label><br>
+                    </div>
+                    <br>
+                    <div>
+                        Applicant was referred to Landlord by: <br>
+                        <input type="checkbox" name="referral" id="agent" value="agent"><label for="agent"> Real Estate
+                            Agent </label>
+                        <input type="text" name="agent-name" id="agent-name"><label for="agent-name"> (name)</label>
+                        <input type="text" name="agent-id" id="agent-id"><label for="agent-id"> (phone)</label><br>
+                        <input type="checkbox" name="referral" id="newspaper" value="newspaper"><label for="newspaper">
+                            Newspaper</label><br>
+                        <input type="checkbox" name="referral" id="sign" value="sign"><label for="sign">
+                            Sign</label><br>
+                        <input type="checkbox" name="referral" id="internet" value="internet"><label for="internet">
+                            Internet</label><br>
+                        <input type="checkbox" name="referral" id="other" value="other"><label for="other">
+                            Other</label>
+                        <input type="text" name="ref-other" id="ref-other">
+                    </div>
+                </section>
+                <br>
+                <!--------------------------------- Section: Applicant Information ---------------------->
+                <section>
+                    <div>
+                        <label for="">Applicant's name (first, middle, last) <input type="text" name="" id=""></label><br>
+                        <label for="">Applicant's former last name (maiden or married) <input type="text" name="" id=""></label>
+
+                    </div>
+                    <br>
+                </section>
+
+                <!--------------------------------- Section: Tenant Information ---------------------->
+                <section></section>
+
+                <!--------------------------------- Section: Address Information ---------------------->
+                <section></section>
+                <button type="submit">Submit Application</button>
+            </form>
+        </main>
+    </body>
 </html>
