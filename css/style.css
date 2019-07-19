@@ -2,15 +2,28 @@ body {
     /*Desired BG image works using localhost address*/
     /*background-image: url('http://localhost:63342/codeup-web-exercises/img/switz-bg.jpeg');*/
 
+    background-image: url('../img/switz-bg.jpeg');
 
-    background-image: url('http://localhost:63342/codeup-web-exercises/img/switz-bg.jpeg');
-    background-color: #fac3f8;
+    /*Desired BG image does NOT work using absolute path*/
+    /*background-image: url('file:///Users/johncadena/IdeaProjects/codeup-web-exercises/img/switz-bg.jpeg');*/
+
+    background-size: 30%;
+    background-color: #add8ed; /* light blue */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    font-family: Tahoma, Helvetica, Arial, Sans-Serif;
 
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: purple;
+    color: #4682bf /* steel blue */
     text-decoration: underline;
+}
+
+ul {
+    list-style-type: circle;
 }
 
 .main-header {
