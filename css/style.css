@@ -20,6 +20,12 @@ body {
 
 }
 
+/* --------------------------------- HEADING STYLING --------------------------------*/
+
+.main-header {
+    text-align: center;
+}
+
 h1, h2, h3, h4, h5, h6 {
     color: #00008b; /* dark blue */
     text-decoration: underline;
@@ -29,11 +35,12 @@ h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
     text-decoration: underline;
 }
 
+/* --------------------------------- LIST STYLING --------------------------------*/
 ul {
     list-style-type: circle;
 }
 
-/* IMG PROPERTIES */
+/* --------------------------------- IMAGE STYLING --------------------------------*/
 img {
     opacity: .5;
 }
@@ -42,30 +49,41 @@ img:hover {
     opacity: 1;
 }
 
+/* --------------------------------- DEFAULT TABLE STYLING --------------------------------*/
 
-/* TABLE DEFAULTS */
 table, th, td {
     padding: .5em;
     font-size: 1.1em;
-    /*background-color: azure;*/
 }
 
-/* TABLE HOVER EFFECTS */
-
-table:hover {
-    background-color: cornflowerblue;
+section.hover-table {
+    width: 50%;
+    margin: auto;
+    text-align: center;
 }
 
-tr:hover {
-    color: darkblue;
-    text-decoration: underline;
+.hover-table table {
+    margin: auto;
 }
+
+/* --------------------------------- TABLE HOVER STYLING --------------------------------*/
+
+.hover-table:hover {
+    background-color: azure;
+}
+
+
+/*tr:hover {*/
+/*    font-size: 1.3em;*/
+/*}*/
 
 tr:hover>td:first-child {
     font-weight: bold;
     text-decoration: underline;
-    color: white;
+    color: cornflowerblue;
 }
+
+/* --------------------------------- LINK STYLING --------------------------------*/
 
 a {
     color: deepskyblue;
@@ -83,14 +101,13 @@ a:active {
 /*    color: mediumpurple;*/
 /*}*/
 
-.main-header {
-    text-align: center;
-}
+/* --------------------------------- SHARED/OTHER CLASS SELECTORS --------------------------------*/
 
 .hover-effect:hover {
     background-color: azure;
 }
 
 section.hover-effect {
-    width: 25%
+    width: 25%;
 }
+
