@@ -1,9 +1,24 @@
-h1, h2, h3, h4, h5, h6 {
-    color:darkgreen;
+body {
+    /*Desired BG image works using localhost address*/
+    /*background-image: url('http://localhost:63342/codeup-web-exercises/img/switz-bg.jpeg');*/
+
+
+    background-image: url('http://localhost:63342/codeup-web-exercises/img/switz-bg.jpeg');
+    background-color: #fac3f8;
+
 }
 
-.fancy-header {
+h1, h2, h3, h4, h5, h6 {
     color: purple;
     text-decoration: underline;
+}
+
+.main-header {
     text-align: center;
 }
+
+/* Left-over styling from previous version */
+/*.fancy-header {*/
+/*    color: purple;*/
+/*}*/
+
