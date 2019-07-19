@@ -7,10 +7,10 @@ body, html {
 }
 
 .message {
-    border: 1px solid black;
+    border: 1px solid rgb(198, 204, 219);
     border-radius: 5px;
-    padding: 10px;
-    margin: 10px;
+    padding: .5em;
+    margin: .5em;
 }
 
 .message-info {
@@ -21,4 +21,14 @@ body, html {
 .message-success {
     color: rgb(34, 109, 60);
     background-color: rgb(198, 242,	209);
+}
+
+.message-warning {
+    color: rgb(135, 119, 32);
+    background-color: rgb(251, 252,	189);
+}
+
+.message-error {
+    color: rgb(115, 18, 43);
+    background-color: rgb(248, 200,	206);
 }
