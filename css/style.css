@@ -3,22 +3,29 @@ body {
     /*background-image: url('http://localhost:63342/codeup-web-exercises/img/switz-bg.jpeg');*/
 
     background-image: url('../img/switz-bg.jpeg');
+/*!!!!    opacity of bg image*/
 
     /*Desired BG image does NOT work using absolute path*/
     /*background-image: url('file:///Users/johncadena/IdeaProjects/codeup-web-exercises/img/switz-bg.jpeg');*/
 
-    background-size: 30%;
+    background-size: 40%;
     background-color: #add8ed; /* light blue */
-    background-position: center;
+    /*background-position: center;*/
+    background-position: 50% 15%;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    /*background-attachment: fixed;*/
 
-    font-family: Tahoma, Helvetica, Arial, Sans-Serif;
+    font-family: "Tahoma", "Helvetica", "Arial", Sans-Serif;
+/*!!!!    Google Fonts*/
 
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: #4682bf /* steel blue */
+    color: #00008b; /* dark blue */
+    text-decoration: underline;
+}
+
+h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
     text-decoration: underline;
 }
 
@@ -26,12 +33,64 @@ ul {
     list-style-type: circle;
 }
 
+/* IMG PROPERTIES */
+img {
+    opacity: .5;
+}
+
+img:hover {
+    opacity: 1;
+}
+
+
+/* TABLE DEFAULTS */
+table, th, td {
+    padding: .5em;
+    font-size: 1.1em;
+    /*background-color: azure;*/
+}
+
+/* TABLE HOVER EFFECTS */
+
+table:hover {
+    background-color: cornflowerblue;
+}
+
+tr:hover {
+    color: darkblue;
+    text-decoration: underline;
+}
+
+tr:hover>td:first-child {
+    font-weight: bold;
+    text-decoration: underline;
+    color: white;
+}
+
+a {
+    color: deepskyblue;
+}
+
+a:hover {
+    color: aliceblue;
+}
+
+a:active {
+    color: rebeccapurple;
+}
+
+/*a:visited {*/
+/*    color: mediumpurple;*/
+/*}*/
+
 .main-header {
     text-align: center;
 }
 
-/* Left-over styling from previous version */
-/*.fancy-header {*/
-/*    color: purple;*/
-/*}*/
+.hover-effect:hover {
+    background-color: azure;
+}
 
+section.hover-effect {
+    width: 25%
+}
