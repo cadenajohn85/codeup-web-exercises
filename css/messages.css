@@ -1,3 +1,17 @@
+:root {
+    --bg-info: rgb(194, 213, 255);
+    --text-info: rgb(40, 25, 127);
+
+    --bg-success: rgb(198, 242,	209);
+    --text-success: rgb(34, 109, 60);
+
+    --bg-warning: rgb(251, 252,	189);
+    --text-warning: rgb(135, 119, 32);
+
+    --bg-error: rgb(248, 200, 206);
+    --text-error: rgb(115, 18, 43);
+}
+
 body, html {
     height: 100%;
     width: 100%;
@@ -14,21 +28,21 @@ body, html {
 }
 
 .message-info {
-    color: rgb(40, 25, 127);
-    background-color: rgb(194, 213,	255);
+    color: var(--text-info);
+    background-color: var(--bg-info);
 }
 
 .message-success {
-    color: rgb(34, 109, 60);
-    background-color: rgb(198, 242,	209);
+    color: var(--text-success);
+    background-color: var(--bg-success);
 }
 
 .message-warning {
-    color: rgb(135, 119, 32);
-    background-color: rgb(251, 252,	189);
+    color: var(--text-warning);
+    background-color: var(--bg-warning);
 }
 
 .message-error {
-    color: rgb(115, 18, 43);
-    background-color: rgb(248, 200,	206);
+    color: var(--text-error);
+    background-color: var(--bg-error);
 }
