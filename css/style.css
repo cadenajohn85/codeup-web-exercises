@@ -1,22 +1,13 @@
 body {
-    /*Desired BG image works using localhost address*/
-    /*background-image: url('http://localhost:63342/codeup-web-exercises/img/switz-bg.jpeg');*/
 
     background-image: url('../img/switz-bg.jpeg');
-/*!!!!    opacity of bg image*/
-
-    /*Desired BG image does NOT work using absolute path*/
-    /*background-image: url('file:///Users/johncadena/IdeaProjects/codeup-web-exercises/img/switz-bg.jpeg');*/
-
-    background-size: 40%;
-    background-color: #add8ed; /* light blue */
-    /*background-position: center;*/
+/*!!!!    Investigate opacity of background images*/
+    background-size: 35%;
+    background-color: lightblue;
     background-position: 50% 15%;
     background-repeat: no-repeat;
-    /*background-attachment: fixed;*/
-
     font-family: "Tahoma", "Helvetica", "Arial", Sans-Serif;
-/*!!!!    Google Fonts*/
+/*!!!!    Investigate Google Fonts*/
 
 }
 
@@ -27,22 +18,23 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: #00008b; /* dark blue */
+    color: darkblue;
     text-decoration: underline;
 }
 
-h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
-    text-decoration: underline;
-}
 
 /* --------------------------------- LIST STYLING --------------------------------*/
+
 ul {
     list-style-type: circle;
 }
 
 /* --------------------------------- IMAGE STYLING --------------------------------*/
+
 img {
     opacity: .5;
+    transition: 1s ease;
+    border-radius: 25px;
 }
 
 img:hover {
@@ -56,31 +48,41 @@ table, th, td {
     font-size: 1.1em;
 }
 
+table {
+    margin: auto;
+}
+
+section {
+    text-align: center;
+}
+
 section.hover-table {
-    width: 50%;
+    width: 40%;
     margin: auto;
     text-align: center;
 }
 
-.hover-table table {
-    margin: auto;
+
+/* --------------------------------- HOVER STYLING --------------------------------*/
+
+h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
+    text-decoration: underline;
 }
 
-/* --------------------------------- TABLE HOVER STYLING --------------------------------*/
-
-.hover-table:hover {
+.hover-table:hover, .hover-effect:hover {
     background-color: azure;
+    border-radius: 25px;
+    transition: 1s ease;
 }
-
-
-/*tr:hover {*/
-/*    font-size: 1.3em;*/
-/*}*/
 
 tr:hover>td:first-child {
     font-weight: bold;
     text-decoration: underline;
     color: cornflowerblue;
+}
+
+section.hover-effect {
+    width: 25%;
 }
 
 /* --------------------------------- LINK STYLING --------------------------------*/
@@ -103,11 +105,5 @@ a:active {
 
 /* --------------------------------- SHARED/OTHER CLASS SELECTORS --------------------------------*/
 
-.hover-effect:hover {
-    background-color: azure;
-}
 
-section.hover-effect {
-    width: 25%;
-}
 
