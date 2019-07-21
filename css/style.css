@@ -1,9 +1,10 @@
 body {
 /*!!!!     Change background image and repeat settings*/
-    background-image: url('../img/switz-bg.jpeg');
+/*    background-image: url('../img/switz-bg.jpeg');*/
     background-size: 35%;
 /*!!!!      Change background to color gradient*/
     background-color: lightblue;
+    background-image: url('../img/switz-bg.jpeg'), linear-gradient(to bottom right, dodgerblue, aliceblue);
     background-position: 50% 12%;
     background-repeat: no-repeat;
     font-family: "Tahoma", "Helvetica", "Arial", Sans-Serif;
