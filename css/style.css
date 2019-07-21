@@ -1,13 +1,13 @@
 body {
-
+/*!!!!     Change background image and repeat settings*/
     background-image: url('../img/switz-bg.jpeg');
-/*!!!!    Investigate opacity of background images*/
     background-size: 35%;
+/*!!!!      Change background to color gradient*/
     background-color: lightblue;
-    background-position: 50% 15%;
+    background-position: 50% 12%;
     background-repeat: no-repeat;
     font-family: "Tahoma", "Helvetica", "Arial", Sans-Serif;
-/*!!!!    Investigate Google Fonts*/
+/*!!!!      Investigate Google Fonts*/
 
 }
 
@@ -29,16 +29,41 @@ ul {
     list-style-type: circle;
 }
 
+h2 {
+    text-align: center;
+}
+
+li {
+    padding-left: .7em;
+}
+
+ul, ol {
+    list-style-position: inside;
+}
+
 /* --------------------------------- IMAGE STYLING --------------------------------*/
 
 img {
     opacity: .5;
-    transition: 1s ease;
     border-radius: 25px;
+}
+
+img.tilt-right {
+    transform: rotate(10deg);
+}
+
+img.tilt-left {
+    transform: rotate(-10deg);
 }
 
 img:hover {
     opacity: 1;
+    transition: 1s ease;
+}
+
+section.vision {
+    text-align: center;
+    margin: auto;
 }
 
 /* --------------------------------- DEFAULT TABLE STYLING --------------------------------*/
@@ -52,10 +77,6 @@ table {
     margin: auto;
 }
 
-section {
-    text-align: center;
-}
-
 section.hover-table {
     width: 40%;
     margin: auto;
@@ -65,24 +86,19 @@ section.hover-table {
 
 /* --------------------------------- HOVER STYLING --------------------------------*/
 
-h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
-    text-decoration: underline;
+section.hover-effect {
+    width: 25%;
 }
 
 .hover-table:hover, .hover-effect:hover {
     background-color: azure;
     border-radius: 25px;
-    transition: 1s ease;
 }
 
 tr:hover>td:first-child {
     font-weight: bold;
     text-decoration: underline;
     color: cornflowerblue;
-}
-
-section.hover-effect {
-    width: 25%;
 }
 
 /* --------------------------------- LINK STYLING --------------------------------*/
@@ -99,11 +115,15 @@ a:active {
     color: rebeccapurple;
 }
 
-/*a:visited {*/
-/*    color: mediumpurple;*/
-/*}*/
+a:visited {
+    color: mediumpurple;
+}
 
-/* --------------------------------- SHARED/OTHER CLASS SELECTORS --------------------------------*/
+/* --------------------------------- SPACING CLASS SELECTORS --------------------------------*/
 
+.spacer {
+    height: 2em;
+
+}
 
 
