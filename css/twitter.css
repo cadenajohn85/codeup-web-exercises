@@ -58,7 +58,7 @@ a {
 
 .profile-image {
     position: absolute;
-    top: 235px;
+    top: 245px;
 }
 
 .profile-form {
@@ -84,6 +84,38 @@ a {
     margin: 0 .5em;
 }
 
+.container {
+    margin-top: 2em;
+}
+
+.media {
+    width: 100%;
+    background-color: var(--light-bg);
+    border-bottom: 1px solid var(--separator-color);
+    padding: .5em;
+/*!!!! What attribute for overflow?  auto? */
+    overflow: auto;
+}
+
+.media-image {
+    max-width: 50px;
+    margin-top: 1.33em;
+    float: left;
+}
+
+.media-body {
+    float: left;
+    width: calc(100% - 50px);
+}
+
+.profile-items {
+    list-style-type: none;
+    padding: 0;
+}
+
+.profile-entry {
+    margin: .5em;
+}
 
 .btn {
     border: 1px solid var(--main-link-color);
