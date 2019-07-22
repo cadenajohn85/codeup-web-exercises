@@ -1,0 +1,43 @@
+body {
+    background-color: black;
+}
+
+.container {
+    background-color: green;
+    width: 900px;
+    height: 600px;
+    margin: 50px auto;
+}
+
+.blue {
+    background: darkblue;
+    float: left;
+    width: 33.33%;
+    height: 100%;
+}
+
+.white {
+    background: white;
+    width: 66.66%;
+    height: 50%;
+    float: left;
+}
+
+.red {
+    background: red;
+    width: 66.66%;
+    height: 50%;
+    float: left;
+}
+
+.star {
+    margin: 50px 0;
+    position: relative;
+    display: block;
+    color: pink;
+    width: 0px;
+    height: 0px;
+    border-right:
+
+
+}
