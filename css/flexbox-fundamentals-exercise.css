@@ -37,7 +37,7 @@ h2, h3 {
     /* enter needed declarations here */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 section {
@@ -100,10 +100,10 @@ section:nth-of-type(3) h3 {
 
 .large-brown-box {
     height: 5em;
-    width: 10em;
+    width: 5em;
     background: brown;
     /* enter needed declarations here */
-    justify-content: space-between;
+    flex-grow: 1;
 }
 
 .large-brown-box:nth-of-type(2) {
