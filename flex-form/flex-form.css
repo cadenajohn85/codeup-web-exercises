@@ -16,6 +16,8 @@ body {
     height: 100%;
     position: absolute;
     top: 0;
+    width: 100%;
+    object-fit: cover;
 }
 
 .cover {
@@ -54,14 +56,17 @@ body {
     /* flex container */
     display: flex;
     align-items: center;
-
-    /*position: relative;*/
-    /*left: 5em;*/
+    justify-content: center;
 }
+
 .flex-form {
     /* flex items */
-
+    display: flex;
 }
+
 .destination {
     /* bigger item */
+
+    /*Isuse of sizing in Chrome vs. Firefox */
+    flex-basis: 14em;
 }
