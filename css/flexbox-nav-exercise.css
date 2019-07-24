@@ -1,6 +1,7 @@
 * {
     box-sizing: border-box;
     margin: 0;
+    padding: 0;
 }
 
 body {
@@ -8,11 +9,14 @@ body {
 }
 
 nav {
-    display: flex;
+    height: 4.25em;
 }
 
 ul {
     display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0;
 }
 
 li {
@@ -22,21 +26,21 @@ li {
 a {
     text-decoration: none;
     color: black;
-    display: inline-block;
-    padding: 1em;
+    /*display: inline-block;*/
 }
 
 a:hover {
     color: blue;
 }
 
+.links {
+    font-family: "Work Sans";
+    font-weight: bold;
+    margin: 1em;
+}
+
 .logo {
     font-family: Montserrat;
     font-size: 3em;
-    padding-top: .2em;
-    padding-bottom: .2em;
-}
-
-.links {
-    font-family: "Work Sans";
+    margin: 0 auto;
 }
