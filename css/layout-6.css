@@ -1,0 +1,48 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: white;
+    height: 100vh;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr 570px 1fr 1fr;
+    grid-template-areas:
+            "header header"
+            "nav article"
+            "nav ads"
+            "footer footer"
+}
+
+.bg-green {
+    background: #8BC627;
+    padding: 20px;
+}
+
+header {
+    grid-area: header;
+}
+
+nav {
+    grid-area: nav;
+}
+
+article {
+    grid-area: article;
+}
+
+section {
+    grid-area: ads;
+}
+
+footer {
+    grid-area: footer;
+}
+
+
+
+

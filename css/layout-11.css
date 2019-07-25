@@ -11,7 +11,7 @@ body {
     grid-gap: 10px;
     /*grid-template-columns: repeat(4, 25%);*/
     /*grid-template-rows: repeat(5, 20%);*/
-    grid-template-columns: repeat(4, 1fr%);
+    grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(5, 1fr);
 
 
@@ -25,9 +25,9 @@ body {
 
 .bg-yellow {
     background: #FDD10A;
-    padding: 20px 20px 20px 10px;
+    padding: 10px;
     color: white;
-    font-size: 4em;
+    font-size: 3.5em;
 }
 
 .item-1 {

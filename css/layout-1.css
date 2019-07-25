@@ -10,7 +10,7 @@ body {
     display: grid;
     grid-gap: 10px;
     grid-template-columns: 20% 63% 17%;
-    grid-template-rows: 10% 80% 10%;
+    grid-template-rows: 1fr 77% 1fr;
     grid-template-areas:
     "header header header"
     "nav article ads"
