@@ -9,8 +9,8 @@ body {
     height: 100vh;
     display: grid;
     grid-gap: 10px;
-    grid-template-columns: 2fr 5fr 1fr;
-    grid-template-rows: 1fr 5fr 1fr;
+    grid-template-columns: 20% 63% 17%;
+    grid-template-rows: 10% 80% 10%;
     grid-template-areas:
     "header header header"
     "nav article ads"
@@ -19,6 +19,7 @@ body {
 
 .bg-yellow {
     background: #FDD10A;
+    padding: 20px;
 }
 
 header {
