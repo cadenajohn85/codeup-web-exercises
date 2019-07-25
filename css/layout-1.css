@@ -5,5 +5,42 @@
 }
 
 body {
-    background: teal;
+    background: white;
+    height: 100vh;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 2fr 5fr 1fr;
+    grid-template-rows: 1fr 5fr 1fr;
+    grid-template-areas:
+    "header header header"
+    "nav article ads"
+    "nav footer footer"
 }
+
+.bg-yellow {
+    background: #FDD10A;
+}
+
+header {
+    grid-area: header;
+}
+
+nav {
+    grid-area: nav;
+}
+
+article {
+    grid-area: article;
+}
+
+section {
+    grid-area: ads;
+}
+
+footer {
+    grid-area: footer;
+}
+
+
+
+
