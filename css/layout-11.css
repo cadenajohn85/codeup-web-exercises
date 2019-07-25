@@ -9,12 +9,8 @@ body {
     height: 100vh;
     display: grid;
     grid-gap: 10px;
-    /*grid-template-columns: repeat(4, 25%);*/
-    /*grid-template-rows: repeat(5, 20%);*/
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(5, 1fr);
-
-
     grid-template-areas:
             "item-1 item-1 item-1 item-1"
             "item-2 item-3 item-4 item-4"
