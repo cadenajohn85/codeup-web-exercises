@@ -200,3 +200,20 @@ main {
 .legal a {
     color: white;
 }
+
+@media screen and (max-width: 768px) {
+    body {
+        grid-template-rows: repeat(4, 1fr);
+        grid-template-columns: 20% 1fr;
+        grid-template-areas:
+        "nav header"
+        "nav main"
+        "nav footer"
+        "nav legal";
+        background-color: var(--lightgray);
+    }
+
+    nav {
+        position: fixed;
+    }
+}
