@@ -1,0 +1,202 @@
+:root {
+    --lightgray: #ECECEC;
+    --mediumgray: #535353;
+    --darkgray: #262626;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+}
+
+body {
+    background: black;
+    display: grid;
+    grid-template-rows: 2em 1fr 4.5em 2em;
+    grid-template-columns: 170px 1fr;
+    grid-template-areas:
+            "header header"
+            "nav main"
+            "nav footer"
+            "nav legal"
+;
+    height: 1000px;
+    font-size: 12px;
+    font-family: Sans-Serif;
+}
+
+header {
+    grid-area: header;
+    background-color: black;
+
+}
+
+nav {
+    grid-area: nav;
+    background-color: var(--lightgray)
+}
+
+main {
+    grid-area: main;
+    background-color: white;
+}
+
+.true_footer {
+    grid-area: footer;
+    background-color:var(--mediumgray);
+}
+
+.legal {
+    grid-area: legal;
+    background-color: var(--darkgray);
+}
+
+
+
+/*Header Styling*/
+.top_nav {
+    display: flex;
+    color: white;
+    list-style: none;
+    align-items: center;
+    height: 2em;
+}
+
+
+.top_nav a {
+    text-decoration: none;
+    color: white;
+    padding: 1em;
+}
+
+.top_nav a:hover {
+    background: var(--mediumgray);
+}
+/*Above Side Nav*/
+.side_nav {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.side_nav a {
+    text-decoration: none;
+    color: black;
+    padding: 1em;
+    display:inline-block;
+}
+
+.side_nav a:visited {
+    color: black;
+}
+
+.side_nav a:hover {
+    background: black;
+    color: white;
+
+}
+
+
+.side_nav>h3 {
+    padding: 12px;
+
+}
+
+
+
+/*Main Styling*/
+.main_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.article_container {
+    display: flex;
+    /*border: 1px solid red;*/
+    padding: 1em;
+}
+
+.article_text {
+    /*border: 1px solid peru;*/
+    padding-right: 2.5em;
+}
+
+
+.article_text>h2 {
+    color: teal;
+    margin-bottom: 1em;
+    font-size: 2em;
+}
+
+
+.ads {
+    display: flex;
+    flex-direction: column;
+    /*border: 1px solid chocolate;*/
+}
+
+.ad_1 {
+    height: 75px;
+    width: 300px;
+    text-align: center;
+    line-height: 75px;
+    border: 1px solid var(--lightgray);
+    margin-bottom: 1em;
+}
+
+.ad_2 {
+    height: 100px;
+    width: 300px;
+    text-align: center;
+    line-height: 100px;
+    border: 1px solid var(--lightgray);
+
+}
+
+.page_indicator {
+    display: flex;
+    list-style: none;
+    margin: 0 auto;
+}
+.page_indicator a {
+    padding: 1em;
+    text-decoration: none;
+}
+
+.page_indicator a:visited {
+    color: black;
+}
+
+.page_indicator a:hover {
+    background: black;
+    color: white;
+
+}
+
+
+.page_num_center {
+    /*border: 1px solid aqua;*/
+    align-self: center;
+}
+
+/* true_footer Styling */
+
+.true_footer {
+    color: white;
+    line-height: 4.5em;
+    padding-left: 1em;
+}
+
+/*.legal Styling*/
+
+.legal {
+    color: white;
+    line-height: 2em;
+    padding-left: 1em;
+}
+
+.legal a {
+    color: white;
+}
