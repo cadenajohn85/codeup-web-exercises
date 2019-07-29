@@ -206,7 +206,7 @@ main {
         grid-template-rows: repeat(4, 1fr);
         grid-template-columns: 20% 1fr;
         grid-template-areas:
-        "nav header"
+        "header header"
         "nav main"
         "nav footer"
         "nav legal";
@@ -214,19 +214,15 @@ main {
 
     }
 
-    .top_nav {
-        flex-wrap: wrap;
-        /*background: teal;*/
-    }
-
     nav {
         position: fixed;
+        margin-top: 25px;
     }
 
     .article_container {
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: repeat(4, 1fr);
+        grid-template-rows: repeat(2, 1fr);
         grid-template-areas:
         "heading"
         "text"
