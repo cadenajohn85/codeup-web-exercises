@@ -61,7 +61,7 @@ main {
     color: white;
     list-style: none;
     align-items: center;
-    height: 2em;
+    /*height: 2em;*/
 }
 
 
@@ -211,9 +211,43 @@ main {
         "nav footer"
         "nav legal";
         background-color: var(--lightgray);
+
+    }
+
+    .top_nav {
+        flex-wrap: wrap;
+        /*background: teal;*/
     }
 
     nav {
         position: fixed;
     }
+
+    .article_container {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 1fr);
+        grid-template-areas:
+        "heading"
+        "text"
+        "ad_1"
+        "ad_2";
+    }
+
+    .article_container h2 {
+        grid-area: heading;
+    }
+
+    .article_container p {
+        grid-area: text;
+    }
+
+    .article_container .ad_1 {
+        grid-area: ad_1;
+    }
+
+    .article_container .ad_2 {
+        grid-area: ad_2;
+    }
+
 }
