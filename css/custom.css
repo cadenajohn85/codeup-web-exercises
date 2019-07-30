@@ -1,7 +1,7 @@
-/*html {*/
-/*    max-width: 900px;*/
-/*    margin: 0 auto;*/
-/*}*/
+html {
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
 .jumbotron {
     background-image: url("../img/pizza.png");
@@ -11,5 +11,5 @@
 .jumbotron h1 {
     background: white;
     opacity: .7;
-    width: 100%;
+    /*width: 100%;*/
 }
