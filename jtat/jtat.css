@@ -4,6 +4,58 @@
     box-sizing: border-box;
 }
 
-body {
+html {
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
+/* Grid Layout */
+
+body {
+    display: grid;
+    grid-template-rows: 15% 1fr 10% 20px;
+    grid-template-columns: 10% 1fr;
+    grid-template-areas:
+    "header header"
+    "nav main"
+    "nav mission"
+    "nav legal"
+}
+
+header {
+    grid-area: header;
+}
+
+nav {
+    grid-area: nav;
+}
+
+main {
+    grid-area: main;
+}
+
+.mission {
+    grid-area: mission;
+}
+
+.legal {
+    grid-area: legal;
+}
+
+/* Header Styling */
+
+.banner-container {
+    display: inline;
+    margin: auto;
+}
+
+.header-links {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+.header-links>li {
+    padding-left: .5em;
+    padding-right: .5em;
 }
