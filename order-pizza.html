@@ -11,6 +11,9 @@
     <!-- Your custom styles go here -->
 </head>
 <body>
+
+<div class="container-fluid">
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4 mt-4 rounded py-0">
         <a class="navbar-brand text-secondary" href="#">Pizza world</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,23 +25,23 @@
                 <li class="nav-item active jc-active">
                     <a class="nav-link text-secondary" href="#">Order online <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item pr-4">
                     <a class="nav-link" href="#">Menu </a>
                 </li>
                 <li>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Zip code" aria-label="Search">
+                    <form action="https://request-inspector.glitch.me" method="GET" class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Zip code" aria-label="Search" name="zipcode">
                         <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search stores near you!</button>
                     </form>
                 </li>
             </ul>
-            <a href="#"><i class="fas fa-user"> </i> </a>
-            &nbsp;Sign up
+            <a class="jc-signup" href="#"><i class="fas fa-user"> </i>
+            &nbsp;Sign up </a>
         </div>
     </nav>
-    <div class="container-fluid">
 
-        <div class="jumbotron d-none d-md-block">
+
+        <div class="jumbotron d-none d-md-block jc-jumbo">
             <h1 class="display-4">Welcome to Pizza World!</h1>
         </div>
 
@@ -140,10 +143,10 @@
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">How much?
                                 <select class="form-control" name="cheese">
-                                    <option>Light</option>
-                                    <option>Normal</option>
-                                    <option>Extra</option>
-                                    <option>Double</option>
+                                    <option value="light">Light</option>
+                                    <option value="normal" selected>Normal</option>
+                                    <option value="extra">Extra</option>
+                                    <option value="double">Double</option>
                                 </select>
                             </li>
                         </ul>
@@ -156,17 +159,17 @@
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">What type?
                                 <select class="form-control" name="sauce-type">
-                                    <option>Tomato sauce</option>
-                                    <option>Marinara sauce</option>
-                                    <option>BBQ Sauce</option>
-                                    <option>Alfredo Sauce</option>
+                                    <option value="tomato">Tomato sauce</option>
+                                    <option value="marinara">Marinara sauce</option>
+                                    <option value="bbq">BBQ Sauce</option>
+                                    <option value="alfredo">Alfredo Sauce</option>
                                 </select>
                             </li>
                             <li class="list-group-item mb-1">How much?
                                 <select class="form-control" name="sauce-amount">
-                                    <option>Light</option>
-                                    <option>Normal</option>
-                                    <option>Extra</option>
+                                    <option value="light">Light</option>
+                                    <option value="normal" selected>Normal</option>
+                                    <option value="extra">Extra</option>
                                 </select>
                             </li>
                         </ul>

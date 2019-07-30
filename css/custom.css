@@ -7,9 +7,19 @@ html {
     background: #E1E1E1;
 }
 
+.jc-signup:hover {
+    text-decoration: none;
+
+}
+
 .jumbotron {
     background-image: url("../img/pizza.png");
     text-align: center;
+}
+
+.jc-jumbo {
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .jumbotron h1 {
