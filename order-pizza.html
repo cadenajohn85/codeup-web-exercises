@@ -49,24 +49,25 @@
 
         <hr class="mb-4">
 
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link active" href="#crust-menu">
-                    <span class="badge badge-pill badge-secondary">1</span> Size and crust</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#cheese-menu">
-                    <span class="badge badge-pill badge-secondary">2</span> Cheese and Sauce</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#toppings-menu">
-                    <span class="badge badge-pill badge-secondary">3</span> Toppings</a>
-            </li>
-        </ul>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="crust-tab" data-toggle="tab" href="#crust" role="tab" aria-controls="crust" aria-selected="true">
+                        <span class="badge badge-pill badge-secondary">1</span> Size and crust</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="cheese-tab" data-toggle="tab" href="#cheese" role="tab" aria-controls="cheese" aria-selected="false">
+                        <span class="badge badge-pill badge-secondary">2</span> Cheese and Sauce</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="toppings-tab" data-toggle="tab" href="#toppings" role="tab" aria-controls="toppings" aria-selected="false">
+                        <span class="badge badge-pill badge-secondary">3</span> Toppings</a>
+                </li>
+            </ul>
 
         <form method="POST" action="https://request-inspector.glitch.me/">
             <!---------------------------------------- Card: Choose Size and Crust ---------------------------------------->
 
+            <div class="tab-content" id="myTabContent"><div class="tab-pane fade show active" id="crust" role="tabpanel" aria-labelledby="crust-tab">
             <div class="card mb-4" id="crust-menu">
                 <div class="card-header bg-primary text-white">
                     Choose size and crust
@@ -127,9 +128,11 @@
                     <a href="#" class="btn btn-primary">Next Step ></a>
                 </div>
             </div>
+            </div>
 
             <!---------------------------------------- Card: Choose Cheese and Sauce ---------------------------------------->
 
+            <div class="tab-pane fade" id="cheese" role="tabpanel" aria-labelledby="cheese-tab">
             <div class="card mb-4" id="cheese-menu">
                 <div class="card-header bg-primary text-white">
                     Choose Cheese and Sauce
@@ -182,10 +185,12 @@
                     </div>
                 </div>
             </div>
+            </div>
 
             <!---------------------------------------- Card: Choose Toppings ---------------------------------------->
 
-            <div class="card mb-5" id="toppings-menu">
+                <div class="tab-pane fade" id="toppings" role="tabpanel" aria-labelledby="toppings-tab">
+                <div class="card mb-5" id="toppings-menu">
                 <div class="card-header bg-primary text-white">
                     Choose Toppings
                 </div>
@@ -277,6 +282,7 @@
                     <button type="submit" class="btn btn-primary">Checkout
                         <i class="fas fa-shopping-cart"></i></button>
                 </div>
+            </div>
             </div>
 
         </form>
