@@ -45,9 +45,18 @@ main {
 /* Header Styling */
 
 .banner-container {
-    display: inline;
-    margin: auto;
+    /*display: inline;*/
+    margin: 0 auto;
+    background: teal;
+    width: 600px;
+    /*height: fit-content;*/
 }
+
+.banner-container img {
+    display: block;
+    margin: 0 auto;
+}
+
 
 .header-links {
     display: flex;
