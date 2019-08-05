@@ -60,6 +60,6 @@ var isPremiumMember = confirm("Is the user a premium member?\n" +
     "(Click 'Ok' for yes, or 'Cancel' for no)");
 var numberOfItemsPurchased = prompt("How many items is the user purchasing?");
 
-var applyOffer = offerStillValid && (isPremiumMember || numberOfItemsPurchased > 2);
+var applyOffer = offerStillValid && (isPremiumMember || Number(numberOfItemsPurchased) > 2);
 alert("Evaluating if promotional offer will be applied:\n\n" +
     applyOffer);
