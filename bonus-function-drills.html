@@ -5,6 +5,71 @@
     <title>Bonus: Function Drills</title>
 </head>
 <body>
+    <script>
+        function isOdd(number) {
+            number = Math.abs(number);
+            return number % 2 === 1;
+        }
+
+        function isEven(number) {
+            number = Math.abs(number);
+            return number % 2 === 0;
+        }
+
+        function identity(input) {
+            return input;
+        }
+
+        function isFive(input) {
+            return input === 5 || input === "5";
+        }
+
+        function addFive(input) {
+            return input += 5;
+        }
+
+        function isMultipleOfFive(input) {
+            return input % 5 === 0;
+        }
+
+        function isThree(input) {
+            return input === 3 || input === "3";
+        }
+
+        function isMultipleOfThree(input) {
+            return input % 3 === 0;
+        }
+
+        function isMultipleOfThreeAndFive(input) {
+            return input % 3 === 0 && input % 5 === 0;
+        }
+
+        function isMultipleOf(target, n) {
+            return target % n === 0;
+        }
+
+        function isTrue(boolean) {
+            return boolean;
+        }
+
+        function isFalse(boolean) {
+            return !boolean;
+        }
+
+        function isTruthy(input) {
+            return input == true;
+        }
+
+        function isFalsy(input) {
+            return input == false;
+        }
+
+        function isVowel(letter) {
+            letter = letter.toLowerCase();
+            return letter === 'a' || letter === 'e' || letter === 'i' || letter === 'o' || letter === 'u';
+        }
+
+    </script>
 
 </body>
 </html>
