@@ -12,11 +12,8 @@
 //  */
 
     function sayHello(name) {
-        var name = prompt("What's your name?");
-        alert("Hello," + " " + name + "!");
+        return "Hello, " + name + "!";
     }
-
-    sayHello();
 
 /**
  * TODO:
@@ -26,7 +23,9 @@
  * console.log 'helloMessage' to check your work
  */
 
-    sayHello("John")
+    var helloMessage = sayHello("John");
+    console.log(helloMessage);
+
 
 /**
  * TODO:
