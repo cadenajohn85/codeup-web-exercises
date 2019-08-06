@@ -1,13 +1,22 @@
 "use strict";
 
-/**
- * TODO:
- * Create a function called 'sayHello' that takes a parameter 'name'.
- * When called, the function should return a message that says hello to the passed in name.
- *
- * Example
- * > sayHello("codeup") // returns "Hello, codeup!"
- */
+(function() {
+
+// /**
+//  * TODO:
+//  * Create a function called 'sayHello' that takes a parameter 'name'.
+//  * When called, the function should return a message that says hello to the passed in name.
+//  *
+//  * Example
+//  * > sayHello("codeup") // returns "Hello, codeup!"
+//  */
+
+    function sayHello(name) {
+        var name = prompt("What's your name?");
+        alert("Hello," + " " + name + "!");
+    }
+
+    sayHello();
 
 /**
  * TODO:
@@ -16,6 +25,8 @@
  *
  * console.log 'helloMessage' to check your work
  */
+
+    sayHello("John")
 
 /**
  * TODO:
@@ -79,3 +90,5 @@ var random = Math.floor((Math.random() * 3) + 1);
  *
  * > applyDiscount(45.99, 0.12) // 40.4712
  */
+
+})();
