@@ -15,17 +15,16 @@
         return "Hello, " + name + "!";
     }
 
-/**
- * TODO:
- * Call the function 'sayHello' and pass your name as a string literal argument.
- * Store the result of the function call in a variable named 'helloMessage'.
- *
- * console.log 'helloMessage' to check your work
- */
+// /**
+//  * TODO:
+//  * Call the function 'sayHello' and pass your name as a string literal argument.
+//  * Store the result of the function call in a variable named 'helloMessage'.
+//  *
+//  * console.log 'helloMessage' to check your work
+//  */
 
     var helloMessage = sayHello("John");
     console.log(helloMessage);
-
 
 /**
  * TODO:
