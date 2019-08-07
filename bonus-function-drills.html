@@ -12,8 +12,9 @@
         }
 
         function isEven(number) {
-            number = Math.abs(number);
-            return number % 2 === 0;
+            // number = Math.abs(number);
+            // return number % 2 === 0;
+            return !isOdd(number);
         }
 
         function identity(input) {
@@ -41,7 +42,8 @@
         }
 
         function isMultipleOfThreeAndFive(input) {
-            return input % 3 === 0 && input % 5 === 0;
+            //return input % 3 === 0 && input % 5 === 0;
+            return isMultipleOfThree(input) && isMultipleOfFive(input);
         }
 
         function isMultipleOf(target, n) {
@@ -53,7 +55,8 @@
         }
 
         function isFalse(boolean) {
-            return !boolean;
+            //return !boolean;
+            return !isTrue(boolean);
         }
 
         function isTruthy(input) {
@@ -68,6 +71,110 @@
             letter = letter.toLowerCase();
             return letter === 'a' || letter === 'e' || letter === 'i' || letter === 'o' || letter === 'u';
         }
+
+        function isConsonant(letter) {
+            return !isVowel(letter);
+        }
+
+        function isCapital(letter) {
+            return letter === letter.toUpperCase();
+        }
+
+        function isLowerCase(letter) {
+            //return !isCapital(letter);
+            //Failed test case (with wrong input type:)
+            //isLowerCase("Dog") returns "true"
+            return letter === letter.toLowerCase();
+        }
+
+        function hasLowerCase(str) {
+            // If I use .toLowerCase, is it the same? (It was all lowercase)
+            // If I use .toUpperCase, is it NOT the same? (It had at least one lowercase somewhere)
+            return str !== str.toUpperCase();
+        }
+
+        // console.log(hasLowerCase("dog"), "should be true");
+        // console.log(hasLowerCase("Dog"), "should be true");
+        // console.log(hasLowerCase("DOG"), "should be false");
+
+        function isSpace(letter) {
+            return letter === " ";
+        }
+
+        function isZero(number) {
+            return number === 0;
+        }
+
+        function notZero(number) {
+            return !isZero(number);
+        }
+
+        function lowerCase(str) {
+            return str.toLowerCase();
+        }
+
+        function double(n) {
+            return n * 2;
+        }
+
+        function triple(n) {
+            return n * 3;
+        }
+
+        function quadruple(n) {
+            return n * 4;
+        }
+
+        function half(n) {
+            return n/2;
+        }
+
+        function subtract(a, b) {
+            return a - b;
+        }
+
+        function multiply(a, b) {
+            return a * b;
+        }
+
+        function divide(a, b) {
+            return a / b;
+        }
+
+        function remainder(a, b) {
+            return a % b;
+        }
+
+        var modulo = function(a, b) {
+            return a % b;
+        }
+
+        function cube(n) {
+            return n * n * n;
+        }
+
+        function squareRoot(n) {
+            return Math.sqrt(n);
+        }
+
+        function cubeRoot(n) {
+            return Math.pow(n, 1/3);
+            //Issue of negative numbers
+        }
+
+        function invertSign(number) {
+            if (typeof number === "number" && Math.abs(number) === 0) {
+                return 0;
+            } else if (typeof number === "number") {
+                return number * -1;
+            } else {
+                return false;
+            }
+        }
+
+
+
+
 
     </script>
 
