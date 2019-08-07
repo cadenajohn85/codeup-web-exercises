@@ -6,6 +6,8 @@
 </head>
 <body>
     <script>
+        (function(){
+
         function isOdd(number) {
             number = Math.abs(number);
             return number % 2 === 1;
@@ -158,8 +160,9 @@
         }
 
         function cubeRoot(n) {
-            return Math.pow(n, 1/3);
-            //Issue of negative numbers
+            if (Math.sign(n) === -1) {
+                return -1 * Math.pow(-n, 1/3);
+            } else return Math.pow(n, 1/3);
         }
 
         function invertSign(number) {
@@ -172,10 +175,24 @@
             }
         }
 
+        function degreesToRadians(number) {
+            return number * Math.PI / 180;
+        }
+
+        function radiansToDegrees(number) {
+            return number * 180 / Math.PI;
+        }
+
+        function isBlank(input) {
+            return input.trim() === "";
+        }
+
+        function trim(str) {
+            return str.trim();
+        }
 
 
-
-
+        })();
     </script>
 
 </body>
