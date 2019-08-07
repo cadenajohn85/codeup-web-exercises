@@ -1,3 +1,4 @@
+(function(){
 "use strict";
 
 /**
@@ -16,7 +17,66 @@
  * Can you refactor your code to use functions?
  */
 
-/* ########################################################################## */
+    var userConfirms = confirm("Would you like to enter a number?");
+    //Ok, enter a # -- 3 alerts.
+    //Ok, enters not a number -- warn user.
+    //Cancel -- nothing happens.
+
+    // if (!userConfirms) {
+    //    // console.log("User hit 'cancel'");
+    // } else {
+    //     //console.log("User hit 'Ok'");
+    //     var userNumber = +(prompt("Please enter a number."));
+    //     //console.log(userNumber);
+    //     if (isNaN(userNumber)) {
+    //         alert("Warning! You did not enter a valid number.");
+    //     } else {
+    //         //alert("Congrats! You entered a valid number.");
+    //         if (Math.abs(userNumber) % 2 === 1) {
+    //             alert("Your number is odd.");
+    //         } else {
+    //             alert("Your number is even.");
+    //         }
+    //         alert("If you add 100 to your number, you'll get " + (userNumber + 100));
+    //         if (Math.sign(userNumber) === 1) {
+    //             alert("Your number is positive.");
+    //         } else if (Math.sign(userNumber) === -1) {
+    //             alert("Your number is negative.");
+    //         } else if (userNumber === 0 || userNumber === -0) {
+    //             alert("Your number is 0, so it is neither positive nor negative.");
+    //         } else {
+    //             alert("Your number is something very sneaky indeed. You've broken my logic.");
+    //         }
+    //     }
+    // }
+
+        //function: get user number
+    //fuctnion: check if it's valid
+    //function: check if it's even or odd
+    //function: add100
+    //function: positiveornegative
+
+    if (userConfirms) {
+        getUserNumber();
+        checkIfValid();
+    }
+
+    function getUserNumber() {
+        var userNumber = +prompt("Please enter a number.");
+        //console.log("UN is: " + userNumber);
+        return userNumber;
+    }
+
+    function checkIfValid(userNumber) {
+        if (isNaN(userNumber)) {
+            alert("Warning! You did not enter a valid number.");
+        } else {
+            alert("Congrats! You entered a valid number.");
+        }
+    }
+
+
+    /* ########################################################################## */
 
 /**
  * TODO:
@@ -85,10 +145,11 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
 
 /**
  * TODO:
- * Uncomment the line below to generate a random number between 0 and 6.
+ * Uncomment the line below to generate a random number between 0 and 5.
  * Prompt the user for their total bill, then use your `calculateTotal` function
  * and alerts to display to the user what their lucky number was, what their
  * price before the discount was, and what their price after the discount is.
  */
-// Generate a random number between 0 and 6
+// Generate a random number between 0 and 5
 // var luckyNumber = Math.floor(Math.random() * 6);
+})();

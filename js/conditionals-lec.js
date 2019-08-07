@@ -142,63 +142,77 @@
     //Break out of each case.
     //OUTSIDE of case statement, return the variable.
 
-    var isShoppingDone;
-    var allowanceThisWeek = 5;
-
-    if (isShoppingDone) {
-        allowanceThisWeek += 5;
-    }
-
+    // var isShoppingDone;
+    // var allowanceThisWeek = 5;
     //
-
-    var userWeather;
-
-    switch(userWeather) {
-        case "sunny":
-            return "It is nice and sunny outside today. Wear shorts! Go to the beach, or the park, and get an ice cream.";
-        case "rainy":
-            return "Rain is falling outside; take a rain coat and a brolly, and don't stay out for too long."
-        case "snowing":
-            return "The snow is coming down — it is freezing! Best to stay in with a cup of hot chocolate, or go build a snowman.";
-        case "overcast":
-            return "It isn't raining, but the sky is grey and gloomy; it could turn any minute, so take a rain coat just in case.";
-        default:
-            return "";
-    }
+    // if (isShoppingDone) {
+    //     allowanceThisWeek += 5;
+    // }
+    //
+    //
+    //
+    // //
+    //
+    // var userWeather;
+    //
+    // switch(userWeather) {
+    //     case "sunny":
+    //         return "It is nice and sunny outside today. Wear shorts! Go to the beach, or the park, and get an ice cream.";
+    //     case "rainy":
+    //         return "Rain is falling outside; take a rain coat and a brolly, and don't stay out for too long."
+    //     case "snowing":
+    //         return "The snow is coming down — it is freezing! Best to stay in with a cup of hot chocolate, or go build a snowman.";
+    //     case "overcast":
+    //         return "It isn't raining, but the sky is grey and gloomy; it could turn any minute, so take a rain coat just in case.";
+    //     default:
+    //         return "";
+    // }
 
     //
 
     //(userTheme === "black") ? background --> black, font --> white : background --> white, font --> black;
 
+    //write a function that takes in a string
+    //is string "bob"? return true
+    //otherwise, return "longer than bob", "same as bob", or "shorter than bob"
+
+    // function checkBob(str) {
+    //     if (str === "bob") {
+    //         return true;
+    //     } else {
+    //         if (str.length === "bob".length) {
+    //             return "same as bob";
+    //         } else if (str.length > "bob".length) {
+    //             return "longer than bob";
+    //         } else {
+    //             return "shorter than bob";
+    //         }
+    //     }
+    // }
+
+    function checkBob(str) {
+        if (str === "bob") {
+            return true;
+        } else {
+            return checkNotBobLength(str);
+        }
+    }
 
 
+    function checkNotBobLength(str) {
+        if (str.length === "bob".length) {
+            return "same as bob";
+        } else if (str.length > "bob".length) {
+            return "longer than bob";
+        } else {
+            return "shorter than bob";
+        }
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    console.log(checkBob("bob"), "bob");
+    console.log(checkBob("Dan"), "Dan");
+    console.log(checkBob("Sally"), "Sally");
+    console.log(checkBob("Ty"), "Ty");
 
 
 })();
