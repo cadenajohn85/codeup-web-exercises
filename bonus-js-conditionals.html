@@ -14,25 +14,17 @@
              * If the input contains white space or numbers, return the string "INVALID INPUT".
              */
 
-            //test string for invalid input (whitespace or numbers)
-            //test to see if string is justin
-
             function makeJustinMessage(userString) {
                 var isValid = testIfValid(userString);
                 if (isValid === false) {
                     return "INVALID INPUT";
                 } else {
-                    var justinConfirm = testIfJustin(userString);
-                    return justinConfirm;
-                    //return "let's continue";
+                    return testIfJustin(userString);
                 }
             }
 
             function testIfValid(stringInput) {
-                //Issue: spaces or numbers inside of strings
-                if (stringInput === null) {
-                    return false;
-                } else if (stringInput !== stringInput.trim() || isNaN(parseFloat(stringInput)) === false || isNaN(stringInput[stringInput.length - 1]) === false) {
+                if (stringInput === null || stringInput.search(/\d|\s/) !== -1) {
                     return false;
                 } else {
                     return true;
