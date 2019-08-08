@@ -9,38 +9,134 @@
         (function(){
             "use strict";
 
-            /*
-             * Write a function makeJustinMessage() that returns the string "It's Justin!" if the input to the function is the string "justin" and "It's not Justin" otherwise.
+             /* Write a function makeJustinMessage() that returns the string "It's Justin!" if the input to the function is the string "justin" and "It's not Justin" otherwise.
              * If the input contains white space or numbers, return the string "INVALID INPUT".
              */
 
-            function makeJustinMessage(userString) {
-                var isValid = testIfValid(userString);
-                if (isValid === false) {
-                    return "INVALID INPUT";
+            // function makeJustinMessage(userString) {
+            //     var isValid = testIfValid(userString);
+            //     if (isValid === false) {
+            //         return "INVALID INPUT";
+            //     } else {
+            //         return testIfJustin(userString);
+            //     }
+            // }
+            //
+            // function testIfValid(stringInput) {
+            //     if (stringInput === null || stringInput.search(/\d|\s/) !== -1) {
+            //         return false;
+            //     } else {
+            //         return true;
+            //     }
+            // }
+            //
+            // function testIfJustin(stringInput) {
+            //     if ( stringInput === "justin" ) {
+            //         return "It's Justin!";
+            //     } else {
+            //         return "It's not Justin.";
+            //     }
+            // }
+            //
+            // var userString = prompt("Please enter a string input.");
+            // console.log(makeJustinMessage(userString));
+
+            /* Write a function that returns a string describing the action to be taken for a given street light color
+             * input. For example, if the function input is the string "red", a message like "STOP!" could be returned
+             *  from the function. Input should not be case sensitive. */
+
+            // function giveStoplightInstructions (colorInput) {
+            //     switch(colorInput.toLowerCase()) {
+            //         case "red":
+            //             return "STOP!";
+            //         case "yellow":
+            //             return "Slow down";
+            //         case "green":
+            //             return "Go";
+            //         default:
+            //             return "Unusual circumstances. Proceed with caution.";
+            //     }
+            // }
+            //
+            // var userColor = prompt("What color is the stoplight?");
+            // alert(giveStoplightInstructions(userColor));
+
+            /* Create a function that simply returns an input as an output. If no input is passed to the function when
+             * it is called, return the string "no input provided." */
+
+            // function returnUserInput (someInput) {
+            //     if (someInput === undefined) {
+            //         return "No input provided."
+            //     }  else {
+            //         return someInput;
+            //     }
+            // }
+
+            /*
+             * Create a function that returns a unique message string for a given digit input. If the input is not a
+             * single digit, return the string "too many digits". If the input is not a number, return "invalid input".
+             * String digits like "1" or "9" are valid inputs.
+             */
+
+            //Is input a number or num-only string? if not, "Invalid input."
+            //Is number more than one digit? If not, "too many digits".
+            //Unique digit messages
+
+            //1. Run testIfNumber
+            //2. if return is true, run testIfSingleDigit
+
+            function generateDigitMessage(someInput) {
+                if (!testIfNumber(someInput)) {
+                    return "invalid input";
                 } else {
-                    return testIfJustin(userString);
+                    return "successful input";
                 }
+
             }
 
-            function testIfValid(stringInput) {
-                if (stringInput === null || stringInput.search(/\d|\s/) !== -1) {
+            function testIfNumber(someInput) {
+                if (isNaN(+someInput)) {
                     return false;
                 } else {
                     return true;
                 }
             }
 
-            function testIfJustin(stringInput) {
-                if ( stringInput === "justin" ) {
-                    return "It's Justin!";
-                } else {
-                    return "It's not Justin.";
-                }
-            }
+                console.log(generateDigitMessage(1));
+                console.log(generateDigitMessage("10"));
+                console.log(generateDigitMessage("asdf"));
+                console.log(generateDigitMessage("as1"));
+                console.log(generateDigitMessage("1df"));
+                console.log(generateDigitMessage());
+                console.log(generateDigitMessage(""));
+                console.log(generateDigitMessage(" "));
 
-            var userString = prompt("Please enter a string input.");
-            console.log(makeJustinMessage(userString));
+
+            // console.log(testIfNumber(1));
+                // console.log(testIfNumber("10"));
+            //console.log(testIfNumber(truth));
+            //     console.log(testIfNumber("asdf"));
+            //     console.log(testIfNumber("as1"));
+            //     console.log(testIfNumber("1df"));
+            //     console.log(testIfNumber());
+            //     console.log(testIfNumber(""));
+            //     console.log(testIfNumber(" "));
+
+            function testIfSingleDigit(someInput) {
+                if ((someInput.toString()).length !== 1) {
+                    return "too many digits";
+                } else {
+                    return "proceed";
+                }
+
+            }
+                    // console.log(testIfSingleDigit(2));
+                    // console.log(testIfSingleDigit(555));
+                // console.log(testIfSingleDigit(-4));
+                    // console.log(testIfSingleDigit("0"));
+                    // console.log(testIfSingleDigit("-25"));
+                    // console.log(testIfSingleDigit(Infinity));
+
 
         })();
 
