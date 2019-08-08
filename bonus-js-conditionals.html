@@ -88,10 +88,14 @@
             function generateDigitMessage(someInput) {
                 if (!testIfNumber(someInput)) {
                     return "invalid input";
-                } else {
-                    return "successful input";
                 }
-
+                if  (!testIfSingleDigit(someInput)) {
+                    return "too many digits."
+                }
+                else {
+                    var safeDigit = Math.abs(+someInput);
+                    return chooseDigitMessage(safeDigit);
+                }
             }
 
             function testIfNumber(someInput) {
@@ -102,41 +106,48 @@
                 }
             }
 
-                console.log(generateDigitMessage(1));
-                console.log(generateDigitMessage("10"));
-                console.log(generateDigitMessage("asdf"));
-                console.log(generateDigitMessage("as1"));
-                console.log(generateDigitMessage("1df"));
-                console.log(generateDigitMessage());
-                console.log(generateDigitMessage(""));
-                console.log(generateDigitMessage(" "));
-
-
-            // console.log(testIfNumber(1));
+                // console.log(testIfNumber(1));
                 // console.log(testIfNumber("10"));
             //console.log(testIfNumber(truth));
-            //     console.log(testIfNumber("asdf"));
-            //     console.log(testIfNumber("as1"));
-            //     console.log(testIfNumber("1df"));
-            //     console.log(testIfNumber());
-            //     console.log(testIfNumber(""));
-            //     console.log(testIfNumber(" "));
+                // console.log(testIfNumber("asdf"));
+                // console.log(testIfNumber("as1"));
+                // console.log(testIfNumber("1df"));
+                // console.log(testIfNumber());
+                // console.log(testIfNumber(""));
+                // console.log(testIfNumber(" "));
 
-            function testIfSingleDigit(someInput) {
-                if ((someInput.toString()).length !== 1) {
-                    return "too many digits";
+            function testIfSingleDigit(someNumber) {
+                if ((Math.abs(someNumber).toString()).length !== 1) {
+                    return false;
                 } else {
-                    return "proceed";
+                    return true;
                 }
-
             }
-                    // console.log(testIfSingleDigit(2));
-                    // console.log(testIfSingleDigit(555));
-                // console.log(testIfSingleDigit(-4));
-                    // console.log(testIfSingleDigit("0"));
-                    // console.log(testIfSingleDigit("-25"));
-                    // console.log(testIfSingleDigit(Infinity));
 
+            function chooseDigitMessage(someDigit) {
+                switch(someDigit) {
+                    case 0:
+                        return "0: The first recorded zero appeared in Mesopotamia around 3 B.C.";
+                    case 1:
+                        return "1: One is the loneliest number that you'll ever do.";
+                    case 2:
+                        return "2: Double trouble.";
+                    case 3:
+                        return "3: Three's Company.";
+                    case 4:
+                        return "4: This number is considered unlucky in Japanese, because it's a homophone for 'death'.";
+                    case 5:
+                        return "5: A pentatonic scale has 5 notes per octave.";
+                    case 6:
+                        return "6: The kanji for this number is 六.";
+                    case 7:
+                        return "7: Sail the seven seas!";
+                    case 8:
+                        return "8: This number is spelled 'eight', not 'ate'.";
+                    case 9:
+                        return "9: I'm on Cloud Nine.";
+                }
+            }
 
         })();
 
