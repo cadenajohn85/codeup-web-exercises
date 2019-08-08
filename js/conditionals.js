@@ -19,8 +19,7 @@
 
     var userConfirms = confirm("Would you like to enter a number?");
 
-    if (!userConfirms) {
-    } else {
+    if (userConfirms) {
         var userNumber = +(prompt("Please enter a number."));
         if (isNaN(userNumber)) {
             alert("Warning! You did not enter a valid number.");
@@ -43,7 +42,8 @@
         }
     }
 
-    if (userConfirms) {
+    var userConfirmsAgain = confirm("Would you like to enter a number now?");
+    if (userConfirmsAgain) {
         var userNumber2 = getUserNumber();
         var isValid = checkIfValid(userNumber2);
         if (isValid) {
