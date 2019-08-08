@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bonus JavaScript Conditionals</title>
+</head>
+<body>
+    <script>
+        (function(){
+            "use strict";
+
+            /*
+             * Write a function makeJustinMessage() that returns the string "It's Justin!" if the input to the function is the string "justin" and "It's not Justin" otherwise.
+             * If the input contains white space or numbers, return the string "INVALID INPUT".
+             */
+
+            //test string for invalid input (whitespace or numbers)
+            //test to see if string is justin
+
+            function makeJustinMessage(userString) {
+                var isValid = testIfValid(userString);
+                if (isValid === false) {
+                    return "INVALID INPUT";
+                } else {
+                    var justinConfirm = testIfJustin(userString);
+                    return justinConfirm;
+                    //return "let's continue";
+                }
+            }
+
+            function testIfValid(stringInput) {
+                //Issue: spaces or numbers inside of strings
+                if (stringInput === null) {
+                    return false;
+                } else if (stringInput !== stringInput.trim() || isNaN(parseFloat(stringInput)) === false || isNaN(stringInput[stringInput.length - 1]) === false) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            function testIfJustin(stringInput) {
+                if ( stringInput === "justin" ) {
+                    return "It's Justin!";
+                } else {
+                    return "It's not Justin.";
+                }
+            }
+
+            var userString = prompt("Please enter a string input.");
+            console.log(makeJustinMessage(userString));
+
+        })();
+
+    </script>
+</body>
+</html>
