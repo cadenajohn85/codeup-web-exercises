@@ -159,9 +159,124 @@
              * user to enter the abbreviated day (e.g. 'Monday', 'monday', 'Mon', or 'mon')
              */
 
-            //Ask user for input
-            //Catch
+            //Prompt user for input
+            //Catch invalid inputs (non-days)
+            //convert day to uniform format
+            //display message
 
+            function giveUserFavDayMessage () {
+                var userFavDay = getUserFavDay().toLowerCase();
+                if (!testIfUserInputValid(userFavDay)) {
+                    return alert("I'm sorry, I didn't recognize your input as a day of the week.")
+                } else {
+                    var convertedUserFavDay = convertUserInput(userFavDay);
+                }
+                generateFavDayMessage(convertedUserFavDay);
+            }
+
+            function getUserFavDay() {
+                return prompt("What is your favorite day of the week?");
+            }
+
+            function testIfUserInputValid(someInput) {
+                if (someInput.indexOf("mon") !== -1 ||
+                    someInput.indexOf("tues") !== -1 ||
+                    someInput.indexOf("wed") !== -1 ||
+                    someInput.indexOf("thurs") !== -1 ||
+                    someInput.indexOf("fri") !== -1 ||
+                    someInput.indexOf("sat") !== -1 ||
+                    someInput.indexOf("sun") !== -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+            function convertUserInput(someInput) {
+                if (someInput.indexOf("mon") !== -1) {
+                    return "Monday";
+                }
+                if (someInput.indexOf("tues") !== -1) {
+                    return "Tuesday";
+                }
+                if (someInput.indexOf("wed") !== -1) {
+                    return "Wednesday";
+                }
+                if (someInput.indexOf("thurs") !== -1) {
+                    return "Thursday";
+                }
+                if (someInput.indexOf("fri") !== -1) {
+                    return "Friday";
+                }
+                if (someInput.indexOf("sat") !== -1) {
+                    return "Saturday";
+                }
+                if (someInput.indexOf("sun") !== -1) {
+                    return "Sunday";
+                }
+            }
+
+            function generateFavDayMessage(someInput) {
+                switch(someInput) {
+                    case "Monday":
+                        alert("Your favorite day is Monday, which corresponds to the moon.");
+                        break;
+                    case "Tuesday":
+                        alert("Your favorite day is Tuesday, which corresponds to the planet Mars.");
+                        break;
+                    case "Wednesday":
+                        alert("Your favorite day is Wednesday, which corresponds to the planet Mercury.");
+                        break;
+                    case "Thursday":
+                        alert("Your favorite day is Thursday, which corresponds to the planet Jupiter.");
+                        break;
+                    case "Friday":
+                        alert("Your favorite day is Friday, which corresponds to the planet Venus.");
+                        break;
+                    case "Saturday":
+                        alert("Your favorite day is Saturday, which corresponds to the planet Saturn.");
+                        break;
+                    case "Sunday":
+                        alert("Your favorite day is Sunday, which corresponds to the sun.");
+                        break;
+                }
+            }
+
+            giveUserFavDayMessage();
+
+            /*
+            __
+            Create a function that prompts the user for an input and then alerts if the input is a number or not a number.
+            - use an if/else
+                - refactor to use a ternary operator
+
+            __
+            Create a function that prompts a user for a season (Spring, Summer, Fall (or Autumn), Winter). The function then alerts the months available in that season and then asks the user to pick a given month. After selecting the month, alert a unique message for the month.
+            - account for any invalid user input
+            - case of input should not matter
+            - accept both abbreviations and full names of the months
+
+            __
+            GOLD STAR BONUS
+
+            Create a distance-unit-conversion application.
+                Prompt the user for unit of measurement.
+                Prompt the user for a value.
+
+                Prompt the user for a second unit of measurement to convert to.
+
+                Possibly define multiple functions to convert: inchesToFeet, feetToMiles, milesToLightYears
+            then the opposite versions: lightYearsToMiles, milesToFeet, feetToInches
+
+            Use these conversion functions to make the correct unit conversion
+
+            Potentially, you will need a large switch case to account for the possible unit conversions,
+                i.e. what conversion functions will need to be called in and in what order.
+
+                DOUBLE GOLD STAR BONUS
+
+                Allow unit conversion to metric system units
+*/
         })();
 
     </script>
