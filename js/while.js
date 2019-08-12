@@ -23,7 +23,6 @@
         }
         console.log(conesThisRound + " cones sold...")
         allCones = allCones - conesThisRound;
-        //console.log("\tYou still need to sell " + allCones + " more cones.");
     } while (allCones > 0);
      console.log("Yay! I sold them all.");
 
