@@ -14,6 +14,8 @@
 
     //Problem #3
 
+
+    console.log("Number to skip is: " + userNumber);
     for (var i = 1; i < 50; i += 2) {
         if (i === userNumber) {
             console.log ("Yikes! Skipping number: " + userNumber);

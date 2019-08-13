@@ -4,7 +4,7 @@
     //Problem #2
 
     function showMultiplicationTable(someNumber) {
-        for (var i = 1; i <=10; i++) {
+        for (var i = 1; i <= 10; i++) {
             console.log(someNumber + " * " + i + " = " + (someNumber * i));
         }
     }
@@ -13,7 +13,7 @@
 
     //Problem #3
 
-    for (var j = 0; j <10; j++) {
+    for (var j = 0; j < 10; j++) {
         //Generating random numbers where minimum is not 1:
         // https://stackoverflow.com/questions/4959975/generate-random-number-between-two-numbers-in-javascript
         var randomNumber = Math.floor(Math.random() * (200 - 20 + 1)) + 20;
@@ -27,23 +27,33 @@
 
     //Problem #4
 
-        // Solution from classmate
+    // Solution from Kevin
 
-        // for (var k = 1; k < 10; k++) {
-        //     console.log(k.toString().repeat(k));
-        // }
+    // for (var k = 1; k < 10; k++) {
+    //     console.log(k.toString().repeat(k));
+    // }
 
 
-        // Solution from friend
+    // Solution from partner
 
-        var stringCounter = " ";
-        for(var i = 1; i <10; ++i) {
-            for (var j = 1; j <= i; ++j) {
-                stringCounter = stringCounter + i.toString();
-            }
-            console.log(stringCounter.trim());
-            stringCounter = ' ';
+    var stringCounter = " ";
+    for (var i = 1; i < 10; ++i) {
+        for (var j = 1; j <= i; ++j) {
+            stringCounter = stringCounter + i.toString();
         }
+        console.log(stringCounter.trim());
+        stringCounter = " ";
+    }
+
+    // Solution from Izzy
+
+    // var x = 1;
+
+    // for (var q = 1; q <= 9; q++) {
+    // console.log(q * x);
+    // x += "1";
+    // }
+
 
     //Problem #5
 
