@@ -27,46 +27,28 @@
 
     //Problem #4
 
-    for (var k = 1; k < 10; k++) {
-        console.log(k.toString().repeat(k));
-    }
+        // Solution from classmate
+
+        // for (var k = 1; k < 10; k++) {
+        //     console.log(k.toString().repeat(k));
+        // }
 
 
-            // for (var j = 1; j <10; j++) {
-            //     // convert j to a string
-            //     var counterString = j.toString() + "string";
-            //     // create a string variable that strings together chars counter-# of times
-            //     for (var counter = 1; )
-            //     //console.log the string
-            //     console.log(j);
-            //     console.log(counterString);
-            // }
+        // Solution from friend
 
-            // for (var j = 1; j <10; j++) {
-            //     console.log(j);
-            //     var jAsString = j.toString();
-            //     var counterString;
-            //     var counter = 0;
-            //     //var k = j;
-            //     while (counter < j) {
-            //         counterString = jAsString + jAsString;
-            //     }
-            //     console.log(counterString);
-            // }
-
-            // function makeCounterString (someNumber) {
-            //     var jAsString = someNumber.toString();
-            //     for (someNumber)
-            //     var counterString =
-            // }
+        var stringCounter = " ";
+        for(var i = 1; i <10; ++i) {
+            for (var j = 1; j <= i; ++j) {
+                stringCounter = stringCounter + i.toString();
+            }
+            console.log(stringCounter.trim());
+            stringCounter = ' ';
+        }
 
     //Problem #5
 
     for (var m = 100; m > 0; m -= 5 ) {
         console.log(m);
     }
-
-
-
 
 })();
