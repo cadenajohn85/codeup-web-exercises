@@ -96,7 +96,61 @@
             // based on the isAdmin property. Refactor to return an array of admin-only user emails. Refactor again to
             // return an array of user objects that are admins.
 
-            
+            var testUserArray = [
+                {
+                    isAdmin: true,
+                    email: 'user1@email.com'
+                },
+                {
+                    isAdmin: true,
+                    email: 'user2@email.com'
+                },
+                {
+                    isAdmin: false,
+                    email: 'user3@email.com'
+                }
+            ];
+
+            //Original Version
+
+            // function adminList(someUserArray) {
+            //     var adminCounter = 0;
+            //     someUserArray.forEach(function(element){
+            //         if (element.isAdmin) {
+            //             ++adminCounter;
+            //         }
+            //     });
+            //     return adminCounter;
+            // }
+            // console.log(adminList(testUserArray));
+
+            // Refactor #1
+
+            // function adminList(someUserArray) {
+            //     var adminEmailArray = [];
+            //     someUserArray.forEach(function(element){
+            //         if (element.isAdmin) {
+            //             adminEmailArray.push(element.email);
+            //         }
+            //     });
+            //     return adminEmailArray;
+            // }
+            // console.log(adminList(testUserArray));
+
+            // Refactor #2
+
+            // function adminList(someUserArray) {
+            //     var adminArray = [];
+            //     someUserArray.forEach(function(element){
+            //         if (element.isAdmin) {
+            //             adminArray.push(element);
+            //         }
+            //     });
+            //     return adminArray;
+            // }
+            // console.log(adminList(testUserArray));
+
+
 
         })();
     </script>
