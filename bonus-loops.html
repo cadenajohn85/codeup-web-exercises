@@ -11,27 +11,30 @@
             // Write a loop that outputs the first 50 fibonacci numbers.
                 // https://en.wikipedia.org/wiki/Fibonacci_number
                 // Recommend starting your loop at 1 and ending your loop once you've calculated 50 fibonacci numbers.
-            //Write a loop that outputs 50 numbers
-                //     for (var i = 1; i <= 50; i++) {
-                //         console.log(i);
-                //     }
-            //make it add two versions of the same number
-                // for (var i = 1; i <= 50; i++) {
-                //     i = parseFloat(i);
-                //     console.log("i + i = " + (i + i));
-                // }
-            //make it add the current number and the previous number
 
 
-            // var fib1 = 0;
-            // var fib2 = 1;
-            //
-            // for (var i = 1; i <= 50; i++) {
-            //     i = parseFloat(i);
-            //     console.log("i = " + i + " || Fib Seq is " + fib1);
-            //     fib1 = fib2;
-            //     fib2 = fib1+ (fib1 - 1);
-            // }
+            //  i   Fn  Fn-1    Fn-2
+            //  1   1   0       0
+            //  2   1   1       0
+            //  3   2   1       1
+            //  4   3   2       1
+            //  5   5   3       2
+            //  6   8   5       3
+            //  7   13  8       5
+            //  8   21  13      8
+
+            // Each round, FibOfN = FibOfNMinus1 + FibOfNMinus2 EXCEPT for FibOfN =1;
+
+            var fib = 1;
+            var fib1 = 0;
+            var fib2 = 0;
+            for (var i = 1; i <= 50; i++) {
+                console.log("The next Fibonacci number is: " + fib);
+                fib2 = fib1;
+                fib1 = fib;
+                fib = fib1 + fib2;
+            }
+
 
             // Write the code necessary to output the first 50 prime numbers
                 // Recommend starting your loop at 1 and ending your loop once you've calcualted 50 primes.
