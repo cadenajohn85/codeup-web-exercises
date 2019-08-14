@@ -40,11 +40,10 @@
             //Write a loop that outputs some number 50 times
 
             var isPrime;
-            for (var m = 1; m <= 100; ++m) {
-                //console.log(m);
-                for (var n = 2; n < m; ++n) {
-                    if(m % n === 0) {
-                        //console.log (m + " is even divisible by " + n);
+            var counterTo50 = 50;
+            for (var m = 1; counterTo50 > 0; ++m) {
+                for (var n = 2; n <= m; ++n) {
+                    if(m !== n && m % n === 0) {
                         isPrime = false;
                         break;
                     } else {
@@ -53,14 +52,9 @@
                 }
                 if (isPrime) {
                     console.log(m + " is a prime number.");
+                    counterTo50 -= 1;
                 }
             }
-
-            //Decide if m can be divided by any number other than 1 or m.
-                //Build a second loop that starts at 2, and goes up to m.
-                //Each iteration, break out off the second loop if anything divisible comes up
-
-
         })();
     </script>
 </body>
