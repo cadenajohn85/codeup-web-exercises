@@ -33,9 +33,28 @@
             //     fib2 = fib1+ (fib1 - 1);
             // }
 
-            //Prime Numbers Sequence
+            // Write the code necessary to output the first 50 prime numbers
+                // Recommend starting your loop at 1 and ending your loop once you've calcualted 50 primes.
+                // https://en.wikipedia.org/wiki/Prime_number
 
+            //Write a loop that outputs some number 50 times
 
+            var isPrime;
+            var counterTo50 = 50;
+            for (var m = 1; counterTo50 > 0; ++m) {
+                for (var n = 2; n <= m; ++n) {
+                    if(m !== n && m % n === 0) {
+                        isPrime = false;
+                        break;
+                    } else {
+                        isPrime = true;
+                    }
+                }
+                if (isPrime) {
+                    console.log(m + " is a prime number.");
+                    counterTo50 -= 1;
+                }
+            }
         })();
     </script>
 </body>
