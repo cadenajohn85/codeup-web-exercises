@@ -29,7 +29,7 @@
 
     person.sayHello = function () {
         return "Hello from " + person.firstName + " " + person.lastName + "!";
-    }
+    };
 
     console.log(person.sayHello());
 
@@ -128,5 +128,33 @@
      *   outputs the information described above. Refactor your loop to use your
      *   `showBookInfo` function.
      */
+
+    function createBook(title, authorName) {
+        //Take string author name, split it into array, assign vars to hold firstName & lastName
+        var authorNameArray = authorName.split(" ");
+        var authorFirstName = authorNameArray[0];
+        var authorLastName = authorNameArray[1];
+
+        return {title: title, author: {firstName: authorFirstName, lastName: authorLastName}}
+    }
+
+    var moreBooks = [
+        createBook("Ulysses", "James Joyce"),
+        createBook("The Brothers Karamazov", "Fyodor Dostoevsky"),
+        createBook("East of Eden", "John Steinbeck"),
+        createBook("To Kill a Mockingbird", "Harper Lee"),
+        createBook("Interview with the Vampire", "Anne Rice")
+        ];
+
+    function showBookInfo(someBookObject) {
+        console.log("Title: " + someBookObject.title);
+        console.log("Author: " + someBookObject.author.firstName + " " + someBookObject.author.lastName);
+        console.log("---");
+    }
+
+    moreBooks.forEach(function(book, index) {
+        console.log("Book # " + (index + 1));
+        showBookInfo(book);
+    });
 
 })();
