@@ -9,6 +9,28 @@
         (function(){
             "use strict";
 
+            // Write a function, filterNumbers() that takes in an array of mixed data types and returns an array of only
+            // the numbers type in ascencding order.
+
+            // Example input: ["fred", true, 5, 3] Example output: [3, 5]
+
+            function filterNumbers(someArray) {
+                var numOnlyArray = [];
+                someArray.forEach(function(element) {
+                    if (typeof element === "number") {
+                        numOnlyArray.push(element);
+                    }
+                });
+                // Information on how to use the .sort() method to correctly sort numbers:
+                // https://www.w3schools.com/js/js_array_sort.asp
+                return numOnlyArray.sort(function(a, b){return a - b});
+            }
+
+            // var test = filterNumbers(["fred", 87, true, 5, 3, 400]);
+            // console.log(test);
+
+
+
         })();
     </script>
 </body>
