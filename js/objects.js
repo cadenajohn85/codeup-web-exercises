@@ -12,6 +12,11 @@
      *  > console.log(person.lastName) // "Sanchez"
      */
 
+    var person = {};
+
+    person.firstName = "John";
+    person.lastName = "Cadena";
+
     /**
      * TODO:
      * Add a sayHello method to the person object that returns a greeting using
@@ -21,6 +26,12 @@
      * Example
      * > console.log(person.sayHello()) // "Hello from Rick Sanchez!"
      */
+
+    person.sayHello = function () {
+        return "Hello from " + person.firstName + " " + person.lastName + "!";
+    }
+
+    console.log(person.sayHello());
 
     /** TODO:
      * HEB has an offer for the shoppers that buy products amounting to
@@ -36,11 +47,36 @@
      * and console.log the relevant messages for each person
      */
 
-    // var shoppers = [
-    //     {name: 'Cameron', amount: 180},
-    //     {name: 'Ryan', amount: 250},
-    //     {name: 'George', amount: 320}
-    // ];
+    var shoppers = [
+        {name: 'Cameron', amount: 180},
+        {name: 'Ryan', amount: 250},
+        {name: 'George', amount: 320}
+    ];
+
+        //create a loop that logs each person's name and amount
+        //add a conditional that logs whether or not they get the discount
+    //refactor to combine 2 log messages into 1 for each person
+
+    // for (var i = 0; i < shoppers.length; i++) {
+    //     console.log(shoppers[i].name + " spent $" + shoppers[i].amount + ".");
+    //     if (shoppers[i].amount > 200) {
+    //         console.log("\tThis shopper has earned a 12% discount!");
+    //     } else {
+    //         console.log("\tThis shopper did not earn the discount.");
+    //     }
+    // }
+
+    for (var i = 0; i < shoppers.length; i++) {
+        if (shoppers[i].amount > 200) {
+            var discountedTotal = (shoppers[i].amount - (shoppers[i].amount * .12)).toFixed(2);
+            console.log(shoppers[i].name + "'s subtotal is $" + shoppers[i].amount.toFixed(2) +
+                "; with a 12% discount, their total comes to $" + discountedTotal + ".");
+        } else {
+            console.log(shoppers[i].name + "'s subtotal of $" + shoppers[i].amount.toFixed(2) +
+                " does not qualify for a discount.  Please pay $" + shoppers[i].amount.toFixed(2) + ".");
+        }
+
+    }
 
     /** TODO:
      * Create an array of objects that represent books and store it in a
