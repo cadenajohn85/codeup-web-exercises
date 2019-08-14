@@ -53,19 +53,6 @@
         {name: 'George', amount: 320}
     ];
 
-        //create a loop that logs each person's name and amount
-        //add a conditional that logs whether or not they get the discount
-    //refactor to combine 2 log messages into 1 for each person
-
-    // for (var i = 0; i < shoppers.length; i++) {
-    //     console.log(shoppers[i].name + " spent $" + shoppers[i].amount + ".");
-    //     if (shoppers[i].amount > 200) {
-    //         console.log("\tThis shopper has earned a 12% discount!");
-    //     } else {
-    //         console.log("\tThis shopper did not earn the discount.");
-    //     }
-    // }
-
     for (var i = 0; i < shoppers.length; i++) {
         if (shoppers[i].amount > 200) {
             var discountedTotal = (shoppers[i].amount - (shoppers[i].amount * .12)).toFixed(2);
@@ -91,6 +78,14 @@
      * > console.log(books[0].author.lastName) // "Adams"
      */
 
+    var books = [
+        {title: "The Hobbit", author: {firstName: "J.R.R.", lastName: "Tolkien"}},
+        {title: "Harry Potter and the Sorcerer's Stone", author: {firstName: "J.K.", lastName: "Rowling"}},
+        {title: "Masks", author: {firstName: "Fumiko", lastName: "Enchi"}},
+        {title: "The Tale of Genji", author: {firstName: "Murasaki", lastName: "Shikibu"}},
+        {title: "The Joy Luck Club", author: {firstName: "Amy", lastName: "Tan"}}
+    ];
+
     /**
      * TODO:
      * Loop through the books array and output the following information about
@@ -115,6 +110,13 @@
      *      ---
      *      ...
      */
+
+    books.forEach(function(book, index) {
+        console.log("Book # " + (index + 1));
+        console.log("Title: " + book.title);
+        console.log("Author: " + book.author.firstName + " " + book.author.lastName);
+        console.log("---");
+    });
 
     /**
      * Bonus:
