@@ -52,17 +52,19 @@
         }
         // TODO: Set text color of li with dbid = 1 to blue
         //var dbId1 =
-        //do loop to check which element of listItems array has dbid = 1
+        //loop to check which element of listItems array has dbid = 1
         for(var i = 0; i <listItems.length; ++i) {
-            if (i % 2 !== 0) {
-                listItems[i].setAttribute("style", "color:grey");
+            var dbId = listItems[i].getAttribute("data-dbid");
+            if (dbId[i] === "1") {
+                listItems[i].setAttribute("style", "color:blue");
             }
         }
 
         // TODO: Uncomment the next line and get all elements with class name sub-paragraph
-        // var subParagraphs = ;
+        var subParagraphs = document.getElementsByClassName("sub-paragraph");
 
         // TODO: Change the text in the first sub paragraph to "Mission Accomplished!"
+        subParagraphs[0].innerHTML = "Mission Accomplished!"
     })();
 </script>
 </body>
