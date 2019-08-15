@@ -168,10 +168,11 @@
                 "tuna"
             ];
 
-            //define the 2 object properties.
-            //create an array of objects,
-            //run through all of breads, assign the values to the new array.
-            //refactor to do the same with the fillings.
+            //Create an object with 2 array properties
+            //Assign breads and fillings to the 2 appropriate properties
+            //create a for loop the "length" of the sandwich object
+                //inside the loop, assign the sandwich.bread[i] value to a new array
+
 
             //function makeSandwichObjects(stringArray1, stringArray2) {
                 var sandwich = {
@@ -179,25 +180,18 @@
                     filling:""
                 };
 
-                var sandwichObjects = [];
+                sandwich.bread = breads;
+                sandwich.filling = fillings;
 
-                breads.forEach(function(element){
-                   sandwichObjects.push(element);
-                });
+            //     var sandwichObject;
+            //     for (...) {
+            //         sandwichObject.bread[i] = sandwich.bread[i];
+            // }
 
-            //    fillings
 
-            while () {
 
-            }
 
-            ---------------
 
-            do {
-
-            } while ()
-
-            //}
 
         })();
     </script>
