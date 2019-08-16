@@ -24,6 +24,10 @@
     pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
     culpa qui officia deserunt mollit anim id est laborum.
 </p>
+<button id="button-1">Change main header text</button>
+<button id="button-2">Change sub header color</button>
+<button id="button-3">Change list item colors</button>
+<button id="button-4">Complete "Mission Complete" status</button>
 
 <script>
     (function() {
@@ -32,39 +36,73 @@
         var mainHeader = document.getElementById("main-header");
 
         // TODO: Set inner html of mainHeader to "JavaScript is Cool"
-        mainHeader.innerHTML = "JavaScript is Cool";
+            //mainHeader.innerHTML = "JavaScript is Cool";
+        var button1Listener = function (event) {
+            mainHeader.innerHTML = "JavaScript is Cool";
+        };
+
+        var button1 = document.getElementById("button-1");
+        button1.addEventListener("click", button1Listener, false);
+
 
         // TODO: Uncomment the next line and get the sub header element by id
          var subHeader = document.getElementById("sub-header");
 
         // TODO: Set the text color of subHeader to blue
-        //subHeader.setAttribute("style", "color:blue");
-        subHeader.style.color = "blue";
+            //subHeader.setAttribute("style", "color:blue");
+            //subHeader.style.color = "blue";
+        var button2Listener = function(event) {
+            subHeader.style.color = "blue";
+        };
+
+        var button2 = document.getElementById("button-2");
+        button2.addEventListener("click", button2Listener, false);
 
         // TODO: Uncomment the next line and get all list items
         var listItems = document.getElementsByTagName("li");
 
         // TODO: Set text color on every other list item to grey
-        for(var i = 0; i <listItems.length; ++i) {
-            if (i % 2 !== 0) {
-                listItems[i].setAttribute("style", "color:grey");
+            // for(var i = 0; i <listItems.length; ++i) {
+            //     if (i % 2 !== 0) {
+            //         listItems[i].setAttribute("style", "color:grey");
+            //     }
+            // }
+        var button3Listener = function(event) {
+            for(var i = 0; i <listItems.length; ++i) {
+                if (i % 2 !== 0) {
+                    listItems[i].setAttribute("style", "color:grey");
+                }
+                var dbId = listItems[i].getAttribute("data-dbid");
+                    if (dbId[i] === "1") {
+                        listItems[i].setAttribute("style", "color:blue");
+                    }
             }
-        }
+        };
+
+        var button3 = document.getElementById("button-3");
+        button3.addEventListener("click", button3Listener, false);
+
         // TODO: Set text color of li with dbid = 1 to blue
         //var dbId1 =
         //loop to check which element of listItems array has dbid = 1
-        for(var j = 0; j <listItems.length; ++j) {
-            var dbId = listItems[j].getAttribute("data-dbid");
-            if (dbId[j] === "1") {
-                listItems[j].setAttribute("style", "color:blue");
-            }
-        }
+        // for(var j = 0; j <listItems.length; ++j) {
+        //     var dbId = listItems[j].getAttribute("data-dbid");
+        //     if (dbId[j] === "1") {
+        //         listItems[j].setAttribute("style", "color:blue");
+        //     }
+        // }
 
         // TODO: Uncomment the next line and get all elements with class name sub-paragraph
         var subParagraphs = document.getElementsByClassName("sub-paragraph");
 
         // TODO: Change the text in the first sub paragraph to "Mission Accomplished!"
-        subParagraphs[0].innerHTML = "Mission Accomplished!"
+            //subParagraphs[0].innerHTML = "Mission Accomplished!"
+        var button4Listener = function (event) {
+            subParagraphs[0].innerHTML = "Mission Accomplished!";
+        }
+
+        var button4 = document.getElementById("button-4");
+        button4.addEventListener("click", button4Listener, false);
     })();
 </script>
 </body>
