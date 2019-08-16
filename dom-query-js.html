@@ -37,12 +37,29 @@
 
         // TODO: Set inner html of mainHeader to "JavaScript is Cool"
             //mainHeader.innerHTML = "JavaScript is Cool";
+        // function button1Listener(event) {
+        //     console.log(event)
+        //     if (mainHeader.innerHTML === "Hello World!") {
+        //         mainHeader.innerHTML = "JavaScript is Cool";
+        //     }
+        //     if (mainHeader.innerHTML === "JavaScript is Cool") {
+        //         mainHeader.innerHTML = "Hello World!";
+        //     }
+        // };
+
         var button1Listener = function (event) {
-            mainHeader.innerHTML = "JavaScript is Cool";
+            console.log(event);
+            console.log(mainHeader.innerHTML);
+            if (mainHeader.innerHTML === "Hello World!") {
+                mainHeader.innerHTML = "JavaScript is Cool";
+            }
+            else if (mainHeader.innerHTML === "JavaScript is Cool") {
+                mainHeader.innerHTML = "Hello World!";
+            }
         };
 
         var button1 = document.getElementById("button-1");
-        button1.addEventListener("click", button1Listener, false);
+        button1.addEventListener("click", button1Listener);
 
 
         // TODO: Uncomment the next line and get the sub header element by id
