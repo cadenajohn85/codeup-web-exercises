@@ -10,9 +10,10 @@
 
     <div id='map' style='width: 400px; height: 300px;'></div>
 
+    <script src="js/api-keys.js"></script>
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.js'></script>
     <script>
-        mapboxgl.accessToken = 'pk.eyJ1IjoiY2FkZW5ham9objg1IiwiYSI6ImNqemloYnZyeTE1dGUzY3BpNzh6dGpkNGkifQ.uEExfH_RcYil15qPUNN1xg';
+        mapboxgl.accessToken = mapboxToken;
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v9',
@@ -29,33 +30,37 @@
             map.addControl(new mapboxgl.NavigationControl());
         }
 
-        map.on('load', function() {
-            map.loadImage('img/logo.png', function(error, image) {
-                if (error) throw error;
-                map.addImage('cat', image);
-                map.addLayer({
-                    "id": "points",
-                    "type": "symbol",
-                    "source": {
-                        "type": "geojson",
-                        "data": {
-                            "type": "FeatureCollection",
-                            "features": [{
-                                "type": "Feature",
-                                "geometry": {
-                                    "type": "Point",
-                                    "coordinates": [-98.4916, 29.4252]
-                                }
-                            }]
-                        }
-                    },
-                    "layout": {
-                        "icon-image": "cat",
-                        "icon-size": 0.25
-                    }
-                });
-            });
-        });
+        // map.on('load', function() {
+        //     map.loadImage('img/logo.png', function(error, image) {
+        //         if (error) throw error;
+        //         map.addImage('cat', image);
+        //         map.addLayer({
+        //             "id": "points",
+        //             "type": "symbol",
+        //             "source": {
+        //                 "type": "geojson",
+        //                 "data": {
+        //                     "type": "FeatureCollection",
+        //                     "features": [{
+        //                         "type": "Feature",
+        //                         "geometry": {
+        //                             "type": "Point",
+        //                             "coordinates": [-98.4916, 29.4252]
+        //                         }
+        //                     }]
+        //                 }
+        //             },
+        //             "layout": {
+        //                 "icon-image": "cat",
+        //                 "icon-size": 0.25
+        //             }
+        //         });
+        //     });
+        // });
+
+        // var marker = new mapboxgl.Marker()
+        //     .setLngLat([-98.4916, 29.4260])
+        //     .addTo(map);
 
         setTimeout(zoomoutToUS, 5000);
 
