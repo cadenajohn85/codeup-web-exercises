@@ -18,24 +18,68 @@
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v9',
-            zoom: 10,
+            zoom: 8.5,
             center: [-98.4951, 29.4246]
         });
 
-        geocode("8822 Wurzbach Road, San Antonio, TX", mapboxToken).then(function(result) {
-            map.jumpTo({
-                center: result,
-                zoom: 15
-            });
-        });
+        //Exercise Steps 1 - 7
 
-        function changeZooms() {
-            setTimeout(function() {map.setZoom(5);}, 2500);
-            setTimeout(function() {map.setZoom(15);}, 5000);
-            setTimeout(function() {map.setZoom(20);}, 7500);
+        // geocode("8822 Wurzbach Road, San Antonio, TX", mapboxToken).then(function(result) {
+        //     map.jumpTo({
+        //         center: result,
+        //         zoom: 15
+        //     });
+        // });
+        //
+        // function changeZooms() {
+        //     setTimeout(function() {map.setZoom(5);}, 2500);
+        //     setTimeout(function() {map.setZoom(15);}, 5000);
+        //     setTimeout(function() {map.setZoom(20);}, 7500);
+        // }
+        //
+        // changeZooms();
+        //
+        // function markFavoriteRestaurant() {
+        //     geocode("8822 Wurzbach Road, San Antonio, TX", mapboxToken).then(function(result) {
+        //         var goldenWokPopup = new mapboxgl.Popup()
+        //             .setHTML("<p>Golden Wok</p>");
+        //         var goldenWokMarker = new mapboxgl.Marker()
+        //             .setLngLat(result)
+        //             .setPopup(goldenWokPopup)
+        //             .addTo(map);
+        //         //goldenWokMarker.togglePopup();
+        //         map.jumpTo({
+        //             center: result,
+        //             zoom: 15
+        //         });
+        //     });
+        // }
+        //
+        // setTimeout(markFavoriteRestaurant, 10000);
+
+        //Step 8 Refactor
+
+        var favoriteRestaurants = [
+            {name: "Golden Wok", address: "8822 Wurzbach Rd, San Antonio, TX 78205", cuisine: "Dim Sum"},
+            {name: "Batallion", address: "604 S Alamo St, San Antonio, TX 78205", cuisine: "Italian"},
+            {name: "Chama Gaucha", address: "18318 Sonterra Pl, San Antonio, TX 78258", cuisine: "Churrascaria"}
+        ];
+
+        function markFavoriteRestaurants(restaurantArray) {
+            restaurantArray.forEach(function(restaurant) {
+                //console.log(restaurant);
+                geocode(restaurant.address, mapboxToken).then(function(result) {
+                    var popup = new mapboxgl.Popup()
+                        .setHTML("<strong>" + restaurant.name+"</strong><br>" + restaurant.cuisine);
+                    var marker = new mapboxgl.Marker()
+                        .setLngLat(result)
+                        .setPopup(popup)
+                        .addTo(map);
+                })
+            })
         }
 
-        changeZooms();
+        markFavoriteRestaurants(favoriteRestaurants);
 
 
 
