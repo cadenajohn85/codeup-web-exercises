@@ -4,10 +4,17 @@
     <meta charset="UTF-8">
     <title>Mapbox API Exercise</title>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        .main-map {
+            margin: 0 auto;
+            width: 90%;
+            height: 800px;
+        }
+    </style>
 </head>
 <body>
 
-    <div id='map' style='width: 400px; height: 300px;'></div>
+    <div id='map' class="main-map"></div>
 
     <script src="js/api-keys.js"></script>
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.js'></script>
@@ -60,9 +67,9 @@
         //Step 8 Refactor
 
         var favoriteRestaurants = [
-            {name: "Golden Wok", address: "8822 Wurzbach Rd, San Antonio, TX 78205", cuisine: "Dim Sum"},
-            {name: "Batallion", address: "604 S Alamo St, San Antonio, TX 78205", cuisine: "Italian"},
-            {name: "Chama Gaucha", address: "18318 Sonterra Pl, San Antonio, TX 78258", cuisine: "Churrascaria"}
+            {name: "Golden Wok", address: "8822 Wurzbach Rd, San Antonio, TX 78205", cuisine: "Dim Sum", image: "img/golden-wok.jpg"},
+            {name: "Batallion", address: "604 S Alamo St, San Antonio, TX 78205", cuisine: "Italian", image: "img/batallion.jpg"},
+            {name: "Chama Gaucha", address: "18318 Sonterra Pl, San Antonio, TX 78258", cuisine: "Churrascaria", image: "img/chama-gaucha.jpg"}
         ];
 
         function markFavoriteRestaurants(restaurantArray) {
@@ -70,7 +77,11 @@
                 //console.log(restaurant);
                 geocode(restaurant.address, mapboxToken).then(function(result) {
                     var popup = new mapboxgl.Popup()
-                        .setHTML("<strong>" + restaurant.name+"</strong><br>" + restaurant.cuisine);
+                        .setMaxWidth("100%")
+                        .setHTML("<strong>" + restaurant.name+"</strong><br>" +
+                            restaurant.cuisine + "<br>" +
+                            //"<div style='width:200px,height:200px'><img style='height:100%' src='" + restaurant.image + "'></div>");
+                            "<img style='width:200px,height:200px' src=" + restaurant.image + ">");
                     var marker = new mapboxgl.Marker()
                         .setLngLat(result)
                         .setPopup(popup)
@@ -80,20 +91,6 @@
         }
 
         markFavoriteRestaurants(favoriteRestaurants);
-
-
-
-<!--        setTimeout(function() {-->
-<!--            geocode("Whitefish, Montana", mapboxToken).then(function(result) {-->
-<!--                map.jumpTo({-->
-<!--                    center: result-->
-<!--                });-->
-<!--            });-->
-<!--        }, 3000);-->
-
-<!--        reverseGeocode({lng: -157.8060, lat: 21.2620}, mapboxToken).then(function(result) {-->
-<!--            console.log(result);-->
-<!--        });-->
 
     </script>
 </body>
