@@ -23,14 +23,42 @@
         function zoomoutToUS () {
             map.jumpTo({
                 zoom: 2.25,
-                center: [-96, 39.4252],
-                //style: 'mapbox://styles/mapbox/satellite-v9'
-            })
-
+                center: [-96, 39.4252]
+            });
             map.setStyle('mapbox://styles/mapbox/satellite-v9');
+            map.addControl(new mapboxgl.NavigationControl());
         }
 
-        setInterval(zoomoutToUS, 5000);
+        map.on('load', function() {
+            map.loadImage('img/logo.png', function(error, image) {
+                if (error) throw error;
+                map.addImage('cat', image);
+                map.addLayer({
+                    "id": "points",
+                    "type": "symbol",
+                    "source": {
+                        "type": "geojson",
+                        "data": {
+                            "type": "FeatureCollection",
+                            "features": [{
+                                "type": "Feature",
+                                "geometry": {
+                                    "type": "Point",
+                                    "coordinates": [-98.4916, 29.4252]
+                                }
+                            }]
+                        }
+                    },
+                    "layout": {
+                        "icon-image": "cat",
+                        "icon-size": 0.25
+                    }
+                });
+            });
+        });
+
+        setTimeout(zoomoutToUS, 5000);
+
 
     </script>
 
