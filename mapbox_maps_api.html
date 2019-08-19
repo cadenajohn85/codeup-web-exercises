@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mapbox API Exercise</title>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.css' rel='stylesheet' />
+</head>
+<body>
+
+    <div id='map' style='width: 400px; height: 300px;'></div>
+
+    <script src="js/api-keys.js"></script>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.js'></script>
+    <script src="js/mapbox-utils.js"></script>
+    <script>
+        //Draw the initial map
+        mapboxgl.accessToken = mapboxToken;
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v9',
+            zoom: 10,
+            center: [-98.4951, 29.4246]
+        });
+
+        geocode("8822 Wurzbach Road, San Antonio, TX", mapboxToken).then(function(result) {
+            map.jumpTo({
+                center: result,
+                zoom: 15
+            });
+        });
+
+        function changeZooms() {
+            setTimeout(function() {map.setZoom(5);}, 2500);
+            setTimeout(function() {map.setZoom(15);}, 5000);
+            setTimeout(function() {map.setZoom(20);}, 7500);
+        }
+
+        changeZooms();
+
+
+
+<!--        setTimeout(function() {-->
+<!--            geocode("Whitefish, Montana", mapboxToken).then(function(result) {-->
+<!--                map.jumpTo({-->
+<!--                    center: result-->
+<!--                });-->
+<!--            });-->
+<!--        }, 3000);-->
+
+<!--        reverseGeocode({lng: -157.8060, lat: 21.2620}, mapboxToken).then(function(result) {-->
+<!--            console.log(result);-->
+<!--        });-->
+
+    </script>
+</body>
+</html>
