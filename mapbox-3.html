@@ -11,6 +11,7 @@
 
 <script src="js/api-keys.js"></script>
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.js'></script>
+<script src="js/mapbox-utils.js"></script>
 <script>
     mapboxgl.accessToken = mapboxToken;
     var map = new mapboxgl.Map({
@@ -30,6 +31,10 @@
         .addTo(map);
 
     lincolnMarker.togglePopup();
+
+    geocode("600 Navarro St #350, San Antonio, TX 78205", mapboxToken).then(function(result) {
+        console.log(result);
+    });
 
 </script>
 
