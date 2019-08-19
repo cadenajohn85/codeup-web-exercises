@@ -8,11 +8,32 @@
         .main-map {
             margin: 0 auto;
             width: 90%;
-            height: 800px;
+            height: 600px;
         }
+
+        h1 {
+            text-align: center;
+        }
+
+        .select-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
     </style>
 </head>
 <body>
+    <header><h1>My Favorite Restaurants</h1></header>
+
+    <div class="select-container">
+        <select name="zoom-preference" id="zoom-preference" onchange="readjustZoom(favoriteRestaurants)">
+            <option value="5">Zoom Level: State</option>
+            <option value="8.5" selected>Zoom Level: City</option>
+            <option value="15">Zoom Level: Neighborhood</option>
+            <option value="20">Zoom Level: Street</option>
+        </select>
+    </div>
 
     <div id='map' class="main-map"></div>
 
@@ -72,15 +93,13 @@
             {name: "Chama Gaucha", address: "18318 Sonterra Pl, San Antonio, TX 78258", cuisine: "Churrascaria", image: "img/chama-gaucha.jpg"}
         ];
 
-        function markFavoriteRestaurants(restaurantArray) {
-            restaurantArray.forEach(function(restaurant) {
-                //console.log(restaurant);
+        function markFavoriteRestaurants(someRestaurantArray) {
+            someRestaurantArray.forEach(function(restaurant) {
                 geocode(restaurant.address, mapboxToken).then(function(result) {
                     var popup = new mapboxgl.Popup()
                         .setMaxWidth("100%")
                         .setHTML("<strong>" + restaurant.name+"</strong><br>" +
                             restaurant.cuisine + "<br>" +
-                            //"<div style='width:200px,height:200px'><img style='height:100%' src='" + restaurant.image + "'></div>");
                             "<img style='width:200px,height:200px' src=" + restaurant.image + ">");
                     var marker = new mapboxgl.Marker()
                         .setLngLat(result)
@@ -91,6 +110,14 @@
         }
 
         markFavoriteRestaurants(favoriteRestaurants);
+
+        var defaultCenter = [-98.4881, 29.417789];
+
+        function readjustZoom(someRestaurantArray) {
+            //map.setCenter(geocode(someRestaurantArray[0].address, mapboxToken));
+            map.setCenter(defaultCenter);
+            map.zoomTo(document.getElementById("zoom-preference").value);
+        }
 
     </script>
 </body>
