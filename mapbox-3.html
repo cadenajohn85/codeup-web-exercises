@@ -20,15 +20,16 @@
         center: [-77.036560, 38.897957]
     });
 
+    var lincolnPopup = new mapboxgl.Popup()
+        .setHTML("<p>Lincoln Memorial</p>");
+
+
     var lincolnMarker = new mapboxgl.Marker()
         .setLngLat([-77.0502, 38.8890])
+        .setPopup(lincolnPopup)
         .addTo(map);
 
-    var lincolnPopup = new mapboxgl.Popup()
-        .setHTML("<p>Lincoln Memorial</p>")
-        .addTo(map);
-
-        lincolnMarker.setPopup(lincolnPopup);
+    lincolnMarker.togglePopup();
 
 </script>
 
