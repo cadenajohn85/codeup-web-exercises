@@ -100,7 +100,7 @@
                         .setMaxWidth("100%")
                         .setHTML("<strong>" + restaurant.name+"</strong><br>" +
                             restaurant.cuisine + "<br>" +
-                            "<img style='width:200px,height:200px' src=" + restaurant.image + ">");
+                            "<img style='width:200px;height:200px;' src=" + restaurant.image + ">");
                     var marker = new mapboxgl.Marker()
                         .setLngLat(result)
                         .setPopup(popup)
