@@ -42,6 +42,23 @@
         // removeAll(bugs, "mosquito") should return ["ant", "scorpion", "ant",   "ant", "typo", "reference error", "type error"]
         // removeAll(bugs, "roach") should return the original array b/c "roach" has no occurrances.
 
+        var bugs = ["mosquito", "ant", "scorpion", "ant", "ant", "mosquito", "typo", "reference error", "type error"];
+
+        function removeAll(someArray, someValue) {
+            //run a forEach on someArray
+            //if indexOf does not equal -1,
+            //splice that value
+            //run the search again
+            someArray.forEach(function(element, index, array) {
+                if (element === someValue) {
+                 //   array = array.slice()
+                    //try splice instead
+                }
+
+            })
+        }
+
+
 
     </script>
 </body>
