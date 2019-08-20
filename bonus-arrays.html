@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bonus: JavaScript Arrays</title>
+</head>
+<body>
+    <script>
+        // Define a function named allIndexesOf that takes in two arguments. The first argument should be the array to
+        // search and the second argument should be the value you want to search for. If the item does not exist in the
+        // provided array, return an empty array.
+        //     Given:
+        // var fruits = ["apple", "banana", "orange", "apple", "pineapple"];
+        // allIndexesOf(fruits, "apple") should return the array [0, 3]
+        // allIndexesOf(fruits, "guava") should return the array []
+        // allIndexesOf(fruits, "pineapple") should return [4]
+
+        var fruits = ["apple", "banana", "orange", "apple", "pineapple"];
+
+        function allIndexesOf(someArray, someValue) {
+            var targetIndexes = [];
+            someArray.forEach(function(element, index) {
+                if (element === someValue) {
+                    targetIndexes.push(index);
+                }
+            });
+            return targetIndexes;
+        }
+
+        // var test = allIndexesOf(fruits, "pineapple");
+        // console.log(test);
+
+
+
+
+    </script>
+</body>
+</html>
