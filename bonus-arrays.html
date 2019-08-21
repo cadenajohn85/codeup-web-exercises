@@ -122,10 +122,68 @@
             return rollList;
         }
 
-        console.log(listOfRollsFromDieFunc(13, twoDice));
+        //console.log(listOfRollsFromDieFunc(13, twoDice));
 
+        // Exercise 0. Write a function named first() that returns only the first element of an array
 
+        function first(someArray) {
+            return someArray[0];
+        }
 
+        // Exercise 1. Write a function named secondToLast() that returns the second to last element
+
+        function secondToLast(someArray) {
+            return someArray[someArray.length-3];
+        }
+
+        // Exercise 2. Write a function named rest() that takes an an array and returns an array containing everything except the first element.
+
+        function rest(someArray) {
+            someArray.shift();
+            return someArray;
+        }
+
+        // Exercise 3. Write a function named getLongestString that takes in an array of strings and returns the longest string of that array
+
+        function getLongestString(someArray) {
+            var currentLongest = someArray[0].length;
+            var longestIndex = 0;
+            someArray.forEach(function(element, index, array) {
+                if (element.length > currentLongest) {
+                    currentLongest = array.length[index];
+                    longestIndex = index;
+                }
+            });
+            return someArray[longestIndex];
+        }
+
+        // Exercise 4. Write a function named addTwoArrays that takes in two, one dimensional arrays. The function
+        // should return a single array containing all of the elements of the first array along with all of the elements
+        // of the second array
+        // Example: addTwoArrays([1, 2, 3], [4, 5, 6]) should return [1, 2, 3, 4, 5, 6]
+
+        function addTwoArrays (array1, array2) {
+            array2.forEach(function(element) {
+               array1.push(element);
+            });
+            return array1;
+        }
+
+        // Exercise 5. Write a function named getUniqueValues that takes in an array and returns the array without any duplicates
+        // Example: getUniqueValues(["a", "b", "a", "b", "c", "c"]) should return ["a", "b", "c"]
+
+        function getUniqueValues(someArray) {
+            var noDuplicates = [];
+            someArray.forEach(function(element, index, array) {
+               if (noDuplicates.indexOf(element) === -1) {
+                   noDuplicates.push(element);
+               }
+            });
+            return noDuplicates;
+        }
+
+        console.log(bugs);
+        console.log(getUniqueValues(bugs));
 
 
     </script>
