@@ -168,26 +168,39 @@
                 "tuna"
             ];
 
-           function makeSandwichObjects(array1, array2) {
-               var sandwichObject = [];
-               for (var i = 0; i<array1.length; i++) {
-                   sandwichObject[i] = [
-                       array1[i],
-                       array2[i]
-                   ]
-               }
-               return sandwichObject;
-           }
+           //Incorrect solution: returns an array of arrays instead of an array of objects
 
-           var testSandwiches = makeSandwichObjects(breads, fillings);
-           console.log(testSandwiches);
+            // function makeSandwichObjects(array1, array2) {
+           //     var sandwichObject = [];
+           //     for (var i = 0; i<array1.length; i++) {
+           //         sandwichObject[i] = [
+           //         array1[i],
+           //             array2[i]
+           //         ]
+           //     }
+           //     return sandwichObject;
+           // }
+           //
+           // var testSandwiches = makeSandwichObjects(breads, fillings);
+           // console.log(testSandwiches);
 
-            //test comment
+            function makeSandwichObjects(array1, array2) {
+                var sandwichArray = [];
+                for (var i = 0; i<array1.length; i++) {
+                    // var sandwichObject = {};
+                    // sandwichObject.bread = breads[i];
+                    // sandwichObject.filling = fillings[i];
+                    // sandwichArray.push(sandwichObject);
+                    sandwichArray.push({
+                        bread: array1[i],
+                        filling: array2[i]
+                    });
+                }
+                return sandwichArray;
+            }
 
-
-
-
-
+            var testSandwiches = makeSandwichObjects(breads,fillings);
+            console.log(testSandwiches);
         })();
     </script>
 </body>
