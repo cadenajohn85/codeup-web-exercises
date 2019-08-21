@@ -182,8 +182,42 @@
             return noDuplicates;
         }
 
-        console.log(bugs);
-        console.log(getUniqueValues(bugs));
+        // Exercise 6. Write a function named reverseArray that takes in an array and returns it reversed, but without altering the original array.
+
+        function reverseArray(someArray) {
+            var copyArray = someArray;
+            return copyArray.reverse();
+        }
+
+        // Exercise 8. Write a function named getIndexesOf() that takes in two arguments.
+        // The first argument should be a specific numeral or character
+        // The second argument should be any given string
+        // getIndexesOf() should return an array containing all of the indexes of that character in the string
+        // Example: getIndexesOf("a", "banana") should return the array [1, 3, 5]
+        // Example: getIndexesOf("z", "banana") should return an empty array [] since there are no "z" characters in "banana"
+
+        //convert string to an array
+        //loop through arrray
+        //if element equals target value, push index to output array
+
+        function getIndexesOf(someChar, someString) {
+            var stringToArray = someString.split("");
+            var output = [];
+            stringToArray.forEach(function(element, index, array) {
+                if (element === someChar) {
+                    output.push(index);
+                }
+            });
+            return output;
+        }
+
+        // console.log(bugs);
+        // console.log(reverseArray(bugs));
+
+
+
+
+
 
 
     </script>
