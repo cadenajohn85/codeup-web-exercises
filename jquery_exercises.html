@@ -3,14 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <title>JQuery Exercises</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+        .explanation {
+            text-decoration: underline;
+        }
+
+        .roomaji {
+            font-style: italic;
+        }
+
+        .hiragana {
+            color: blue;
+        }
+
+        .katakana {
+            color: red;
+        }
+
+        .kanji {
+            color: green;
+        }
+    </style>
 </head>
 <body>
+<!--Create content in your HTML file using at least the following elements: h1, p, ul, li, div.-->
+<h1 id="header">Welcome to my <span class="japanese hiragana codeup">すごい</span> page!</h1>
+<h2 id="test">Plain text test</h2>
+<p class="explanation">This page makes use of both English and <span class="kanji japanese codeup">日本語</span>.</p>
+<p class="explanation">Japanese has 3 different native scripts:</p>
+<ul>
+    <li class="hiragana japanese codeup">ひらがな (hiragana)</li>
+    <li class="katakana japanese">カタカナ (katakana)</li>
+    <li class="kanji japanese codeup">漢字 (kanji)</li>
+</ul>
+<div class="explanation">You can also write Japanese using English letters, which is called <span class="roomaji japanese codeup">roomaji</span>. <span class="roomaji japanese">Eigo no moji wo
+    tsukatte nihongo wo
+    kaku no ga roomaji to iu koto desu</span>.</div>
+
     <script type="text/javascript" src="js/jquery-2.2.4.js"></script>
     <script>
         $(document).ready(function() {
             "use strict";
-            alert("The DOM has finished loading.");
+                // alert("The DOM has finished loading.");
 
+            //Id Selectors Exercise
+
+                // var customAlert = $("#test").html();
+                // var customAlert = $("#header").text();
+                // alert(customAlert);
+
+            //Class Selectors Exercise
+
+                //$(".codeup").css("border", "1px solid red");
+
+            //Element Selectors Exercise
+
+                $("li").css("font-size", "20px");
+                // $("h1, p, li").css("background", "yellow");
+                // $("h1, p, li").css("color", "purple");
+                alert($("h1").text());
+
+            //Multiple Selectors Exercise
+
+                $("h1, p, li").css("background", "yellow").css("color", "purple");
         });
     </script>
 </body>
