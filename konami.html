@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Konami Code</title>
+    <style>
+        h1 {
+            background: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
+        }
+    </style>
+</head>
+<body>
+<h1 id="main-header">Konami Code</h1>
+
+<script src="js/jquery-2.2.4.js"></script>
+<script>
+    "use strict";
+
+    $(document).keyup(function(event){
+        //console.log(event.keyCode);
+    });
+
+    // keyCode Sequence for Konami Code:
+    // 38 38 40 40 37 39 37 39 66 65 13
+
+
+    var userKeySequence = "";
+
+    $(document).keyup(function(event){
+        var lastKeyCode = event.keyCode;
+        userKeySequence += lastKeyCode.toString();
+        console.log(userKeySequence);
+        if (userKeySequence.includes("3838404037393739666513")) {
+            alert("You have added 30 lives!");
+            $("*").css("background", "black").css("color", "white");
+
+            console.log($("#main-header").css("color"));
+            // if ( $("#main-header").css("color").toString() === "rgb(0,0,0)") {
+            //     console.log("The font color is currently black.");
+            //     // $("*").css("background", "black").css("color", "white");
+            // }
+            userKeySequence = "";
+        }
+    });
+
+</script>
+</body>
+</html>
