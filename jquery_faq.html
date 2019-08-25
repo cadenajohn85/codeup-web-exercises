@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery FAQ: National Parks </title>
+    <style>
+        .invisible {
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+<dl>
+<!--    Answers Source: https://en.wikipedia.org/wiki/List_of_national_parks_of_the_United_States-->
+    <dt>How many national parks does the U.S. have?</dt>
+    <dd class="invisible">Wikipedia: "The United States has 61 protected areas known as national parks".</dd>
+    <dt>What is the oldest national park in the U.S.?</dt>
+    <dd class="invisible">Wikipedia: "A bill creating the first national park, Yellowstone, was signed into law by President Ulysses S.
+        Grant in 1872".</dd>
+    <dt>How does a national park in the U.S. attain such a designation?</dt>
+    <dd class="invisible">Wikipedia: "National parks must be established by an act of the United States Congress."</dd>
+    <dt>What does Congress consider when designating a national park?</dt>
+    <dd class="invisible">Wikipedia: "Criteria for the selection of national parks include natural beauty, unique geological features,
+        unusual ecosystems, and recreational opportunities (though these criteria are not always considered together)."</dd>
+    <dt>How many states have national parks?</dt>
+    <dd class="invisible">Wikipedia: "Twenty-nine states have national parks, as do the territories of American Samoa and the United
+        States Virgin Islands."</dd>
+    <dt>Which state has the most national parks?</dt>
+    <dd class="invisible">Wikipedia: "California has the most with nine, followed by Alaska with eight, Utah with five, and Colorado with
+        four."</dd>
+    <dt>Which national park is the largest?</dt>
+    <dd class="invisible">Wikipedia: "The largest national park is Wrangell–St. Elias in Alaska: at over 8 million acres (32,375 km2),
+        it is larger than each of the nine smallest states."</dd>
+    <dt>Which national park is the smallest?</dt>
+    <dd class="invisible">Wikipedia: "The smallest park is Gateway Arch National Park, Missouri, at approximately 192.83 acres (0.7804 km2)."</dd>
+    <dt>How many people visit national parks each year?</dt>
+    <dd class="invisible">Wikipedia: "The national parks set a visitation record in 2017, with more than 84 million visitors."</dd>
+    <dt>Which national park is the most visited?</dt>
+    <dd class="invisible">Wikipedia: "The most-visited national park is Great Smoky Mountains National Park in North Carolina and
+        Tennessee, with over 11.3 million visitors in 2017, followed by Arizona's Grand Canyon National Park, with over
+        6.2 million."</dd>
+</dl>
+<a href="#" id="toggle-answers">Click to toggle answers on/off.</a>
+
+    <script src="js/jquery-2.2.4.js"></script>
+    <script>
+        $(document).ready(function() {
+            "use strict";
+
+            $("#toggle-answers").click(function() {
+                $("dd").toggleClass("invisible");
+            })
+
+            $("dt").click(function() {
+                $(this).css("background", "yellow");
+            })
+
+        })
+    </script>
+</body>
+</html>
