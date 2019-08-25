@@ -61,14 +61,33 @@
 
             //Element Selectors Exercise
 
-                $("li").css("font-size", "20px");
+                // $("li").css("font-size", "20px");
                 // $("h1, p, li").css("background", "yellow");
                 // $("h1, p, li").css("color", "purple");
-                alert($("h1").text());
+                // alert($("h1").text());
 
             //Multiple Selectors Exercise
 
-                $("h1, p, li").css("background", "yellow").css("color", "purple");
+                // $("h1, p, li").css("background", "yellow").css("color", "purple");
+
+            //Mouse Events Exercise
+
+            $("h1").click(function() {
+                $(this).css("background", "teal");
+            });
+
+
+            $("p").dblclick(function() {
+                $(this).css("font-size", "18px");
+            });
+
+            $("li").hover(function() {
+                //.mouseenter callback function
+                $(this).css("color", "red");
+            }, function() {
+                //.mouseleave callback function
+                $(this).css("color", "black");
+            });
         });
     </script>
 </body>
