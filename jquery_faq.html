@@ -7,6 +7,66 @@
         .invisible {
             visibility: hidden;
         }
+
+        #frames-container {
+            display: flex;
+            justify-content: space-evenly;
+            text-align: center;
+        }
+
+        /*.frame {*/
+        /*    height: 300px;*/
+        /*    width: 300px;*/
+        /*    border: solid saddlebrown 10px;*/
+        /*    margin-top: 10px;*/
+        /*    margin-bottom: 10px;*/
+        /*    background-size: cover;*/
+        /*}*/
+
+        /*.frame-a {*/
+        /*    border: solid red 10px;*/
+        /*}*/
+
+        /*.frame-b {*/
+        /*    border: solid blue 10px;*/
+        /*}*/
+
+        /*.frame-c {*/
+        /*    border: solid yellow 10px;*/
+        /*}*/
+
+        .image-a {
+            height: 300px;
+            width: 300px;
+            border: solid saddlebrown 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            background-size: cover;
+            background-image: url("img/las-meninas-a.jpg")
+        }
+
+        .image-b {
+            height: 300px;
+            width: 300px;
+            border: solid saddlebrown 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            background-size: cover;
+            background-image: url("img/las_meninas-b.jpg")
+        }
+
+        .image-c {
+            height: 300px;
+            width: 300px;
+            border: solid saddlebrown 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            background-size: cover;
+            background-image: url("img/las-meninas-c.jpg")
+        }
+
+
+
     </style>
 </head>
 <body>
@@ -78,6 +138,21 @@
     </ul>
     <button id="highlight-last-li-button">Highlight special facts</button>
 
+    <div id="frames-container">
+        <div id="frame-col-1">
+            <div id="frame-1" class="image-a"></div>
+            <button id="swap-btn-1">Swap</button>
+        </div>
+        <div id="frame-col-2">
+            <div id="frame-2" class="image-b"></div>
+            <button id="swap-btn-2">Swap</button>
+        </div>
+        <div id="frame-col-3">
+            <div id="frame-3" class="image-c"></div>
+            <button id="swap-btn-3">Swap</button>
+        </div>
+    </div>
+
     <script src="js/jquery-2.2.4.js"></script>
     <script>
         $(document).ready(function() {
@@ -105,6 +180,40 @@
 
             $("li").click(function() {
                 $(this).parent().children().first().css("color", "blue");
+            })
+
+            //Painting Swap Bonus
+
+            //Left Swap Button exchanges left and middle paintings
+            $("#swap-btn-1").click(function() {
+                var leftImage = $("#frame-1").css("background-image");
+                var centerImage = $("#frame-2").css("background-image");
+                $("#frame-1").css("background-image", centerImage);
+                $("#frame-2").css("background-image", leftImage);
+                // $("")
+            });
+
+            //Middle Swap button randomly swaps middle painting with either left or right painting
+            $("#swap-btn-2").click(function() {
+                var leftImage = $("#frame-1").css("background-image");
+                var centerImage = $("#frame-2").css("background-image");
+                var rightImage = $("#frame-3").css("background-image");
+                var randomNumber = Math.floor(Math.random() * (2 - 1 + 1) + 1);
+                if (randomNumber === 1) {
+                    $("#frame-1").css("background-image", centerImage);
+                    $("#frame-2").css("background-image", leftImage);
+                } else {
+                    $("#frame-2").css("background-image", rightImage);
+                    $("#frame-3").css("background-image", centerImage);
+                }
+            });
+
+            //Right Swap Button exchanges right and middle paintings
+            $("#swap-btn-3").click(function() {
+                var centerImage = $("#frame-2").css("background-image");
+                var rightImage = $("#frame-3").css("background-image");
+                $("#frame-2").css("background-image", rightImage);
+                $("#frame-3").css("background-image", centerImage);
             })
 
         })
