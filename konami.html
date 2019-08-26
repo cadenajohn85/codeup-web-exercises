@@ -33,20 +33,12 @@
         console.log(userKeySequence);
         if (userKeySequence.includes("3838404037393739666513")) {
             alert("You have added 30 lives!");
-            $("*").css("background", "black").css("color", "white");
-            if (!bgIsWhite) {
-                $("*").css("background", "white").css("color", "black");
-                bgIsWhite = true;
-            } else {
-                $("*").css("background", "black").css("color", "white");
-                bgIsWhite = false;
-            }
-
-            console.log($("#main-header").css("color"));
-            // if ( $("#main-header").css("color").toString() === "rgb(0,0,0)") {
-            //     console.log("The font color is currently black.");
-            //     // $("*").css("background", "black").css("color", "white");
-            // }
+                if ( $("#main-header").css("color").toString() === "rgb(0, 0, 0)") {
+                    console.log("The font color is currently black.");
+                    $("*").css("background", "black").css("color", "white");
+                } else {
+                    $("*").css("background", "white").css("color", "black");
+                }
             userKeySequence = "";
         }
     });
