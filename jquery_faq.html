@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>jQuery FAQ: National Parks </title>
+    <title>jQuery FAQ: National Parks</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
 
         .invisible {
@@ -13,9 +14,12 @@
             display: none;
         }
 
+        #newsletter-alert {
+            text-align: center;
+        }
+
         .register {
             text-align: center;
-            color: red;
         }
 
         #frames-container {
@@ -48,11 +52,29 @@
     </style>
 </head>
 <body>
-    <div>
-        <h1>Would you like to sign up for our newsletter? <span>[X]</span></h1>
+    <!--    <div>-->
+    <!--        <h1>Would you like to sign up for our newsletter? <span>[X]</span></h1>-->
+    <!--    </div>-->
+
+    <!--    Bootstrap Bonus #1-->
+    <div id="newsletter-alert" class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Would you like to sign up for our newsletter?</strong>
     </div>
 
-    <h2 class="start-hidden register">Please register for our site!</h2>
+
+    <!--    <h2 class="start-hidden register">Please register for our site!</h2>-->
+
+    <!--    Boostrap - Bonus #2-->
+    <div id="registerModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content register">
+                <h2>
+                    <a href="https://www.google.com" target="_blank">Register</a> for our site!
+                </h2>
+            </div>
+        </div>
+    </div>
 
     <dl>
     <!--    Answers Source: https://en.wikipedia.org/wiki/List_of_national_parks_of_the_United_States-->
@@ -87,7 +109,7 @@
     <a href="#" id="toggle-answers">Click to toggle answers on/off.</a>
 
     <h3>Big Bend National Park</h3>
-<!--    Information Source: https://en.wikipedia.org/wiki/Big_Bend_National_Park-->
+    <!--    Information Source: https://en.wikipedia.org/wiki/Big_Bend_National_Park-->
     <ul class="start-hidden">
         <li>The park has national significance as the largest protected area of Chihuahuan Desert topography and ecology
             in the United States.</li>
@@ -100,7 +122,7 @@
             channel, and the river, lies within Mexican territory.</li>
     </ul>
     <h3>Guadalupe Mountains National Park</h3>
-<!--    Information Source: https://en.wikipedia.org/wiki/Guadalupe_Mountains_National_Park-->
+    <!--    Information Source: https://en.wikipedia.org/wiki/Guadalupe_Mountains_National_Park-->
     <ul class="start-hidden">
         <li>Guadalupe Mountains National Park is an American national park in the Guadalupe Mountains, east of El Paso, Texas.</li>
         <li>The mountain range includes Guadalupe Peak, the highest point in Texas at 8,749 feet (2,667 m), and El Capitan
@@ -110,7 +132,7 @@
             National Park, about 25 miles (40 km) to the north in New Mexico.</li>
     </ul>
     <h3>Gates of the Arctic National Park and Preserve</h3>
-<!--    Information Source: https://en.wikipedia.org/wiki/Gates_of_the_Arctic_National_Park_and_Preserve-->
+    <!--    Information Source: https://en.wikipedia.org/wiki/Gates_of_the_Arctic_National_Park_and_Preserve-->
     <ul class="start-hidden">
         <li>Gates of the Arctic National Park and Preserve is an American national park that protects portions of the
             Brooks Range in northern Alaska.</li>
@@ -138,6 +160,8 @@
     </div>
 
     <script src="js/jquery-2.2.4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
             "use strict";
@@ -210,10 +234,15 @@
                 $(this).next().slideToggle();
             });
 
-            //Effectts - Problem #3
+            //Effects - Problem #3
             setTimeout(function() {
                 $("h2").fadeIn(2000);
             }, 8000);
+
+            //Bootstrap - Bonus #2
+            setTimeout(function() {
+                $('#registerModal').modal('show');
+            }, 8000)
 
         });
     </script>
