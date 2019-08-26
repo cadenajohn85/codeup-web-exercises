@@ -4,8 +4,18 @@
     <meta charset="UTF-8">
     <title>jQuery FAQ: National Parks </title>
     <style>
+
         .invisible {
             visibility: hidden;
+        }
+
+        .start-hidden {
+            display: none;
+        }
+
+        .register {
+            text-align: center;
+            color: red;
         }
 
         #frames-container {
@@ -14,62 +24,36 @@
             text-align: center;
         }
 
-        /*.frame {*/
-        /*    height: 300px;*/
-        /*    width: 300px;*/
-        /*    border: solid saddlebrown 10px;*/
-        /*    margin-top: 10px;*/
-        /*    margin-bottom: 10px;*/
-        /*    background-size: cover;*/
-        /*}*/
-
-        /*.frame-a {*/
-        /*    border: solid red 10px;*/
-        /*}*/
-
-        /*.frame-b {*/
-        /*    border: solid blue 10px;*/
-        /*}*/
-
-        /*.frame-c {*/
-        /*    border: solid yellow 10px;*/
-        /*}*/
-
-        .image-a {
+        .frame {
             height: 300px;
             width: 300px;
             border: solid saddlebrown 10px;
             margin-top: 10px;
             margin-bottom: 10px;
             background-size: cover;
+        }
+
+        .image-a {
             background-image: url("img/las-meninas-a.jpg")
         }
 
         .image-b {
-            height: 300px;
-            width: 300px;
-            border: solid saddlebrown 10px;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            background-size: cover;
             background-image: url("img/las_meninas-b.jpg")
         }
 
         .image-c {
-            height: 300px;
-            width: 300px;
-            border: solid saddlebrown 10px;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            background-size: cover;
             background-image: url("img/las-meninas-c.jpg")
         }
-
-
 
     </style>
 </head>
 <body>
+    <div>
+        <h1>Would you like to sign up for our newsletter? <span>[X]</span></h1>
+    </div>
+
+    <h2 class="start-hidden register">Please register for our site!</h2>
+
     <dl>
     <!--    Answers Source: https://en.wikipedia.org/wiki/List_of_national_parks_of_the_United_States-->
         <dt>How many national parks does the U.S. have?</dt>
@@ -104,7 +88,7 @@
 
     <h3>Big Bend National Park</h3>
 <!--    Information Source: https://en.wikipedia.org/wiki/Big_Bend_National_Park-->
-    <ul>
+    <ul class="start-hidden">
         <li>The park has national significance as the largest protected area of Chihuahuan Desert topography and ecology
             in the United States.</li>
         <li>The park protects more than 1,200 species of plants, more than 450 species of birds, 56 species of reptiles,
@@ -117,7 +101,7 @@
     </ul>
     <h3>Guadalupe Mountains National Park</h3>
 <!--    Information Source: https://en.wikipedia.org/wiki/Guadalupe_Mountains_National_Park-->
-    <ul>
+    <ul class="start-hidden">
         <li>Guadalupe Mountains National Park is an American national park in the Guadalupe Mountains, east of El Paso, Texas.</li>
         <li>The mountain range includes Guadalupe Peak, the highest point in Texas at 8,749 feet (2,667 m), and El Capitan
             used as a landmark by travelers on the route later followed by the Butterfield Overland Mail stagecoach line.</li>
@@ -127,7 +111,7 @@
     </ul>
     <h3>Gates of the Arctic National Park and Preserve</h3>
 <!--    Information Source: https://en.wikipedia.org/wiki/Gates_of_the_Arctic_National_Park_and_Preserve-->
-    <ul>
+    <ul class="start-hidden">
         <li>Gates of the Arctic National Park and Preserve is an American national park that protects portions of the
             Brooks Range in northern Alaska.</li>
         <li>The park is the northernmost national park in the United States, situated entirely north of the Arctic Circle.</li>
@@ -140,15 +124,15 @@
 
     <div id="frames-container">
         <div id="frame-col-1">
-            <div id="frame-1" class="image-a"></div>
+            <div id="frame-1" class="image-a frame"></div>
             <button id="swap-btn-1">Swap</button>
         </div>
         <div id="frame-col-2">
-            <div id="frame-2" class="image-b"></div>
+            <div id="frame-2" class="image-b frame"></div>
             <button id="swap-btn-2">Swap</button>
         </div>
         <div id="frame-col-3">
-            <div id="frame-3" class="image-c"></div>
+            <div id="frame-3" class="image-c frame"></div>
             <button id="swap-btn-3">Swap</button>
         </div>
     </div>
@@ -214,9 +198,24 @@
                 var rightImage = $("#frame-3").css("background-image");
                 $("#frame-2").css("background-image", rightImage);
                 $("#frame-3").css("background-image", centerImage);
-            })
+            });
 
-        })
+            //Effects - Problem #1
+            $("span").click(function() {
+                $(this).parent().hide();
+            });
+
+            //Effects - Problem #2
+            $("h3").click(function() {
+                $(this).next().slideToggle();
+            });
+
+            //Effectts - Problem #3
+            setTimeout(function() {
+                $("h2").fadeIn(2000);
+            }, 8000);
+
+        });
     </script>
 </body>
 </html>
