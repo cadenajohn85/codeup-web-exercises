@@ -52,16 +52,26 @@
 
     // Step 5 -- Add refresh button
     function updateInventory() {
-        $("#refresh-inventory").click(function() {
-            $("#insertProducts").html("");
-            $.ajax("data/inventory.json").done(function(data) {
-                renderInventory(data);
-            })
-        });
+        $("#insertProducts").html("");
+        $.ajax("data/inventory.json").done(function(data) {
+            renderInventory(data);
+        })
     }
 
-    updateInventory();
+    //Self-Bonus: Attempt to update inventory with "add tools"
 
+    // $("#refresh-inventory").click(updateInventory);
+    //
+    // $.post("data/inventory.json", {
+    //     title: "Tape Measure",
+    //     quantity: 17,
+    //     categories: "tool",
+    //     price: 10
+    // }).done(function(data) {
+    //     renderInventory(data);
+    // });
+    //
+    // // updateInventory();
 })();
 </script>
 
