@@ -58,20 +58,21 @@
         })
     }
 
+    $("#refresh-inventory").click(updateInventory);
+
     //Self-Bonus: Attempt to update inventory with "add tools"
 
-    // $("#refresh-inventory").click(updateInventory);
-    //
     // $.post("data/inventory.json", {
     //     title: "Tape Measure",
     //     quantity: 17,
     //     categories: "tool",
     //     price: 10
     // }).done(function(data) {
-    //     renderInventory(data);
+    //     // renderInventory(data);
+    //     updateInventory();
     // });
-    //
-    // // updateInventory();
+
+
 })();
 </script>
 
