@@ -45,17 +45,22 @@
             $("#insertProducts").append(html);
         })
     }
+
     result.done(function(data) {
         renderInventory(data);
     });
 
     // Step 5 -- Add refresh button
-    $("#refresh-inventory").click(function() {
-        $("#insertProducts").html("");
-        $.ajax("data/inventory.json").done(function(data) {
-            renderInventory(data);
-        })
-    });
+    function updateInventory() {
+        $("#refresh-inventory").click(function() {
+            $("#insertProducts").html("");
+            $.ajax("data/inventory.json").done(function(data) {
+                renderInventory(data);
+            })
+        });
+    }
+
+    updateInventory();
 
 })();
 </script>
