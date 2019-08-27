@@ -166,26 +166,30 @@
         $(document).ready(function() {
             "use strict";
 
+            //To-Do: Update the page with jQuery to add a link that toggles the class invisible on and off for all dd elements.
             $("#toggle-answers").click(function() {
                 $("dd").toggleClass("invisible");
             });
 
+            //Bonus: When any one dt is clicked, the element that was clicked should be highlighted.
             $("dt").click(function() {
                 $(this).css("background", "yellow");
             });
 
+            //To-Do: Create a button that, when clicked, makes the last li in each ul have a yellow background.
             $("#highlight-last-li-button").click(function() {
-                $("li").each(function(index) {
-                    if ( (index + 1) % 4 === 0) {
-                        $(this).css("background", "yellow");
-                    }
-                })
+                $("ul").each(function(index, element) {
+                    // $("li").
+                    $(this).children().last().css("background", "yellow");
+                });
             });
 
+            //To-Do: When any h3 is clicked, the lis underneath it should be bolded. Use font-weight: bold to achieve this.
             $("h3").click(function() {
                 $(this).next().children().css("font-weight", "bold");
             });
 
+            //To-Do: When any list item is clicked, first li of the parent ul should have a font color of blue.
             $("li").click(function() {
                 $(this).parent().children().first().css("color", "blue");
             })
