@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Traversal Lecture</title>
+</head>
+<body>
+
+<main>
+
+    <article>
+        <h3>Top Bonds</h3>
+        <section>Beginning</section>
+        <hr>
+        <section>Middle</section>
+        <hr>
+        <section>End</section>
+        <hr>
+        <section>
+
+            <ol>
+                <li>Craig</li>
+                <li>Brosnan</li>
+                <li>Connery</li>
+                <li>Dalton</li>
+                <li>Moore</li>
+            </ol>
+
+        </section>
+
+    </article>
+
+    <article>
+        <h3>Top Books</h3>
+        <section>Beginning</section>
+        <hr>
+        <section>Middle</section>
+        <hr>
+        <section>End</section>
+        <hr>
+        <section>
+
+            <ol>
+                <li>LOTR</li>
+                <li>1984</li>
+                <li>20,000 Legues Under the Sea</li>
+                <li>R is for Rocket</li>
+                <li>The War of the Worlds</li>
+            </ol>
+
+        </section>
+
+    </article>
+
+    <article>
+        <h3>Top Pets</h3>
+        <section>Beginning</section>
+        <hr>
+        <section>Middle</section>
+        <hr>
+        <section>End</section>
+        <hr>
+        <section>
+
+            <ol>
+                <li>Dogs</li>
+                <li>Cats</li>
+                <li>Bats</li>
+                <li>Rats</li>
+                <li>Gnats</li>
+            </ol>
+
+        </section>
+
+    </article>
+
+</main>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+<script>
+
+    "use strict";
+
+    // +++++++++++++++++++++++++++++++++++++++++++++++++++++QUESTIONS+++++++++++++++++++++++++++++++++++++++++++++++++++++
+    // (For solutions to all questions, see below)
+
+
+    // ========================= without traversal methods =========================
+
+    // Highlight all sections
+        // $("section").css("background", "yellow");
+
+    // Highlight all articles
+        // $("article").css("background", "yellow");
+
+
+
+
+    // ========================= .first() =========================
+
+    // Highlight the first article
+        $("article").first().css("background", "yellow");
+
+
+
+
+    // ========================= .last() =========================
+
+    // Highlight the last article
+
+
+
+
+    // ========================= .next() =========================
+
+    // Highlight the second article
+
+    // Highlight the third li of the entire page
+
+
+
+
+    // ========================= .children() =========================
+
+    // Highlight the children of all the ordered lists
+
+    // Highlight all the sections of the first article
+
+    // Highlight the ordered list of the first article
+
+
+
+
+    // ========================= .parent() =========================
+
+    // Highlight the entire ordered list when a list item is clicked
+
+
+
+
+    // ========================= .each() =========================
+
+    // Highlight the first nested element inside all article elements
+
+
+    // Highlight the second list item of all ordered lists
+
+
+    // Highlight the third list item of all ordered lists
+
+
+
+
+    // ========================= more complex combinations =========================
+
+    // Highlight the first li of the second ordered list
+
+
+    // alert each of the top five items when double clicking on the header for a section
+
+
+    // Give a azure background color to every other list item (first item should be azure)
+</script>
