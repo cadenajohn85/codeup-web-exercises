@@ -27,8 +27,7 @@
 (function() {
     "use strict";
     // TODO: Create an ajax GET request for /data/inventory.json
-    // var result = $.ajax("data/inventory.json");
-    var result = $.ajax("http://5d658a4f520e1b00141edae0.mockapi.io/api-inventory");
+    var result = $.ajax("data/inventory.json");
 
     // TODO: Take the data from inventory.json and append it to the products table
     //       HINT: Your data should come back as a JSON object; use console.log() to inspect
@@ -54,45 +53,14 @@
     // Step 5 -- Add refresh button
     function updateInventory() {
         $("#insertProducts").html("");
-        //$.ajax("data/inventory.json").done(function(data) {
-        $.ajax("http://5d658a4f520e1b00141edae0.mockapi.io/api-inventory").done(function(data) {
+        $.ajax("data/inventory.json").done(function(data) {
             renderInventory(data);
         })
     }
 
     $("#refresh-inventory").click(updateInventory);
 
-    //Self-Bonus: Attempt to update inventory with "add tools"
 
-    $.ajax({
-        url: "http://5d658a4f520e1b00141edae0.mockapi.io/api-inventory",
-        type: "POST",
-        data: {
-                title: "Tape Measure",
-                quantity: 17,
-                categories: "tool",
-                price: 10
-        }
-    }).done(function(data) {
-        console.log(data);
-    });
-
-
-    // var result2 = $.post("http://5d658a4f520e1b00141edae0.mockapi.io/api-inventory", {
-    //     title: "Tape Measure",
-    //     quantity: 17,
-    //     categories: "tool",
-    //     price: 10
-    // })
-
-    // result2.done(function(data) {
-    //     console.log(data);
-    //     console.log(result2);
-    //     var result3 = $.ajax("http://5d658a4f520e1b00141edae0.mockapi.io/api-inventory");
-    //     console.log(result3);
-    //     // renderInventory(data);
-    //     // updateInventory();
-    // });
 
 
 })();

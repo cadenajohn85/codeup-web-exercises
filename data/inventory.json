@@ -46,11 +46,11 @@
         ],
         "price": 400
     }, {
-        "title": "Hand Saw",
-        "quantity": 35,
-        "categories": [
-            "tool"
-        ],
-        "price": 9.5
-    }
+    "title": "Hand Saw",
+    "quantity": 35,
+    "categories": [
+        "tool"
+    ],
+    "price": 9.5
+}
 ]
