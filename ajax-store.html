@@ -72,9 +72,14 @@
             // html += "</tr>";
             // $("#insertProducts").append(html);
 
-            var html = "<div class='card mb-4 shadow-sm'>";
+            var html = "<div class='card mb-4 shadow-sm w-50'>";
             html += "<div class='card-header'><h4 class='my-0 font-weight-normal'>" +
                     element.title + "</h4></div>";
+            html += "<div class='card-body'<h1 class='card-title pricing-card-title'>" +
+                    element.quantity + "</h1>";
+            html += "</div>";
+            html += "</div>";
+
             $("#insertProducts").append(html);
 
 
