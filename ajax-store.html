@@ -30,14 +30,18 @@
         </div>
     </nav>
 
-    <!--        px-3 py-3 -->
     <div class="pricing-header text-center pb-md-4 pt-md-5 px-3 py-3">
         <h1 class="display-4">Inventory Portal</h1>
         <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, amet at atque aut, debitis ea
             id magni minima molestiae numquam pariatur quia quo reiciendis tempora tempore temporibus vero voluptatibus voluptatum?</p>
     </div>
-    <div id="insertProducts"></div>
 
+    <div class="container">
+        <div class="card-deck mb-3 text-center" id="insertProducts">
+<!--        <div class="card-deck mb-3 text-center">-->
+<!--            <div id="insertProducts"></div>-->
+        </div>
+    </div>
 
     <button id="refresh-inventory">Refresh Inventory</button>
 
@@ -60,13 +64,20 @@
 
     function renderInventory(arrayOfObjects) {
         arrayOfObjects.forEach(function(element) {
-            var html = "<tr>";
-            html += "<td>" + element.title + "</td>";
-            html += "<td>" + element.quantity + "</td>";
-            html += "<td>" + element.price + "</td>";
-            html += "<td>" + element.categories + "</td>";
-            html += "</tr>";
+            // var html = "<tr>";
+            // html += "<td>" + element.title + "</td>";
+            // html += "<td>" + element.quantity + "</td>";
+            // html += "<td>" + element.price + "</td>";
+            // html += "<td>" + element.categories + "</td>";
+            // html += "</tr>";
+            // $("#insertProducts").append(html);
+
+            var html = "<div class='card mb-4 shadow-sm'>";
+            html += "<div class='card-header'><h4 class='my-0 font-weight-normal'>" +
+                    element.title + "</h4></div>";
             $("#insertProducts").append(html);
+
+
         })
     }
 
