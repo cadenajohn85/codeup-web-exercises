@@ -40,6 +40,33 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
 
+        "use strict";
+        $(document).ready(function() {
+            $.ajax("data/blog.json")
+                .done(function(data) {
+                    for (var i = data.length - 1; i >= 0; i--) {
+                        var dynamicHtml = "<article class='ml-5 mb-3'>";
+                        dynamicHtml += "<h1>" + data[i].title + "</h1>";
+                        dynamicHtml += "<h5>" + data[i].date + "<small class='text-muted'> (Post " + (i + 1) + " / " + data.length + ")</small></h5>";
+                        dynamicHtml += "<p>" + data[i].content + "</p>";
+                        dynamicHtml += "<ul class='d-flex list-unstyled font-italic'>";
+                        dynamicHtml += "<li class='ml-3'> Categories:&nbsp;</li>";
+                        data[i].categories.forEach(function (category, index) {
+                            if (index === data[i].categories.length - 1) {
+                                dynamicHtml += "<li>" + category + "</li>";
+                            } else {
+                            dynamicHtml += "<li>" + category + ",&nbsp;</li>";
+                            }
+                        });
+                        dynamicHtml += "</ul>";
+                        dynamicHtml += "</article>";
+
+                        $("#posts").append(dynamicHtml);
+                    }
+                });
+                // .fail;
+        });
+
     </script>
 </body>
 </html>
