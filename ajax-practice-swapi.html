@@ -29,14 +29,37 @@
             // $.ajax("https://hookb.in/ggBr1DPkkecB0B1yRLgd?restaurant=batallion&type=italian");
             // $.ajax("https://hookb.in/ggBr1DPkkecB0B1yRLgd?state=texas&cities=[austin,san-antonio,dallas,houston]");
 
-            $.ajax("https://swapi.co/api/species").done(function(data) {
-                data.results.forEach(function(result) {
-                    console.log(result);
-                    var html = "<li>" + result.name + " speak " + result.language +
-                        ". Check out their homeworld here: <a href='" + result.homeworld + "' target='_blank'>" + result.homeworld + "</a></li>";
-                    $("#species-list").append(html);
-                })
+            // $.ajax("https://swapi.co/api/species").done(function(data) {
+            //     data.results.forEach(function(result) {
+            //         console.log(result);
+            //         var html = "<li>" + result.name + " speak " + result.language +
+            //             ". Check out their homeworld here: <a href='" + result.homeworld + "' target='_blank'>" + result.homeworld + "</a></li>";
+            //         $("#species-list").append(html);
+            //     })
+            // });
+
+            // Make a few AJAX POST requests to HookBin
+
+            $.ajax("https://hookb.in/ggBr1DPkkecB0B1yRLgd", {
+                type: "POST",
+                data: {
+                    username: "jcadena",
+                    password: "password"
+                }
             });
+
+            $.ajax("https://hookb.in/ggBr1DPkkecB0B1yRLgd", {
+                type: "POST",
+                data: {
+                    state: "Texas",
+                    locations: [
+                        "Austin",
+                        "Dallas",
+                        "Houston",
+                        "SanAntonio"
+                    ]
+                }
+            })
 
         });
     </script>
