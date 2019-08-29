@@ -23,10 +23,17 @@
         .card {
             height: 200px;
             width: 200px;
-            background-color: red;
+            background-color: forestgreen;
             border-radius: 5px;
             border: 2px solid black;
             margin: 10px;
+            background-size: 100% 100%;
+        }
+
+        img {
+            display: none;
+            width: 100%;
+            height: 100%;
         }
 
 
@@ -41,17 +48,34 @@
 
 <main>
     <div id="card-row-1" class="card-row">
-        <div id="card-1" class="card"></div>
-        <div id="card-2" class="card"></div>
-        <div id="card-3" class="card"></div>
-        <div id="card-4" class="card"></div>
+        <div id="card-1" class="card">
+            <img src="" alt="">
+        </div>
+        <div id="card-2" class="card">
+            <img src="" alt="">
+        </div>
+        <div id="card-3" class="card">
+            <img src="" alt="">
+        </div>
+        <div id="card-4" class="card">
+            <img src="" alt="">
+        </div>
     </div>
     <div id="card-row-2" class="card-row">
-        <div id="card-5" class="card"></div>
-        <div id="card-6" class="card"></div>
-        <div id="card-7" class="card"></div>
-        <div id="card-8" class="card"></div>
+        <div id="card-5" class="card">
+            <img src="" alt="">
+        </div>
+        <div id="card-6" class="card">
+            <img src="" alt="">
+        </div>
+        <div id="card-7" class="card">
+            <img src="" alt="">
+        </div>
+        <div id="card-8" class="card">
+            <img src="" alt="">
+        </div>
     </div>
+    <button id="shuffle-button">Shuffle</button>
 </main>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script>
@@ -59,55 +83,65 @@
 
         $(document).ready(function() {
 
-            //create an array of 8 image locations
-            //loop 8 times
-                //assign a random value from the image loc array to each card slot
+            var cardImageSources = [
+                "img/memory/okonomiyaki.png",
+                "img/memory/okonomiyaki.png",
+                "img/memory/ramen.png",
+                "img/memory/ramen.png",
+                "img/memory/sushi.png",
+                "img/memory/sushi.png",
+                "img/memory/takoyaki.png",
+                "img/memory/takoyaki.png"
+            ];
 
-        var cardImageSources = [
-            "img/memory/okonomiyaki.png",
-            "img/memory/okonomiyaki.png",
-            "img/memory/ramen.png",
-            "img/memory/ramen.png",
-            "img/memory/sushi.png",
-            "img/memory/sushi.png",
-            "img/memory/takoyaki.png",
-            "img/memory/takoyaki.png"
-        ];
+            //Function to randomly shuffle array values and return the shuffled array
+            function shuffleImageBank(arrayOfImageSources) {
+                //Source: https://javascript.info/task/shuffle
+                for (var i = arrayOfImageSources.length-1; i>0; i--) {
+                    var j = Math.floor(Math.random() * (i+1));
+                    [arrayOfImageSources[i], arrayOfImageSources[j]] = [arrayOfImageSources[j], arrayOfImageSources[i]];
+                }
+                return arrayOfImageSources;
+            }
 
-        //This array will have image locations removed as they are selected randomly.
-        var updatedImageBank = cardImageSources;
+            //Function to assign the randomized array as the src of each image tag
+            function dealCards(shuffledArray) {
+                $("img").each(function (index) {
+                    //var tempUrl = 'url("' + shuffledArray[index] + '")';
+                    $(this).attr("src", shuffledArray[index]);
+                });
+            }
 
-        //This array will store the randomized order of the image locations.
-        var deckShuffleStorage = [];
+            //Clicking on "Shuffle" Button rearranges images
+            $("#shuffle-button").click(function() {
+                var shuffledDeck = shuffleImageBank(cardImageSources);
+                dealCards(shuffledDeck);
+                $(this).hide();
 
-        //Loop backwards through the cardImageSources array, remove a random image, push to empty array
-        // for (var i = cardImageSources.length; i > 0; i--) {
-        // //    console.log(cardImageSources[i-1]);
-        //     var randomCardNumber = Math.floor(Math.random() * (i-1) - 0 +1);
-        //     deckShuffleStorage.push(updatedImageBank[randomCardNumber]);
-        //     // console.log(deckShuffleStorage);
-        //     updatedImageBank = updatedImageBank.slice(0, randomCardNumber) + updatedImageBank.slice(randomCardNumber+1, updatedImageBank.length-1);
-        //     console.log(deckShuffleStorage);
-        // }
+                //Every time 2 cards are flipped, decide if they're a match and take appropriate actions
+                var clickCount = 0;
+                var cardValues = [];
 
-        //Code to select and remove a random image from the array of image sources
-        //Source: https://stackoverflow.com/questions/36069870/how-to-remove-random-item-from-array-and-then-remove-it-from-array-until-array-i
-        //     for(var i = updatedImageBank.length-1;i>=0;i--){
-        //         var randomCardNumber = Math.floor(Math.random()*updatedImageBank.length);
-        //         deckShuffleStorage.push(updatedImageBank[randomCardNumber]);
-        //         updatedImageBank.splice(Math.floor(Math.random()*updatedImageBank.length), 1);
-        //         console.log(deckShuffleStorage);
-        //     }
-
-        //Code to randomly shuffle array values
-        //Source: https://javascript.info/task/shuffle
-        for (var i = updatedImageBank.length-1; i>0; i--) {
-            var j = Math.floor(Math.random() * (i+1));
-            [updatedImageBank[i], updatedImageBank[j]] = [updatedImageBank[j], updatedImageBank[i]];
-            console.log(updatedImageBank);
-        }
-
+                //Clicking on a card displays the image, and turns the background white
+                $(".card").click(function() {
+                    ++clickCount;
+                    cardValues.push($(this).children().attr("src"));
+                    if (clickCount === 2) {
+                        if (cardValues[0] === cardValues[1]) {
+                            alert("You've got a match!");
+                            //Set these two cards to visibility: hidden;
+                        } else {
+                            //Set the two showing images to display: none
+                        }
+                    clickCount = 0;
+                    cardValues = [];
+                    }
+                $(this).css("background", "white");
+                $(this).children().css("display", "block");
+                });
+            });
         });
+
     </script>
 </body>
 </html>
