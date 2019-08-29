@@ -81,15 +81,30 @@
         var deckShuffleStorage = [];
 
         //Loop backwards through the cardImageSources array, remove a random image, push to empty array
-        for (var i = cardImageSources.length; i > 0; i--) {
-        //    console.log(cardImageSources[i-1]);
-            var randomCardNumber = Math.floor(Math.random() * (i-1) - 0 +1);
-            deckShuffleStorage.push(updatedImageBank[randomCardNumber]);
-            // console.log(deckShuffleStorage);
-            updatedImageBank = updatedImageBank.slice(0, randomCardNumber) + updatedImageBank.slice(randomCardNumber+1, updatedImageBank.length-1);
-            console.log(deckShuffleStorage);
+        // for (var i = cardImageSources.length; i > 0; i--) {
+        // //    console.log(cardImageSources[i-1]);
+        //     var randomCardNumber = Math.floor(Math.random() * (i-1) - 0 +1);
+        //     deckShuffleStorage.push(updatedImageBank[randomCardNumber]);
+        //     // console.log(deckShuffleStorage);
+        //     updatedImageBank = updatedImageBank.slice(0, randomCardNumber) + updatedImageBank.slice(randomCardNumber+1, updatedImageBank.length-1);
+        //     console.log(deckShuffleStorage);
+        // }
 
+        //Code to select and remove a random image from the array of image sources
+        //Source: https://stackoverflow.com/questions/36069870/how-to-remove-random-item-from-array-and-then-remove-it-from-array-until-array-i
+        //     for(var i = updatedImageBank.length-1;i>=0;i--){
+        //         var randomCardNumber = Math.floor(Math.random()*updatedImageBank.length);
+        //         deckShuffleStorage.push(updatedImageBank[randomCardNumber]);
+        //         updatedImageBank.splice(Math.floor(Math.random()*updatedImageBank.length), 1);
+        //         console.log(deckShuffleStorage);
+        //     }
 
+        //Code to randomly shuffle array values
+        //Source: https://javascript.info/task/shuffle
+        for (var i = updatedImageBank.length-1; i>0; i--) {
+            var j = Math.floor(Math.random() * (i+1));
+            [updatedImageBank[i], updatedImageBank[j]] = [updatedImageBank[j], updatedImageBank[i]];
+            console.log(updatedImageBank);
         }
 
         });
