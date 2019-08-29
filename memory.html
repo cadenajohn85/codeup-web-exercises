@@ -59,7 +59,30 @@
 
         $(document).ready(function() {
 
-            // INSERT JAVASCRIPT CODE SAMPLE HERE
+            //create an array of 8 image locations
+            //loop 8 times
+                //assign a random value from the image loc array to each card slot
+
+        var cardImageSources = [
+            "img/memory/okonomiyaki.png",
+            "img/memory/okonomiyaki.png",
+            "img/memory/ramen.png",
+            "img/memory/ramen.png",
+            "img/memory/sushi.png",
+            "img/memory/sushi.png",
+            "img/memory/takoyaki.png",
+            "img/memory/takoyaki.png"
+        ];
+
+        //This array will have image locations removed as they are selected randomly.
+        var updatedImageBank = cardImageSources;
+        //This array will store the randomized order of the image locations.
+        var deckShuffleStorage = [];
+        for (var i = cardImageSources.length; i > 0; i--) {
+        //    console.log(cardImageSources[i-1]);
+            var randomCardNumber = Math.floor(Math.random() * (i-1) - 0 +1);
+
+        }
 
         });
     </script>
