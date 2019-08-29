@@ -5,6 +5,40 @@
     <title>AJAX Practice: Star Wars API</title>
 </head>
 <body>
+<div>
+    <ul id="species-list">
 
+    </ul>
+</div>
+    <script type="text/javascript" src="js/jquery-2.2.4.js"></script>
+    <script>
+        "use strict";
+
+        $(document).ready(function() {
+
+            // Make a few AJAX GET requests to the endpoint "https://swapi.co/api/films" to console.log a few Star Wars film titles.
+            $.ajax("https://swapi.co/api/films").done(function(data) {
+                data.results.forEach(function(result) {
+                    console.log(result.title);
+                })
+            });
+
+            //     Make a few AJAX GET requests to HookBin and try adding different query string key value pairs.
+
+            // $.ajax("https://hookb.in/ggBr1DPkkecB0B1yRLgd?pet=cat&name=whiskers");
+            // $.ajax("https://hookb.in/ggBr1DPkkecB0B1yRLgd?restaurant=batallion&type=italian");
+            // $.ajax("https://hookb.in/ggBr1DPkkecB0B1yRLgd?state=texas&cities=[austin,san-antonio,dallas,houston]");
+
+            $.ajax("https://swapi.co/api/species").done(function(data) {
+                data.results.forEach(function(result) {
+                    console.log(result);
+                    var html = "<li>" + result.name + " speak " + result.language +
+                        ". Check out their homeworld here: <a href='" + result.homeworld + "' target='_blank'>" + result.homeworld + "</a></li>";
+                    $("#species-list").append(html);
+                })
+            });
+
+        });
+    </script>
 </body>
 </html>
