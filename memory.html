@@ -76,11 +76,19 @@
 
         //This array will have image locations removed as they are selected randomly.
         var updatedImageBank = cardImageSources;
+
         //This array will store the randomized order of the image locations.
         var deckShuffleStorage = [];
+
+        //Loop backwards through the cardImageSources array, remove a random image, push to empty array
         for (var i = cardImageSources.length; i > 0; i--) {
         //    console.log(cardImageSources[i-1]);
             var randomCardNumber = Math.floor(Math.random() * (i-1) - 0 +1);
+            deckShuffleStorage.push(updatedImageBank[randomCardNumber]);
+            // console.log(deckShuffleStorage);
+            updatedImageBank = updatedImageBank.slice(0, randomCardNumber) + updatedImageBank.slice(randomCardNumber+1, updatedImageBank.length-1);
+            console.log(deckShuffleStorage);
+
 
         }
 
