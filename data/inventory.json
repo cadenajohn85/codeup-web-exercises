@@ -5,7 +5,8 @@
         "categories": [
             "tool"
         ],
-        "price": 20
+        "price": 20,
+        "image": "img/toolup/hammer.png"
     }, {
         "title": "Drill",
         "quantity": 5,
@@ -13,7 +14,8 @@
             "tool",
             "powered"
         ],
-        "price": 100
+        "price": 100,
+        "image": "img/toolup/drill.png"
     }, {
         "title": "Mower",
         "quantity": 5,
@@ -22,35 +24,40 @@
             "gas",
             "outdoor"
         ],
-        "price": 200
+        "price": 200,
+        "image": "img/toolup/mower.png"
     }, {
         "title": "Screwdrivers",
         "quantity": 25,
         "categories": [
             "tool"
         ],
-        "price": 10
+        "price": 10,
+        "image": "img/toolup/screwdriver.png"
     }, {
         "title": "Wrench",
         "quantity": 30,
         "categories": [
             "tool"
         ],
-        "price": 8
+        "price": 8,
+        "image": "img/toolup/wrench.png"
     }, {
-        "title": "Table Saw",
+        "title": "Chainsaw",
         "quantity": 12,
         "categories": [
             "tool",
             "powered"
         ],
-        "price": 400
+        "price": 180,
+        "image": "img/toolup/chainsaw.png"
     }, {
-    "title": "Hand Saw",
-    "quantity": 35,
-    "categories": [
-        "tool"
-    ],
-    "price": 9.5
+        "title": "Hand Saw",
+        "quantity": 35,
+        "categories": [
+            "tool"
+        ],
+        "price": 9.5,
+        "image": "img/toolup/saw.png"
     }
 ]
