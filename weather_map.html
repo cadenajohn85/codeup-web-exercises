@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>10-Key Weather | テンキー天気予報</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
 
@@ -27,8 +28,10 @@
 </main>
 
 
-    <script src="js/jquery-2.2.4.js"></script>
     <script src="js/api-keys.js"></script>
+    <script src="js/jquery-2.2.4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
         "use strict";
         $(document).ready(function() {
@@ -38,8 +41,18 @@
                 console.log(data);
 
                 function renderOneDayForecast(indexValue) {
-                    var dynamicHtml = "<div>";
-                    dynamicHtml += "<ul>";
+
+                    // <div class="card" style="width: 18rem;">
+                    //     <img src="..." class="card-img-top" alt="...">
+                    //     <div class="card-body">
+                    //          <h5 class="card-title">Card title</h5>
+                        //      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        //      <a href="#" class="btn btn-primary">Go somewhere</a>
+                        // </div>
+                    // </div>
+
+                    var dynamicHtml = "<div class='card'>";
+                    dynamicHtml += "<ul class='list-unstyled'>";
                         // Display high and low temperatures
                     dynamicHtml += "<li>";
                     dynamicHtml += "<span style='color:red'>" + Math.round(data.daily.data[indexValue].temperatureHigh) + "&deg;</span>";
@@ -49,11 +62,11 @@
                         // Display summary
                     dynamicHtml += "<li>" + data.daily.data[indexValue].summary + "</li>";
                         // Display precipitation chance
-                    dynamicHtml += "<li><span style='font-weight:bold'>Chance of precipitation:</span> " + (data.daily.data[indexValue].precipProbability * 100) + "&percnt;</li>";
+                    dynamicHtml += "<li><span style='font-weight:bold'>Chance of precipitation:</span> " + Math.round((data.daily.data[indexValue].precipProbability * 100)) + "&percnt;</li>";
                         // Display humidity
-                    dynamicHtml += "<li><span style='font-weight:bold'>Humidity:</span> " + (data.daily.data[indexValue].humidity * 100) + "&percnt;</li>";
+                    dynamicHtml += "<li><span style='font-weight:bold'>Humidity:</span> " + Math.round((data.daily.data[indexValue].humidity * 100)) + "&percnt;</li>";
                         // Display wind speed
-                    dynamicHtml += "<li><span style='font-weight:bold'>Wind Speed:</span> " + data.daily.data[indexValue].windSpeed + " mph</li>";
+                    dynamicHtml += "<li><span style='font-weight:bold'>Wind Speed:</span> " + Math.round(data.daily.data[indexValue].windSpeed) + " mph</li>";
                     dynamicHtml += "</ul>";
                     dynamicHtml += "</div>";
                     $("#three-day-forecast-display").append(dynamicHtml);
