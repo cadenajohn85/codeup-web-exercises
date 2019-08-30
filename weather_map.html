@@ -2,26 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>tenkey Tenki | テンキー天気</title>
+    <title>10-Key Weather | テンキー天気予報</title>
 </head>
 <body>
 
 <!--Left side of screen: header at top, window with 3-day forecast on bottom-->
 <section>
-    <header>tenkey Tenki | テンキー天気</header>
+    <header>10-Key Weather | テンキー天気予報</header>
     <section>
         <div id="current-location-display">Current Location</div>
-        <div id="today-forecast-display">
-            <h3>Today's Forecast</h3>
-            <p id="current-temp">Current Temperature: </p>
-            <p id="today-high-low"><span id="today-high-temp">Hi</span> / <span id="today-low-temp">Lo</span></p>
-            <p id="current-conditions">Current Conditions</p>
-            <p id="today-precip-chance">Chance of Precipitation: </p>
-            <p id="current-humidity">Current Humidity: </p>
-            <p id="current-wind">Wind Speed: </p>
+        <div id="three-day-forecast-display">
         </div>
-        <div id="tomorrow-forecast-display">Tomorrow's Forecast</div>
-        <div id="day-after-forecast-display">Day after Tomorrow</div>
     </section>
 </section>
 
@@ -43,13 +34,44 @@
         $(document).ready(function() {
 
             $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/29.4241,-98.4936").done(function (data) {
-                $("#current-temp").append(" " + Math.floor(data.currently.temperature) + "&deg; (Feels like " + Math.round(data.currently.apparentTemperature) + "&deg;)");
-                $("#today-high-temp").html(Math.round(data.daily.data[0].temperatureHigh) + "&deg;").css("color", "red");
-                $("#today-low-temp").html(Math.round(data.daily.data[0].temperatureLow) + "&deg;").css("color", "blue");
-                $("#current-conditions").html(data.hourly.summary);
-                $("#today-precip-chance").append(" " + (data.daily.data[0].precipProbability * 100) + "&percnt;");
-                $("#current-humidity").append(" " + (data.currently.humidity * 100) + "&percnt;");
-                $("#current-wind").append(" " + data.currently.windSpeed + " mph");
+                //Explore returned ajax request object
+                console.log(data);
+
+                function renderOneDayForecast(indexValue) {
+                    var dynamicHtml = "<div>";
+                    dynamicHtml += "<ul>";
+                        // Display high and low temperatures
+                    dynamicHtml += "<li>";
+                    dynamicHtml += "<span style='color:red'>" + Math.round(data.daily.data[indexValue].temperatureHigh) + "&deg;</span>";
+                    dynamicHtml += " / ";
+                    dynamicHtml += "<span style='color:blue'>" + Math.round(data.daily.data[indexValue].temperatureLow) + "&deg;</span>";
+                    dynamicHtml += "</li>";
+                        // Display summary
+                    dynamicHtml += "<li>" + data.daily.data[indexValue].summary + "</li>";
+                        // Display precipitation chance
+                    dynamicHtml += "<li><span style='font-weight:bold'>Chance of precipitation:</span> " + (data.daily.data[indexValue].precipProbability * 100) + "&percnt;</li>";
+                        // Display humidity
+                    dynamicHtml += "<li><span style='font-weight:bold'>Humidity:</span> " + (data.daily.data[indexValue].humidity * 100) + "&percnt;</li>";
+                        // Display wind speed
+                    dynamicHtml += "<li><span style='font-weight:bold'>Wind Speed:</span> " + data.daily.data[indexValue].windSpeed + " mph</li>";
+                    dynamicHtml += "</ul>";
+                    dynamicHtml += "</div>";
+                    $("#three-day-forecast-display").append(dynamicHtml);
+                }
+
+                renderOneDayForecast(0);
+                renderOneDayForecast(1);
+                renderOneDayForecast(2);
+
+
+
+                //Display current weather conditions
+                // $("#current-temp").append(" " + Math.floor(data.currently.temperature) + "&deg; (Feels like " + Math.round(data.currently.apparentTemperature) + "&deg;)");
+
+
+
+
+
             });
 
             // var dateObject0 = new Date(1567141200 * 1000);
