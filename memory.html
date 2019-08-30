@@ -75,7 +75,7 @@
             <img src="" alt="">
         </div>
     </div>
-    <button id="shuffle-button">Shuffle</button>
+    <button id="new-game-button">Start a new game</button>
 </main>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script>
@@ -112,8 +112,8 @@
                 });
             }
 
-            //Clicking on "Shuffle" Button rearranges images
-            $("#shuffle-button").click(function() {
+            //Clicking on "New Game" Button rearranges images
+            $("#new-game-button").click(function() {
                 var shuffledDeck = shuffleImageBank(cardImageSources);
                 dealCards(shuffledDeck);
                 $(this).hide();
@@ -122,22 +122,54 @@
                 var clickCount = 0;
                 var cardValues = [];
 
+                //Every time a match is found, increment matchCount. When matchCount = 4,
+                var matchCount = 0;
+
                 //Clicking on a card displays the image, and turns the background white
                 $(".card").click(function() {
+                    $(this).children().css("display", "block");
+                    $(this).css("background", "white");
                     ++clickCount;
                     cardValues.push($(this).children().attr("src"));
+                    //When two cards are flipped over,
                     if (clickCount === 2) {
+                        //Check if they match
                         if (cardValues[0] === cardValues[1]) {
                             alert("You've got a match!");
+                            ++matchCount;
                             //Set these two cards to visibility: hidden;
+                            setTimeout(function() {
+                                $("img").each(function() {
+                                    if($(this).css("display") === "block") {
+                                        $(this).parent().css("visibility", "hidden");
+                                    }
+                                })
+                            }, 750);
                         } else {
-                            //Set the two showing images to display: none
+                            //Set the two showing images to display: none after .75 seconds
+                            setTimeout(function() {
+                                $("img").each(function() {
+                                    if($(this).css("display") === "block") {
+                                        $(this).parent().css("background", "green");
+                                        $(this).css("display", "none");
+                                    }
+                                })
+                            }, 750);
                         }
                     clickCount = 0;
                     cardValues = [];
+                    if (matchCount === 4) {
+                        setTimeout(function() {
+                            $(".card").each(function() {
+                                console.log($(this));
+                                $(this).css("visibility", "visible");
+                                $(this).children().css("display", "none");
+                                $(this).css("background", "green");
+                            });
+                            $("#new-game-button").show();
+                        }, 2000);
                     }
-                $(this).css("background", "white");
-                $(this).children().css("display", "block");
+                    }
                 });
             });
         });
