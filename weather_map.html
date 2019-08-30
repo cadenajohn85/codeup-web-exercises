@@ -8,6 +8,7 @@
 <body>
 
 <!--Left side of screen: header at top, window with 3-day forecast on bottom-->
+
 <section>
     <header>10-Key Weather | テンキー天気予報</header>
     <section>
@@ -16,6 +17,10 @@
         </div>
     </section>
 </section>
+<div>
+    <div id="test-icons"></div>
+
+</div>
 
 <!--Right side of screen: large map at top, search bar in middle, 7-day-icon-forecast at bottom-->
 <main>
@@ -25,7 +30,11 @@
     <footer>
         <a href="https://darksky.net/poweredby/" target="_blank">Powered by Dark Sky</a>
     </footer>
+
+
 </main>
+
+
 
 
     <script src="js/api-keys.js"></script>
@@ -36,7 +45,52 @@
         "use strict";
         $(document).ready(function() {
 
+            //Weather Icon Array
+
+            var weatherIcons = [
+                {
+                    condition: "clear-day",
+                    source: "img/weather-map-icons/clear-day.svg"
+                }, {
+                    condition: "clear-night",
+                    source: "img/weather-map-icons/clear-night.svg"
+                }, {
+                    condition: "cloudy",
+                    source: "img/weather-map-icons/cloudy.svg"
+                }, {
+                    condition: "fog",
+                    source: "img/weather-map-icons/fog.svg"
+                }, {
+                    condition: "partly-cloudy-day",
+                    source: "img/weather-map-icons/partly-cloudy-day.svg"
+                }, {
+                    condition: "partly-cloudy-night",
+                    source: "img/weather-map-icons/partly-cloudy-night.svg"
+                }, {
+                    condition: "rain",
+                    source: "img/weather-map-icons/rain.svg"
+                }, {
+                    condition: "sleet",
+                    source: "img/weather-map-icons/sleet.svg"
+                }, {
+                    condition: "snow",
+                    source: "img/weather-map-icons/snow.svg"
+                }, {
+                    condition: "wind",
+                    source: "img/weather-map-icons/wind.svg"
+                }
+            ];
+
+
+            // weatherIcons.forEach(function(element) {
+            //     var iconHtml = "<img src='" + element.source + "'><br>";
+            //     console.log(iconHtml);
+            //     $("#test-icons").append(iconHtml);
+            //
+            // });
+
             $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/29.4241,-98.4936").done(function (data) {
+
                 //Explore returned ajax request object
                 console.log(data);
 
@@ -54,13 +108,6 @@
                     var dynamicHtml = "<div class='card'>";
                         //Display header with date
                     var dateObject = new Date(data.daily.data[indexValue].time * 1000);
-                    console.log(dateObject);
-                    console.log(dateObject.toString().substring(0,10));
-                    // console.log(dateObject.toString());
-
-                    // var dateObject0 = new Date(1567141200 * 1000);
-                    // console.log(dateObject0.toString());
-
                     dynamicHtml += "<div class='card-header text-center py-2'>";
                     dynamicHtml += dateObject.toString().substring(0,10);
                     dynamicHtml += "</div>";
@@ -71,6 +118,12 @@
                     dynamicHtml += " / ";
                     dynamicHtml += "<span style='color:blue'>" + Math.round(data.daily.data[indexValue].temperatureLow) + "&deg;</span>";
                     dynamicHtml += "</li>";
+                        //Display icon
+                    weatherIcons.forEach(function(element) {
+                        if (element.condition === data.daily.data[indexValue].icon) {
+                            dynamicHtml += "<img src='" + element.source + "'>";
+                        }
+                    });
                         // Display summary
                     dynamicHtml += "<li class='px-2 py-1'>" + data.daily.data[indexValue].summary + "</li>";
                         // Display precipitation chance
