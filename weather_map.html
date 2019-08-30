@@ -2,45 +2,133 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>10-Key Weather | テンキー天気予報</title>
+    <title>10-Key Weather | テンキー予報</title>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.css' rel='stylesheet' />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        #map-display {
+            margin: 0 auto;
+            width: 50%;
+            height: 400px;
+        }
+    </style>
 </head>
 <body>
 
 <!--Left side of screen: header at top, window with 3-day forecast on bottom-->
+
 <section>
-    <header>10-Key Weather | テンキー天気予報</header>
+    <header>10-Key Weather | テンキー予報</header>
     <section>
         <div id="current-location-display">Current Location</div>
-        <div id="three-day-forecast-display">
+        <div id="three-day-forecast-display" class="d-flex justify-content-around ml-4 mr-4 my-2">
         </div>
     </section>
 </section>
 
 <!--Right side of screen: large map at top, search bar in middle, 7-day-icon-forecast at bottom-->
 <main>
-    <div id="map-display">Map goes here</div>
+    <div id="map-display"></div>
     <input type="text" id="location-search-bar">
     <div id="seven-day-forecast-display">7-Day Icon Forecast</div>
     <footer>
         <a href="https://darksky.net/poweredby/" target="_blank">Powered by Dark Sky</a>
     </footer>
-</main>
 
+    <input type="text" id="latitude">
+    <input type="text" id="longitude">
+    <button id="lat-long">Submit Lat Long</button>
+
+</main>
 
     <script src="js/api-keys.js"></script>
     <script src="js/jquery-2.2.4.js"></script>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.js'></script>
+    <script src="js/mapbox-utils.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
         "use strict";
         $(document).ready(function() {
 
-            $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/29.4241,-98.4936").done(function (data) {
+            //Weather Icon Array
+            var weatherIcons = [
+                {
+                    condition: "clear-day",
+                    source: "img/weather-map-icons/clear-day.svg"
+                },
+                {
+                    condition: "clear-night",
+                    source: "img/weather-map-icons/clear-night.svg"
+                },
+                {
+                    condition: "cloudy",
+                    source: "img/weather-map-icons/cloudy.svg"
+                },
+                {
+                    condition: "fog",
+                    source: "img/weather-map-icons/fog.svg"
+                },
+                {
+                    condition: "partly-cloudy-day",
+                    source: "img/weather-map-icons/partly-cloudy-day.svg"
+                },
+                {
+                    condition: "partly-cloudy-night",
+                    source: "img/weather-map-icons/partly-cloudy-night.svg"
+                },
+                {
+                    condition: "rain",
+                    source: "img/weather-map-icons/rain.svg"
+                },
+                {
+                    condition: "sleet",
+                    source: "img/weather-map-icons/sleet.svg"
+                },
+                {
+                    condition: "snow",
+                    source: "img/weather-map-icons/snow.svg"
+                },
+                {
+                    condition: "wind",
+                    source: "img/weather-map-icons/wind.svg"
+                }
+            ];
+
+            // Draw the map
+            mapboxgl.accessToken = mapboxToken;
+            var map = new mapboxgl.Map({
+                container: 'map-display',
+                style: 'mapbox://styles/mapbox/streets-v9',
+                // zoom: 8.5,
+                zoom: 5,
+                center: [-98.4951, 29.4246]
+            });
+
+            // Draw the draggable marker
+            var marker = new mapboxgl.Marker({
+                draggable: true
+            })
+                .setLngLat([-98.4951, 29.4246])
+                .addTo(map);
+
+            // Function to gather new coordinates after marker is dragged
+            function onDragEnd() {
+                var lngLat = marker.getLngLat();
+                console.log("New lat is: " + lngLat.lat);
+                console.log("New long is: " + lngLat.lng);
+                // coordinates.innerHTML = 'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
+            }
+
+            marker.on('dragend', onDragEnd);
+
+            // Ajax request to Dark Sky API
+            $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/29.4241,-98.4936").done(function(data) {
+
                 //Explore returned ajax request object
                 console.log(data);
 
-                function renderOneDayForecast(indexValue) {
+                function renderOneDayForecast(ajaxObject, indexValue) {
 
                     // <div class="card" style="width: 18rem;">
                     //     <img src="..." class="card-img-top" alt="...">
@@ -52,50 +140,59 @@
                     // </div>
 
                     var dynamicHtml = "<div class='card'>";
-                    dynamicHtml += "<ul class='list-unstyled'>";
+                        //Display header with date
+                    var dateObject = new Date(ajaxObject.daily.data[indexValue].time * 1000);
+                    dynamicHtml += "<div class='card-header text-center py-2'>";
+                    dynamicHtml += dateObject.toString().substring(0,10);
+                    dynamicHtml += "</div>";
+                    dynamicHtml += "<ul class='list-unstyled text-center'>";
                         // Display high and low temperatures
-                    dynamicHtml += "<li>";
-                    dynamicHtml += "<span style='color:red'>" + Math.round(data.daily.data[indexValue].temperatureHigh) + "&deg;</span>";
+                    dynamicHtml += "<li class='px-2 pt-2 pb-1'>";
+                    dynamicHtml += "<span style='color:red'>" + Math.round(ajaxObject.daily.data[indexValue].temperatureHigh) + "&deg;</span>";
                     dynamicHtml += " / ";
-                    dynamicHtml += "<span style='color:blue'>" + Math.round(data.daily.data[indexValue].temperatureLow) + "&deg;</span>";
+                    dynamicHtml += "<span style='color:blue'>" + Math.round(ajaxObject.daily.data[indexValue].temperatureLow) + "&deg;</span>";
                     dynamicHtml += "</li>";
+                        //Display icon
+                    weatherIcons.forEach(function(element) {
+                        if (element.condition === ajaxObject.daily.data[indexValue].icon) {
+                            dynamicHtml += "<img src='" + element.source + "'>";
+                        }
+                    });
                         // Display summary
-                    dynamicHtml += "<li>" + data.daily.data[indexValue].summary + "</li>";
+                    dynamicHtml += "<li class='px-2 py-1'>" + ajaxObject.daily.data[indexValue].summary + "</li>";
                         // Display precipitation chance
-                    dynamicHtml += "<li><span style='font-weight:bold'>Chance of precipitation:</span> " + Math.round((data.daily.data[indexValue].precipProbability * 100)) + "&percnt;</li>";
+                    dynamicHtml += "<li class='px-2 py-1'><span style='font-weight:bold'>Chance of precipitation:</span> " + Math.round((ajaxObject.daily.data[indexValue].precipProbability * 100)) + "&percnt;</li>";
                         // Display humidity
-                    dynamicHtml += "<li><span style='font-weight:bold'>Humidity:</span> " + Math.round((data.daily.data[indexValue].humidity * 100)) + "&percnt;</li>";
+                    dynamicHtml += "<li class='px-2 py-1'><span style='font-weight:bold'>Humidity:</span> " + Math.round((ajaxObject.daily.data[indexValue].humidity * 100)) + "&percnt;</li>";
                         // Display wind speed
-                    dynamicHtml += "<li><span style='font-weight:bold'>Wind Speed:</span> " + Math.round(data.daily.data[indexValue].windSpeed) + " mph</li>";
+                    dynamicHtml += "<li class='px-2 pt-1 pb-2'><span style='font-weight:bold'>Wind Speed:</span> " + Math.round(ajaxObject.daily.data[indexValue].windSpeed) + " mph</li>";
                     dynamicHtml += "</ul>";
                     dynamicHtml += "</div>";
                     $("#three-day-forecast-display").append(dynamicHtml);
                 }
 
-                renderOneDayForecast(0);
-                renderOneDayForecast(1);
-                renderOneDayForecast(2);
+                renderOneDayForecast(data, 0);
+                renderOneDayForecast(data, 1);
+                renderOneDayForecast(data, 2);
 
-
+                $("#lat-long").click(function() {
+                   var lat = $("#latitude").val();
+                   var long = $("#longitude").val();
+                    $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/" + lat + "," + long).done(function(updatedData) {
+                        $("#three-day-forecast-display").html("");
+                        console.log("Lat: " + lat);
+                        console.log("Long: " + long);
+                        console.log(updatedData);
+                        renderOneDayForecast(updatedData, 0);
+                        renderOneDayForecast(updatedData, 1);
+                        renderOneDayForecast(updatedData, 2);
+                    });
+                });
 
                 //Display current weather conditions
                 // $("#current-temp").append(" " + Math.floor(data.currently.temperature) + "&deg; (Feels like " + Math.round(data.currently.apparentTemperature) + "&deg;)");
 
-
-
-
-
             });
-
-            // var dateObject0 = new Date(1567141200 * 1000);
-            // console.log(dateObject0.toString());
-            //
-            // var dateObject1 = new Date(1567227600 * 1000);
-            // console.log(dateObject1.toString());
-            //
-            // var dateObject2 = new Date(1567314000 * 1000);
-            // console.log(dateObject2.toString());
-
         });
 
     </script>
