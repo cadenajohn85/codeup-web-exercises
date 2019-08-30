@@ -31,6 +31,10 @@
         <a href="https://darksky.net/poweredby/" target="_blank">Powered by Dark Sky</a>
     </footer>
 
+    <input type="text" id="latitude">
+    <input type="text" id="longitude">
+    <button id="lat-long">Submit Lat Long</button>
+
 
 </main>
 
@@ -89,12 +93,12 @@
             //
             // });
 
-            $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/29.4241,-98.4936").done(function (data) {
+            $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/29.4241,-98.4936").done(function(data) {
 
                 //Explore returned ajax request object
                 console.log(data);
 
-                function renderOneDayForecast(indexValue) {
+                function renderOneDayForecast(ajaxObject, indexValue) {
 
                     // <div class="card" style="width: 18rem;">
                     //     <img src="..." class="card-img-top" alt="...">
@@ -107,60 +111,59 @@
 
                     var dynamicHtml = "<div class='card'>";
                         //Display header with date
-                    var dateObject = new Date(data.daily.data[indexValue].time * 1000);
+                    var dateObject = new Date(ajaxObject.daily.data[indexValue].time * 1000);
                     dynamicHtml += "<div class='card-header text-center py-2'>";
                     dynamicHtml += dateObject.toString().substring(0,10);
                     dynamicHtml += "</div>";
                     dynamicHtml += "<ul class='list-unstyled text-center'>";
                         // Display high and low temperatures
                     dynamicHtml += "<li class='px-2 pt-2 pb-1'>";
-                    dynamicHtml += "<span style='color:red'>" + Math.round(data.daily.data[indexValue].temperatureHigh) + "&deg;</span>";
+                    dynamicHtml += "<span style='color:red'>" + Math.round(ajaxObject.daily.data[indexValue].temperatureHigh) + "&deg;</span>";
                     dynamicHtml += " / ";
-                    dynamicHtml += "<span style='color:blue'>" + Math.round(data.daily.data[indexValue].temperatureLow) + "&deg;</span>";
+                    dynamicHtml += "<span style='color:blue'>" + Math.round(ajaxObject.daily.data[indexValue].temperatureLow) + "&deg;</span>";
                     dynamicHtml += "</li>";
                         //Display icon
                     weatherIcons.forEach(function(element) {
-                        if (element.condition === data.daily.data[indexValue].icon) {
+                        if (element.condition === ajaxObject.daily.data[indexValue].icon) {
                             dynamicHtml += "<img src='" + element.source + "'>";
                         }
                     });
                         // Display summary
-                    dynamicHtml += "<li class='px-2 py-1'>" + data.daily.data[indexValue].summary + "</li>";
+                    dynamicHtml += "<li class='px-2 py-1'>" + ajaxObject.daily.data[indexValue].summary + "</li>";
                         // Display precipitation chance
-                    dynamicHtml += "<li class='px-2 py-1'><span style='font-weight:bold'>Chance of precipitation:</span> " + Math.round((data.daily.data[indexValue].precipProbability * 100)) + "&percnt;</li>";
+                    dynamicHtml += "<li class='px-2 py-1'><span style='font-weight:bold'>Chance of precipitation:</span> " + Math.round((ajaxObject.daily.data[indexValue].precipProbability * 100)) + "&percnt;</li>";
                         // Display humidity
-                    dynamicHtml += "<li class='px-2 py-1'><span style='font-weight:bold'>Humidity:</span> " + Math.round((data.daily.data[indexValue].humidity * 100)) + "&percnt;</li>";
+                    dynamicHtml += "<li class='px-2 py-1'><span style='font-weight:bold'>Humidity:</span> " + Math.round((ajaxObject.daily.data[indexValue].humidity * 100)) + "&percnt;</li>";
                         // Display wind speed
-                    dynamicHtml += "<li class='px-2 pt-1 pb-2'><span style='font-weight:bold'>Wind Speed:</span> " + Math.round(data.daily.data[indexValue].windSpeed) + " mph</li>";
+                    dynamicHtml += "<li class='px-2 pt-1 pb-2'><span style='font-weight:bold'>Wind Speed:</span> " + Math.round(ajaxObject.daily.data[indexValue].windSpeed) + " mph</li>";
                     dynamicHtml += "</ul>";
                     dynamicHtml += "</div>";
                     $("#three-day-forecast-display").append(dynamicHtml);
                 }
 
-                renderOneDayForecast(0);
-                renderOneDayForecast(1);
-                renderOneDayForecast(2);
+                renderOneDayForecast(data, 0);
+                renderOneDayForecast(data, 1);
+                renderOneDayForecast(data, 2);
 
+                $("#lat-long").click(function() {
+                   var lat = $("#latitude").val();
+                   var long = $("#longitude").val();
+                    $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/" + lat + "," + long).done(function(updatedData) {
+                        $("#three-day-forecast-display").html("");
+                        console.log("Lat: " + lat);
+                        console.log("Long: " + long);
+                        console.log(updatedData);
+                        renderOneDayForecast(updatedData, 0);
+                        renderOneDayForecast(updatedData, 1);
+                        renderOneDayForecast(updatedData, 2);
+                    });
+                });
 
 
                 //Display current weather conditions
                 // $("#current-temp").append(" " + Math.floor(data.currently.temperature) + "&deg; (Feels like " + Math.round(data.currently.apparentTemperature) + "&deg;)");
 
-
-
-
-
             });
-
-            // var dateObject0 = new Date(1567141200 * 1000);
-            // console.log(dateObject0.toString());
-            //
-            // var dateObject1 = new Date(1567227600 * 1000);
-            // console.log(dateObject1.toString());
-            //
-            // var dateObject2 = new Date(1567314000 * 1000);
-            // console.log(dateObject2.toString());
-
         });
 
     </script>
