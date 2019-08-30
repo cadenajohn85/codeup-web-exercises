@@ -11,26 +11,56 @@
     <header>tenkey Tenki | テンキー天気</header>
     <section>
         <div id="current-location-display">Current Location</div>
-        <div id="today-forecast-display">Today's Forecast</div>
+        <div id="today-forecast-display">
+            <h3>Today's Forecast</h3>
+            <p id="current-temp">Current Temperature: </p>
+            <p id="today-high-low"><span id="today-high-temp">Hi</span> / <span id="today-low-temp">Lo</span></p>
+            <p id="current-conditions">Current Conditions</p>
+            <p id="today-precip-chance">Chance of Precipitation: </p>
+            <p id="current-humidity">Current Humidity: </p>
+            <p id="current-wind">Wind Speed: </p>
+        </div>
         <div id="tomorrow-forecast-display">Tomorrow's Forecast</div>
         <div id="day-after-forecast-display">Day after Tomorrow</div>
     </section>
 </section>
 
 <!--Right side of screen: large map at top, search bar in middle, 7-day-icon-forecast at bottom-->
-<section>
+<main>
     <div id="map-display">Map goes here</div>
     <input type="text" id="location-search-bar">
     <div id="seven-day-forecast-display">7-Day Icon Forecast</div>
-</section>
+    <footer>
+        <a href="https://darksky.net/poweredby/" target="_blank">Powered by Dark Sky</a>
+    </footer>
+</main>
 
 
     <script src="js/jquery-2.2.4.js"></script>
     <script src="js/api-keys.js"></script>
     <script>
+        "use strict";
+        $(document).ready(function() {
 
-        $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/29.4241,-98.4936").done(function (data) {
-            console.log(data);
+            $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/29.4241,-98.4936").done(function (data) {
+                $("#current-temp").append(" " + Math.floor(data.currently.temperature) + "&deg; (Feels like " + Math.round(data.currently.apparentTemperature) + "&deg;)");
+                $("#today-high-temp").html(Math.round(data.daily.data[0].temperatureHigh) + "&deg;").css("color", "red");
+                $("#today-low-temp").html(Math.round(data.daily.data[0].temperatureLow) + "&deg;").css("color", "blue");
+                $("#current-conditions").html(data.hourly.summary);
+                $("#today-precip-chance").append(" " + (data.daily.data[0].precipProbability * 100) + "&percnt;");
+                $("#current-humidity").append(" " + (data.currently.humidity * 100) + "&percnt;");
+                $("#current-wind").append(" " + data.currently.windSpeed + " mph");
+            });
+
+            // var dateObject0 = new Date(1567141200 * 1000);
+            // console.log(dateObject0.toString());
+            //
+            // var dateObject1 = new Date(1567227600 * 1000);
+            // console.log(dateObject1.toString());
+            //
+            // var dateObject2 = new Date(1567314000 * 1000);
+            // console.log(dateObject2.toString());
+
         });
 
     </script>
