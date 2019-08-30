@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>10-Key Weather | テンキー天気予報</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+<!--Left side of screen: header at top, window with 3-day forecast on bottom-->
+<section>
+    <header>10-Key Weather | テンキー天気予報</header>
+    <section>
+        <div id="current-location-display">Current Location</div>
+        <div id="three-day-forecast-display">
+        </div>
+    </section>
+</section>
+
+<!--Right side of screen: large map at top, search bar in middle, 7-day-icon-forecast at bottom-->
+<main>
+    <div id="map-display">Map goes here</div>
+    <input type="text" id="location-search-bar">
+    <div id="seven-day-forecast-display">7-Day Icon Forecast</div>
+    <footer>
+        <a href="https://darksky.net/poweredby/" target="_blank">Powered by Dark Sky</a>
+    </footer>
+</main>
+
+
+    <script src="js/api-keys.js"></script>
+    <script src="js/jquery-2.2.4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+        "use strict";
+        $(document).ready(function() {
+
+            $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/29.4241,-98.4936").done(function (data) {
+                //Explore returned ajax request object
+                console.log(data);
+
+                function renderOneDayForecast(indexValue) {
+
+                    // <div class="card" style="width: 18rem;">
+                    //     <img src="..." class="card-img-top" alt="...">
+                    //     <div class="card-body">
+                    //          <h5 class="card-title">Card title</h5>
+                        //      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        //      <a href="#" class="btn btn-primary">Go somewhere</a>
+                        // </div>
+                    // </div>
+
+                    var dynamicHtml = "<div class='card'>";
+                    dynamicHtml += "<ul class='list-unstyled'>";
+                        // Display high and low temperatures
+                    dynamicHtml += "<li>";
+                    dynamicHtml += "<span style='color:red'>" + Math.round(data.daily.data[indexValue].temperatureHigh) + "&deg;</span>";
+                    dynamicHtml += " / ";
+                    dynamicHtml += "<span style='color:blue'>" + Math.round(data.daily.data[indexValue].temperatureLow) + "&deg;</span>";
+                    dynamicHtml += "</li>";
+                        // Display summary
+                    dynamicHtml += "<li>" + data.daily.data[indexValue].summary + "</li>";
+                        // Display precipitation chance
+                    dynamicHtml += "<li><span style='font-weight:bold'>Chance of precipitation:</span> " + Math.round((data.daily.data[indexValue].precipProbability * 100)) + "&percnt;</li>";
+                        // Display humidity
+                    dynamicHtml += "<li><span style='font-weight:bold'>Humidity:</span> " + Math.round((data.daily.data[indexValue].humidity * 100)) + "&percnt;</li>";
+                        // Display wind speed
+                    dynamicHtml += "<li><span style='font-weight:bold'>Wind Speed:</span> " + Math.round(data.daily.data[indexValue].windSpeed) + " mph</li>";
+                    dynamicHtml += "</ul>";
+                    dynamicHtml += "</div>";
+                    $("#three-day-forecast-display").append(dynamicHtml);
+                }
+
+                renderOneDayForecast(0);
+                renderOneDayForecast(1);
+                renderOneDayForecast(2);
+
+
+
+                //Display current weather conditions
+                // $("#current-temp").append(" " + Math.floor(data.currently.temperature) + "&deg; (Feels like " + Math.round(data.currently.apparentTemperature) + "&deg;)");
+
+
+
+
+
+            });
+
+            // var dateObject0 = new Date(1567141200 * 1000);
+            // console.log(dateObject0.toString());
+            //
+            // var dateObject1 = new Date(1567227600 * 1000);
+            // console.log(dateObject1.toString());
+            //
+            // var dateObject2 = new Date(1567314000 * 1000);
+            // console.log(dateObject2.toString());
+
+        });
+
+    </script>
+
+</body>
+</html>
