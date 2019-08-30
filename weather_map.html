@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tenkey Tenki | テンキー天気</title>
+</head>
+<body>
+
+<!--Left side of screen: header at top, window with 3-day forecast on bottom-->
+<section>
+    <header>tenkey Tenki | テンキー天気</header>
+    <section>
+        <div id="current-location-display">Current Location</div>
+        <div id="today-forecast-display">Today's Forecast</div>
+        <div id="tomorrow-forecast-display">Tomorrow's Forecast</div>
+        <div id="day-after-forecast-display">Day after Tomorrow</div>
+    </section>
+</section>
+
+<!--Right side of screen: large map at top, search bar in middle, 7-day-icon-forecast at bottom-->
+<section>
+    <div id="map-display">Map goes here</div>
+    <input type="text" id="location-search-bar">
+    <div id="seven-day-forecast-display">7-Day Icon Forecast</div>
+</section>
+
+
+    <script src="js/jquery-2.2.4.js"></script>
+    <script src="js/api-keys.js"></script>
+    <script>
+
+        $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/29.4241,-98.4936").done(function (data) {
+            console.log(data);
+        });
+
+    </script>
+
+</body>
+</html>
