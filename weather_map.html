@@ -2,29 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>10-Key Weather | テンキー天気予報</title>
+    <title>10-Key Weather | テンキー予報</title>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.css' rel='stylesheet' />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        #map-display {
+            margin: 0 auto;
+            width: 50%;
+            height: 400px;
+        }
+    </style>
 </head>
 <body>
 
 <!--Left side of screen: header at top, window with 3-day forecast on bottom-->
 
 <section>
-    <header>10-Key Weather | テンキー天気予報</header>
+    <header>10-Key Weather | テンキー予報</header>
     <section>
         <div id="current-location-display">Current Location</div>
         <div id="three-day-forecast-display" class="d-flex justify-content-around ml-4 mr-4 my-2">
         </div>
     </section>
 </section>
-<div>
-    <div id="test-icons"></div>
-
-</div>
 
 <!--Right side of screen: large map at top, search bar in middle, 7-day-icon-forecast at bottom-->
 <main>
-    <div id="map-display">Map goes here</div>
+    <div id="map-display"></div>
     <input type="text" id="location-search-bar">
     <div id="seven-day-forecast-display">7-Day Icon Forecast</div>
     <footer>
@@ -35,14 +39,12 @@
     <input type="text" id="longitude">
     <button id="lat-long">Submit Lat Long</button>
 
-
 </main>
-
-
-
 
     <script src="js/api-keys.js"></script>
     <script src="js/jquery-2.2.4.js"></script>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.js'></script>
+    <script src="js/mapbox-utils.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
@@ -50,49 +52,77 @@
         $(document).ready(function() {
 
             //Weather Icon Array
-
             var weatherIcons = [
                 {
                     condition: "clear-day",
                     source: "img/weather-map-icons/clear-day.svg"
-                }, {
+                },
+                {
                     condition: "clear-night",
                     source: "img/weather-map-icons/clear-night.svg"
-                }, {
+                },
+                {
                     condition: "cloudy",
                     source: "img/weather-map-icons/cloudy.svg"
-                }, {
+                },
+                {
                     condition: "fog",
                     source: "img/weather-map-icons/fog.svg"
-                }, {
+                },
+                {
                     condition: "partly-cloudy-day",
                     source: "img/weather-map-icons/partly-cloudy-day.svg"
-                }, {
+                },
+                {
                     condition: "partly-cloudy-night",
                     source: "img/weather-map-icons/partly-cloudy-night.svg"
-                }, {
+                },
+                {
                     condition: "rain",
                     source: "img/weather-map-icons/rain.svg"
-                }, {
+                },
+                {
                     condition: "sleet",
                     source: "img/weather-map-icons/sleet.svg"
-                }, {
+                },
+                {
                     condition: "snow",
                     source: "img/weather-map-icons/snow.svg"
-                }, {
+                },
+                {
                     condition: "wind",
                     source: "img/weather-map-icons/wind.svg"
                 }
             ];
 
+            // Draw the map
+            mapboxgl.accessToken = mapboxToken;
+            var map = new mapboxgl.Map({
+                container: 'map-display',
+                style: 'mapbox://styles/mapbox/streets-v9',
+                // zoom: 8.5,
+                zoom: 5,
+                center: [-98.4951, 29.4246]
+            });
 
-            // weatherIcons.forEach(function(element) {
-            //     var iconHtml = "<img src='" + element.source + "'><br>";
-            //     console.log(iconHtml);
-            //     $("#test-icons").append(iconHtml);
-            //
-            // });
+            // Draw the draggable marker
+            var marker = new mapboxgl.Marker({
+                draggable: true
+            })
+                .setLngLat([-98.4951, 29.4246])
+                .addTo(map);
 
+            // Function to gather new coordinates after marker is dragged
+            function onDragEnd() {
+                var lngLat = marker.getLngLat();
+                console.log("New lat is: " + lngLat.lat);
+                console.log("New long is: " + lngLat.lng);
+                // coordinates.innerHTML = 'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
+            }
+
+            marker.on('dragend', onDragEnd);
+
+            // Ajax request to Dark Sky API
             $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/29.4241,-98.4936").done(function(data) {
 
                 //Explore returned ajax request object
@@ -158,7 +188,6 @@
                         renderOneDayForecast(updatedData, 2);
                     });
                 });
-
 
                 //Display current weather conditions
                 // $("#current-temp").append(" " + Math.floor(data.currently.temperature) + "&deg; (Feels like " + Math.round(data.currently.apparentTemperature) + "&deg;)");
