@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+<!--    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />-->
     <title>10-Key Weather | テンキー予報</title>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.css' rel='stylesheet' />
+<!--    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.css' rel='stylesheet' />-->
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.css' type='text/css' />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
         #map-display {
@@ -38,8 +41,10 @@
 
     <script src="js/api-keys.js"></script>
     <script src="js/jquery-2.2.4.js"></script>
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.js'></script>
     <script src="js/mapbox-utils.js"></script>
+<!--    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.js'></script>-->
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.0/mapbox-gl.js'></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.min.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
@@ -107,11 +112,14 @@
                 .setLngLat([-98.4951, 29.4246])
                 .addTo(map);
 
+            // Build the search bar
+            var searchBar = map.addControl(new MapboxGeocoder({
+                accessToken: mapboxgl.accessToken,
+                mapboxgl: mapboxgl
+            }));
+
             // Ajax request to Dark Sky API
             $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/29.4241,-98.4936").done(function(data) {
-
-                //Explore returned ajax request object
-                console.log(data);
 
                 function renderOneDayForecast(ajaxObject, indexValue) {
 
@@ -165,7 +173,7 @@
 
                 renderMultipleForecasts(data, 0, 2);
 
-                // Function to gather new coordinates after marker is dragged
+                // Function to gather new coordinates & render new forecast after marker is dragged
                 function onDragEnd() {
                     var newLatitude = marker.getLngLat().lat;
                     var newLongitude = marker.getLngLat().lng;
@@ -176,6 +184,34 @@
                 }
 
                 marker.on('dragend', onDragEnd);
+
+                // Function to gather new coordinates & render new forecast after location is searched
+                function onSearchNewLocation() {
+                    //Uncaught TypeError: searchBar.getLngLat is not a function
+                        //at onSearchNewLocation (weather_map.html?_ijt=j2oenv056m30b4oa55qv5pbalp:193)
+                        //at Object.<anonymous> (weather_map.html?_ijt=j2oenv056m30b4oa55qv5pbalp:204)
+                    // var newLatitude = searchBar.getLngLat().lat;
+                    // var newLongitude = searchBar.getLngLat().lng;
+                        // var newLatitude = searchBar.center[0];
+                        // var newLongitude = searchBar.center[1];
+                    console.log(searchBar);
+                    console.log("A new location was searched.");
+                    // console.log(newLatitude);
+                    // console.log(newLongitude);
+                    // $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/" + newLatitude + "," + newLongitude).done(function(updatedData) {
+                    //     $("#three-day-forecast-display").html("");
+                    //     renderMultipleForecasts(updatedData, 0, 2);
+                    // });
+                }
+
+                map.on('change', function() {
+                    console.log("I see you did something.");
+                });
+
+                console.log(map);
+
+                // onSearchNewLocation();
+                // searchBar.on('change', onSearchNewLocation);
 
                 //Display current weather conditions
                 // $("#current-temp").append(" " + Math.floor(data.currently.temperature) + "&deg; (Feels like " + Math.round(data.currently.apparentTemperature) + "&deg;)");
