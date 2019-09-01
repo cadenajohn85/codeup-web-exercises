@@ -5,39 +5,59 @@
 <!--    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />-->
     <title>10-Key Weather | テンキー予報</title>
 <!--    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.css' rel='stylesheet' />-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.0/mapbox-gl.css' rel='stylesheet' />
     <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.css' type='text/css' />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
+
+        i {
+            font-size: 100px;
+        }
+
         #map-display {
             margin: 0 auto;
             width: 50%;
             height: 400px;
         }
+
+
     </style>
 </head>
-<body>
+<body class="container-fluid">
+    <!--Left side of screen: header at top, window with 3-day forecast on bottom-->
+    <div class="row">
+        <section class="col-4 text-center mx-auto">
+            <header class="navbar-brand d-flex mx-4 my-4 justify-content-between">
+                <div>
+                    <i class="far fa-keyboard"></i>
+                </div>
+                <div class="mx-2">
+                    <h2>10-Key Weather</h2>
+                    <h2>テンキー予報</h2>
+                </div>
+                <div>
+                    <i class="fas fa-cloud-sun-rain"></i>
+                </div>
+                
+            </header>
+            <section>
+                <div id="current-location-display">Current Location</div>
+                <div id="three-day-forecast-display" class="d-flex flex-column justify-content-around mx-4 my-2 ">
+                </div>
+            </section>
+        </section>
 
-<!--Left side of screen: header at top, window with 3-day forecast on bottom-->
-
-<section>
-    <header>10-Key Weather | テンキー予報</header>
-    <section>
-        <div id="current-location-display">Current Location</div>
-        <div id="three-day-forecast-display" class="d-flex justify-content-around ml-4 mr-4 my-2">
-        </div>
-    </section>
-</section>
-
-<!--Right side of screen: large map at top, search bar in middle, 7-day-icon-forecast at bottom-->
-<main>
-    <div id="map-display"></div>
-    <input type="text" id="location-search-bar">
-    <div id="seven-day-forecast-display">7-Day Icon Forecast</div>
-    <footer>
-        <a href="https://darksky.net/poweredby/" target="_blank">Powered by Dark Sky</a>
-    </footer>
-</main>
+        <!--Right side of screen: large map at top, search bar in middle, 7-day-icon-forecast at bottom-->
+        <main class="col-8">
+            <div id="map-display"></div>
+            <input type="text" id="location-search-bar">
+            <div id="seven-day-forecast-display">7-Day Icon Forecast</div>
+            <footer>
+                <a href="https://darksky.net/poweredby/" target="_blank">Powered by Dark Sky</a>
+            </footer>
+        </main>
+    </div>
 
     <script src="js/api-keys.js"></script>
     <script src="js/jquery-2.2.4.js"></script>
@@ -132,7 +152,7 @@
                         // </div>
                     // </div>
 
-                    var dynamicHtml = "<div class='card'>";
+                    var dynamicHtml = "<div class='card my-2'>";
                         //Display header with date
                     var dateObject = new Date(ajaxObject.daily.data[indexValue].time * 1000);
                     dynamicHtml += "<div class='card-header text-center py-2'>";
