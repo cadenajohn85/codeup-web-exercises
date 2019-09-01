@@ -34,11 +34,6 @@
     <footer>
         <a href="https://darksky.net/poweredby/" target="_blank">Powered by Dark Sky</a>
     </footer>
-
-    <input type="text" id="latitude">
-    <input type="text" id="longitude">
-    <button id="lat-long">Submit Lat Long</button>
-
 </main>
 
     <script src="js/api-keys.js"></script>
@@ -112,16 +107,6 @@
                 .setLngLat([-98.4951, 29.4246])
                 .addTo(map);
 
-            // Function to gather new coordinates after marker is dragged
-            function onDragEnd() {
-                var lngLat = marker.getLngLat();
-                console.log("New lat is: " + lngLat.lat);
-                console.log("New long is: " + lngLat.lng);
-                // coordinates.innerHTML = 'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
-            }
-
-            marker.on('dragend', onDragEnd);
-
             // Ajax request to Dark Sky API
             $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/29.4241,-98.4936").done(function(data) {
 
@@ -171,23 +156,26 @@
                     $("#three-day-forecast-display").append(dynamicHtml);
                 }
 
-                renderOneDayForecast(data, 0);
-                renderOneDayForecast(data, 1);
-                renderOneDayForecast(data, 2);
+                // Function to render forecasts for multiple days
+                function renderMultipleForecasts(ajaxObject, indexOfFirstDay, indexOfLastDay) {
+                    for (var i = indexOfFirstDay; i <= indexOfLastDay; i++) {
+                        renderOneDayForecast(ajaxObject, i);
+                    }
+                }
 
-                $("#lat-long").click(function() {
-                   var lat = $("#latitude").val();
-                   var long = $("#longitude").val();
-                    $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/" + lat + "," + long).done(function(updatedData) {
+                renderMultipleForecasts(data, 0, 2);
+
+                // Function to gather new coordinates after marker is dragged
+                function onDragEnd() {
+                    var newLatitude = marker.getLngLat().lat;
+                    var newLongitude = marker.getLngLat().lng;
+                    $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/" + newLatitude + "," + newLongitude).done(function(updatedData) {
                         $("#three-day-forecast-display").html("");
-                        console.log("Lat: " + lat);
-                        console.log("Long: " + long);
-                        console.log(updatedData);
-                        renderOneDayForecast(updatedData, 0);
-                        renderOneDayForecast(updatedData, 1);
-                        renderOneDayForecast(updatedData, 2);
+                        renderMultipleForecasts(updatedData, 0, 2);
                     });
-                });
+                }
+
+                marker.on('dragend', onDragEnd);
 
                 //Display current weather conditions
                 // $("#current-temp").append(" " + Math.floor(data.currently.temperature) + "&deg; (Feels like " + Math.round(data.currently.apparentTemperature) + "&deg;)");
