@@ -26,6 +26,16 @@
             border-radius: 5px;
         }
 
+        .seven-day-name {
+            border: 1px solid black;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .seven-day-icon {
+            border: 1px solid black;
+            border-radius: 0 0 5px 5px;
+        }
+
         #current-conditions-display li {
             font-size: 1.5em;
         }
@@ -161,8 +171,6 @@
             // Ajax request to Dark Sky API
             $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/29.4241,-98.4936").done(function(data) {
 
-                console.log(data);
-
                 function renderOneDayForecast(ajaxObject, indexValue) {
 
                     // <div class="card" style="width: 18rem;">
@@ -259,13 +267,13 @@
                     var dynamicHtml = "<div class='d-flex justify-content-around'>";
                     for (var i=1; i<=7; ++i) {
                         dynamicHtml += "<div class='d-flex flex-column'>";
-                        dynamicHtml += "<div class='text-center' style='font-size:1.5em;font-weight:bold'>";
+                        dynamicHtml += "<div class='text-center seven-day-name' style='font-size:1.5em;font-weight:bold'>";
                         var dateObject = new Date(ajaxObject.daily.data[i].time * 1000);
                         dynamicHtml += dateObject.toString().substring(0,3);
                                 dynamicHtml += "</div>";
                         weatherIcons.forEach(function(element) {
                             if (element.condition === ajaxObject.daily.data[i].icon) {
-                                        dynamicHtml += "<div>";
+                                        dynamicHtml += "<div class='seven-day-icon'>";
                                 dynamicHtml += "<img src='" + element.source + "'>";
                                 dynamicHtml += "</div>";
                             }
