@@ -23,6 +23,7 @@
 
         #current-info {
             border: 1px solid black;
+            border-radius: 5px;
         }
 
         #current-conditions-display li {
@@ -281,6 +282,10 @@
                 function onDragEnd() {
                     var newLatitude = marker.getLngLat().lat;
                     var newLongitude = marker.getLngLat().lng;
+                    // reverse geocode method from mapbox-geocoder-utils.js to display new address
+                    reverseGeocode({lng: newLongitude, lat: newLatitude}, mapboxToken).then(function(results) {
+                        $("#current-location-display").html(results);
+                    });
                     $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/" + newLatitude + "," + newLongitude).done(function(updatedData) {
                         $("#three-day-forecast-display").html("");
                         renderMultipleForecasts(updatedData, 0, 2);
