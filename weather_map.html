@@ -51,8 +51,11 @@
             </header>
 
             <section>
-                <div id="current-location-display">
-                    <h1>Current Location</h1>
+                <div id="current-location">
+                    <h1 id="current-location-display">
+                        San Antonio, Texas,<br>
+                        United States of America
+                    </h1>
                 </div>
                 <div id="three-day-forecast-display" class="d-flex flex-column justify-content-around mx-4 my-2 ">
                 </div>
@@ -147,10 +150,12 @@
                 .addTo(map);
 
             // Build the search bar
-            var searchBar = map.addControl(new MapboxGeocoder({
+            var searchBar = new MapboxGeocoder({
                 accessToken: mapboxgl.accessToken,
                 mapboxgl: mapboxgl
-            }));
+            });
+
+            map.addControl(searchBar);
 
             // Ajax request to Dark Sky API
             $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/29.4241,-98.4936").done(function(data) {
@@ -287,35 +292,24 @@
                 marker.on('dragend', onDragEnd);
 
                 // Function to gather new coordinates & render new forecast after location is searched
-                function onSearchNewLocation() {
-                    //Uncaught TypeError: searchBar.getLngLat is not a function
-                        //at onSearchNewLocation (weather_map.html?_ijt=j2oenv056m30b4oa55qv5pbalp:193)
-                        //at Object.<anonymous> (weather_map.html?_ijt=j2oenv056m30b4oa55qv5pbalp:204)
-                    // var newLatitude = searchBar.getLngLat().lat;
-                    // var newLongitude = searchBar.getLngLat().lng;
-                        // var newLatitude = searchBar.center[0];
-                        // var newLongitude = searchBar.center[1];
-                    console.log(searchBar);
-                    console.log("A new location was searched.");
-                    // console.log(newLatitude);
-                    // console.log(newLongitude);
-                    // $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/" + newLatitude + "," + newLongitude).done(function(updatedData) {
-                    //     $("#three-day-forecast-display").html("");
-                    //     renderMultipleForecasts(updatedData, 0, 2);
-                    // });
+                function onSearchNewLocation(ajaxObject) {
+                    var newLatitude = ajaxObject.result.center[1];
+                    var newLongitude = ajaxObject.result.center[0];
+                    console.log(newLatitude);
+                    console.log(newLongitude);
+                    console.log(ajaxObject);
+                    $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/" + newLatitude + "," + newLongitude).done(function(updatedData) {
+                        $("#three-day-forecast-display").html("");
+                        renderMultipleForecasts(updatedData, 0, 2);
+                        renderCurrentInformation(updatedData);
+                        renderSevenDayIcons(updatedData);
+                        $("#current-location-display").html(ajaxObject.result.place_name);
+                    });
                 }
 
-                map.on('change', function() {
-                    console.log("I see you did something.");
+                searchBar.on('result', function(e) {
+                    onSearchNewLocation(e);
                 });
-
-                console.log(map);
-
-                // onSearchNewLocation();
-                // searchBar.on('change', onSearchNewLocation);
-
-                //Display current weather conditions
-                // $("#current-temp").append(" " + Math.floor(data.currently.temperature) + "&deg; (Feels like " + Math.round(data.currently.apparentTemperature) + "&deg;)");
 
             });
         });
