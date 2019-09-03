@@ -100,9 +100,9 @@
             }
         }
 
-        /*Hide 7-Day Icons when screen is too small*/
+        /*Hide Current Conditions & 7-Day Icons when screen is too small*/
         @media (max-width: 720px) {
-            #seven-day-forecast-display {
+            #seven-day-forecast-display, #current-info {
                 display: none;
             }
         }
@@ -111,6 +111,11 @@
         @media (max-width: 679px) {
             #three-day-forecast-display {
                 flex-direction: column;
+                align-items: center;
+            }
+
+            .card {
+                max-width: 350px;
             }
         }
 
@@ -298,7 +303,7 @@
                 function renderCurrentInformation(ajaxObject) {
                     var dynamicHtml = "<ul class='list-unstyled d-flex flex-row justify-content-around align-items-center my-0'>";
                         // Display current temperature
-                    dynamicHtml += "<li class='ml-2'><span class='font-weight-bold'>Current Temp: </span>";
+                    dynamicHtml += "<li class='ml-2 text-center'><span class='font-weight-bold'>Current Temp: </span>";
                     dynamicHtml += Math.floor(ajaxObject.currently.temperature) + "&deg;";
                     dynamicHtml += "</li>";
                     dynamicHtml += "<li>&nbsp;|&nbsp;</li>";
@@ -312,17 +317,17 @@
                         }
                     });
                         // Display "feels like" temperature
-                    dynamicHtml += "<li><span class='font-weight-bold'>Feels like: </span>";
+                    dynamicHtml += "<li class='text-center'><span class='font-weight-bold'>Feels like: </span>";
                     dynamicHtml += Math.round(ajaxObject.currently.apparentTemperature) + "&deg;";
                     dynamicHtml += "</li>";
                     dynamicHtml += "<li>&nbsp;|&nbsp;</li>";
                         // Display current humidity
-                    dynamicHtml += "<li><span class='font-weight-bold'>Humidity: </span>";
+                    dynamicHtml += "<li class='text-center'><span class='font-weight-bold'>Humidity: </span>";
                     dynamicHtml += Math.floor(ajaxObject.currently.humidity * 100) + "&percnt;";
                     dynamicHtml += "</li>";
                     dynamicHtml += "<li>&nbsp;|&nbsp;</li>";
                         // Display current wind speed
-                    dynamicHtml += "<li class='mr-2'><span class='font-weight-bold'>Wind Speed: </span>";
+                    dynamicHtml += "<li class='mr-2 text-center'><span class='font-weight-bold'>Wind Speed: </span>";
                     dynamicHtml += Math.floor(ajaxObject.currently.windSpeed) + " mph";
                     dynamicHtml += "</li>";
                     dynamicHtml += "</ul>";
