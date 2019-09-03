@@ -102,7 +102,7 @@
 
         }
 
-        /*Make 3-Day Cards display in row at middle breakpoints*/
+        /*Make 3-Day Cards display in row between large and extra-large breakpoints*/
         @media (max-width: 1199px) {
             #three-day-forecast-display {
                 flex-direction: row;
@@ -110,15 +110,8 @@
             }
         }
 
-        /*Hide Current Conditions & 7-Day Icons when screen is too small*/
         @media (max-width: 720px) {
-            #seven-day-forecast-display, #current-info {
-                display: none;
-            }
-        }
-
-        /*Make 3-Day Cards display in column at smaller breakpoints*/
-        @media (max-width: 679px) {
+            /*Make cards display at fixed width in column*/
             #three-day-forecast-display {
                 flex-direction: column;
                 align-items: center;
@@ -127,8 +120,12 @@
             .card {
                 max-width: 350px;
             }
-        }
 
+            /*Hide Current Conditions & 7-Day Icons when screen is too small*/
+            #seven-day-forecast-display, #current-info {
+                display: none;
+            }
+        }
 
     </style>
 </head>
@@ -157,7 +154,7 @@
                         United States of America
                     </h2>
                 </div>
-                <div id="three-day-forecast-display" class="card-holder d-flex mx-4 my-2 ">
+                <div id="three-day-forecast-display" class="card-holder d-flex mx-lg-4 my-2 ">
                 </div>
             </section>
         </section>
