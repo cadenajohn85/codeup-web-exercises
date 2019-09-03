@@ -3,26 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+
+        #picture-frame {
+            border: 5px solid saddlebrown;
+        }
+
+        #surprise {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            height: 300px;
+            width: 300px;
+            display: none;
+        }
+    </style>
 </head>
 <body>
 
+<p>Paragraph #1</p>
+<p>Paragraph #2</p>
+<p>Paragraph #3</p>
+<p>Paragraph #4</p>
+<p>Paragraph #5</p>
+<p>Paragraph #6</p>
+
+<div id="picture-frame">
+    Hover over me!
+
+</div>
+
+<ul>
+    <li>Item 1-1</li>
+    <li>Item 1-2</li>
+    <li>Item 1-1</li>
+</ul>
+<ul>
+    <li>Item 2-1</li>
+    <li>Item 2-2</li>
+    <li>Item 2-3</li>
+</ul>
+<ul>
+    <li>Item 3-1</li>
+    <li>Item 3-2</li>
+    <li>Item 3-3</li>
+</ul>
+
+<input type="text" id="counter">
+<span id="char-count"></span>
+
+<img src="img/toolup/hammer.png" alt="" id="surprise">
+
+
+<!--    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>-->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script>
+
         // === 1 ======================================================
         // X - Hover Mouse
         // Y - A div with the ID picture-frame
         // Z - Add an image inside.
+        $("#picture-frame").hover(function() {
+            $(this).html("<img src='img/memory/sushi.png'>");
+        }, function() {
+            $(this).html("Hover over me!");
+        });
+        
         // === 2 ======================================================
         // X - Click
         // Y - any li
         // Z - replace the text of the first li in a list with "Get 'em"
+        $("li").click(function() {
+           $(this).parent().children().first().text("Get 'em ");
+        });
+
         // === 3 ======================================================
         // X - type in a text input with an id of counter.
         //     Y - span with an id of char-count
         // Z - display the number of characters typed.
+
+        $("#counter").on("input", function() {
+            var currentCount = $("#counter").val().toString().length;
+            $("#char-count").text(currentCount);
+        });
+
         // === 4 ======================================================
         // X - wait 10 seconds.
         //     Y - an image with the id of surprise.
         //     Z - appear in the bottom right corner of the page.
+
+        setTimeout(function() {
+            $("#surprise").show();
+        }, 10000)
+
         // === 5 ======================================================
         // X - click
         // Y - an h1 with the class of color-change
