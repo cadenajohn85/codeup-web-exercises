@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />-->
     <title>10-Key Weather | テンキー予報</title>
 <!--    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.css' rel='stylesheet' />-->
@@ -83,13 +84,19 @@
             background: white;
         }
 
+        /*Media Queries*/
+
+        /*@include media-breakpoint-down(lg) {*/
+
+        /*}*/
+
     </style>
 </head>
 <body class="container-fluid">
     <div class="row">
 
         <!--Left side of screen: header at top, window with 3-day forecast on bottom-->
-        <section class="col-4 text-center mx-auto left-side-color">
+        <section class="col-xl-4 text-center mx-auto left-side-color">
             <header class="d-flex my-4 justify-content-between">
                 <div>
                     <i class="far fa-keyboard"></i>
@@ -116,7 +123,7 @@
         </section>
 
         <!--Right side of screen: large map at top, search bar in middle, 7-day-icon-forecast at bottom-->
-        <main class="col-8 right-side-color">
+        <main class="col-xl-8 right-side-color">
             <div id="current-info" class="my-4">
                 <div id="current-conditions-display" class="bigger-text"></div>
             </div>
