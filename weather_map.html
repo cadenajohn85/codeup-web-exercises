@@ -87,8 +87,30 @@
         /*Media Queries*/
 
         /*@include media-breakpoint-down(lg) {*/
-
+        /*    .card-holder {*/
+        /*        flex-direction: row;*/
+        /*    }*/
         /*}*/
+        @media (min-width: 1200px) {
+            #three-day-forecast-display {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 1199px) {
+            /*.card-holder {*/
+            /*    flex-direction: row;*/
+            /*}*/
+            #three-day-forecast-display {
+                flex-direction: row;
+            }
+        }
+
+        @media (max-width: 679px) {
+            #three-day-forecast-display {
+                flex-direction: column;
+            }
+        }
 
     </style>
 </head>
@@ -117,7 +139,7 @@
                         United States of America
                     </h2>
                 </div>
-                <div id="three-day-forecast-display" class="d-flex flex-column justify-content-around mx-4 my-2 ">
+                <div id="three-day-forecast-display" class="card-holder d-flex justify-content-around mx-4 my-2 ">
                 </div>
             </section>
         </section>
