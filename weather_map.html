@@ -90,7 +90,7 @@
         @media (min-width: 1200px) {
             #three-day-forecast-display {
                 flex-direction: column;
-                height: 500px;
+                height: 600px;
                 overflow: scroll;
             }
 
@@ -106,7 +106,7 @@
         @media (max-width: 1199px) {
             #three-day-forecast-display {
                 flex-direction: row;
-                justify-content: space-evenly;
+                justify-content: space-between;
             }
         }
 
@@ -114,11 +114,15 @@
             /*Make cards display at fixed width in column*/
             #three-day-forecast-display {
                 flex-direction: column;
-                align-items: center;
+                /*align-items: center;*/
+                height: 270px;
+                overflow: scroll;
+                justify-content: normal;
             }
 
             .card {
                 max-width: 350px;
+                margin: auto;
             }
 
             /*Hide Current Conditions & 7-Day Icons when screen is too small*/
@@ -148,7 +152,7 @@
             </header>
 
             <section>
-                <div id="current-location">
+                <div id="current-location" class="mb-4">
                     <h2 id="current-location-display">
                         San Antonio, Texas,<br>
                         United States of America
