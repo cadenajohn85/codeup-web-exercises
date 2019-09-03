@@ -86,31 +86,34 @@
 
         /*Media Queries*/
 
-        /*@include media-breakpoint-down(lg) {*/
-        /*    .card-holder {*/
-        /*        flex-direction: row;*/
-        /*    }*/
-        /*}*/
+        /*Make 3-Day Cards display in column at larger breakpoints*/
         @media (min-width: 1200px) {
             #three-day-forecast-display {
                 flex-direction: column;
             }
         }
 
+        /*Make 3-Day Cards display in row at middle breakpoints*/
         @media (max-width: 1199px) {
-            /*.card-holder {*/
-            /*    flex-direction: row;*/
-            /*}*/
             #three-day-forecast-display {
                 flex-direction: row;
             }
         }
 
+        /*Hide 7-Day Icons when screen is too small*/
+        @media (max-width: 720px) {
+            #seven-day-forecast-display {
+                display: none;
+            }
+        }
+
+        /*Make 3-Day Cards display in column at smaller breakpoints*/
         @media (max-width: 679px) {
             #three-day-forecast-display {
                 flex-direction: column;
             }
         }
+
 
     </style>
 </head>
