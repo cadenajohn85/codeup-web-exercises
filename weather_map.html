@@ -34,6 +34,8 @@
         .card {
             color: #161925;
             border: solid 1px #1B3868;
+            min-width: 275px;
+            /*width: 350px;*/
         }
 
         .bigger-text {
@@ -102,19 +104,28 @@
 
         }
 
-        /*Make 3-Day Cards display in row between large and extra-large breakpoints*/
-        @media (max-width: 1199px) {
+        @media (max-width: 1199px) and (min-width: 721px) {
+            /*Make 3-Day Cards display in row at middle breakpoint */
             #three-day-forecast-display {
                 flex-direction: row;
-                justify-content: space-between;
+                /*justify-content: space-between;*/
+                overflow: scroll;
+                width: 700px;
+                margin: auto;
+            }
+
+            .card {
+                overflow: scroll;
+                margin: auto;
+
             }
         }
 
         @media (max-width: 720px) {
-            /*Make cards display at fixed width in column*/
+            /*Make cards display at fixed width in column at small breakpoint*/
             #three-day-forecast-display {
                 flex-direction: column;
-                /*align-items: center;*/
+                align-items: center;
                 height: 270px;
                 overflow: scroll;
                 justify-content: normal;
@@ -122,10 +133,9 @@
 
             .card {
                 max-width: 350px;
-                margin: auto;
             }
 
-            /*Hide Current Conditions & 7-Day Icons when screen is too small*/
+            /*Hide Current Conditions & 7-Day Icons at small breakpoint*/
             #seven-day-forecast-display, #current-info {
                 display: none;
             }
