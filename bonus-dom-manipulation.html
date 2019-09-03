@@ -62,6 +62,16 @@
 
 <h1 class="color-change">Click me</h1>
 
+<img src="img/memory/okonomiyaki.png" alt="" id="hi-5">
+
+<div>
+    <button id="refresh">Click me to refresh the page</button>
+</div>
+
+<div>
+    <button id="styler">Click to change my style</button>
+</div>
+
 <!--    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>-->
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script>
@@ -149,14 +159,27 @@
         // X - click.
         //     Y - picture of a hand (to be provided) with the id of hi-5.
         // Z - change the picture to be a picture of a hand giving a thumbs up (to be provided).
+
+        $("#hi-5").click(function() {
+            $(this).attr("src", "img/memory/ramen.png");
+        });
+
+
         // === 8 ======================================================
         // X - click.
         //     Y - button with the id of refresh.
         //     Z - refreshs the page.
+
+        $("#refresh").click(function() {
+            location.reload(true);
+        })
         // === 9 ======================================================
         // X - click.
         //     Y - button with the id of styler.
         //     Z - change the styling of the button (be creative).
+        $("#styler").click(function() {
+            $(this).css("font-size", "5em");
+        })
         // === 10 =====================================================
         // X - click any p with a class of fancy-potential.
         //     Y - the p that was clicked.
