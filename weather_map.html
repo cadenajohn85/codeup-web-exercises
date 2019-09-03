@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />-->
     <title>10-Key Weather | テンキー予報</title>
 <!--    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.css' rel='stylesheet' />-->
@@ -33,6 +34,7 @@
         .card {
             color: #161925;
             border: solid 1px #1B3868;
+            min-width: 275px;
         }
 
         .bigger-text {
@@ -83,13 +85,68 @@
             background: white;
         }
 
+        /*Media Queries*/
+
+        /*Make 3-Day Cards display in column at larger breakpoints*/
+        @media (min-width: 1200px) {
+            #three-day-forecast-display {
+                flex-direction: column;
+                height: 600px;
+                overflow: scroll;
+            }
+
+            /*Necessary to keep scroll-functionality from cutting off top:*/
+            /*(https://stackoverflow.com/questions/33454533/cant-scroll-to-top-of-flex-item-that-is-overflowing-container)*/
+            .card {
+                margin: auto;
+            }
+
+        }
+
+        @media (max-width: 1199px) and (min-width: 721px) {
+            /*Make 3-Day Cards display in row at middle breakpoint */
+            #three-day-forecast-display {
+                flex-direction: row;
+                overflow: scroll;
+                width: 95%;
+                margin: auto;
+            }
+
+            .card {
+                overflow: scroll;
+                margin: auto;
+                min-width: 350px;
+
+            }
+        }
+
+        @media (max-width: 720px) {
+            /*Make cards display at fixed width in column at small breakpoint*/
+            #three-day-forecast-display {
+                flex-direction: column;
+                align-items: center;
+                height: 270px;
+                overflow: scroll;
+                justify-content: normal;
+            }
+
+            .card {
+                max-width: 350px;
+            }
+
+            /*Hide Current Conditions & 7-Day Icons at small breakpoint*/
+            #seven-day-forecast-display, #current-info {
+                display: none;
+            }
+        }
+
     </style>
 </head>
 <body class="container-fluid">
     <div class="row">
 
         <!--Left side of screen: header at top, window with 3-day forecast on bottom-->
-        <section class="col-4 text-center mx-auto left-side-color">
+        <section class="col-xl-4 text-center mx-auto left-side-color">
             <header class="d-flex my-4 justify-content-between">
                 <div>
                     <i class="far fa-keyboard"></i>
@@ -104,19 +161,19 @@
             </header>
 
             <section>
-                <div id="current-location">
+                <div id="current-location" class="mb-4">
                     <h2 id="current-location-display">
                         San Antonio, Texas,<br>
                         United States of America
                     </h2>
                 </div>
-                <div id="three-day-forecast-display" class="d-flex flex-column justify-content-around mx-4 my-2 ">
+                <div id="three-day-forecast-display" class="card-holder d-flex mx-xl-4 my-2 ">
                 </div>
             </section>
         </section>
 
         <!--Right side of screen: large map at top, search bar in middle, 7-day-icon-forecast at bottom-->
-        <main class="col-8 right-side-color">
+        <main class="col-xl-8 right-side-color">
             <div id="current-info" class="my-4">
                 <div id="current-conditions-display" class="bigger-text"></div>
             </div>
@@ -266,7 +323,7 @@
                 function renderCurrentInformation(ajaxObject) {
                     var dynamicHtml = "<ul class='list-unstyled d-flex flex-row justify-content-around align-items-center my-0'>";
                         // Display current temperature
-                    dynamicHtml += "<li class='ml-2'><span class='font-weight-bold'>Current Temp: </span>";
+                    dynamicHtml += "<li class='ml-2 text-center'><span class='font-weight-bold'>Current Temp: </span>";
                     dynamicHtml += Math.floor(ajaxObject.currently.temperature) + "&deg;";
                     dynamicHtml += "</li>";
                     dynamicHtml += "<li>&nbsp;|&nbsp;</li>";
@@ -280,17 +337,17 @@
                         }
                     });
                         // Display "feels like" temperature
-                    dynamicHtml += "<li><span class='font-weight-bold'>Feels like: </span>";
+                    dynamicHtml += "<li class='text-center'><span class='font-weight-bold'>Feels like: </span>";
                     dynamicHtml += Math.round(ajaxObject.currently.apparentTemperature) + "&deg;";
                     dynamicHtml += "</li>";
                     dynamicHtml += "<li>&nbsp;|&nbsp;</li>";
                         // Display current humidity
-                    dynamicHtml += "<li><span class='font-weight-bold'>Humidity: </span>";
+                    dynamicHtml += "<li class='text-center'><span class='font-weight-bold'>Humidity: </span>";
                     dynamicHtml += Math.floor(ajaxObject.currently.humidity * 100) + "&percnt;";
                     dynamicHtml += "</li>";
                     dynamicHtml += "<li>&nbsp;|&nbsp;</li>";
                         // Display current wind speed
-                    dynamicHtml += "<li class='mr-2'><span class='font-weight-bold'>Wind Speed: </span>";
+                    dynamicHtml += "<li class='mr-2 text-center'><span class='font-weight-bold'>Wind Speed: </span>";
                     dynamicHtml += Math.floor(ajaxObject.currently.windSpeed) + " mph";
                     dynamicHtml += "</li>";
                     dynamicHtml += "</ul>";
