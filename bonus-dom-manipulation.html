@@ -17,16 +17,22 @@
             width: 300px;
             display: none;
         }
+
+        .bg-black {
+            background: black;
+            color: white;
+        }
+
     </style>
 </head>
 <body>
 
-<p>Paragraph #1</p>
-<p>Paragraph #2</p>
-<p>Paragraph #3</p>
-<p>Paragraph #4</p>
-<p>Paragraph #5</p>
-<p>Paragraph #6</p>
+<!--<p>Paragraph #1</p>-->
+<!--<p>Paragraph #2</p>-->
+<!--<p>Paragraph #3</p>-->
+<!--<p>Paragraph #4</p>-->
+<!--<p>Paragraph #5</p>-->
+<!--<p>Paragraph #6</p>-->
 
 <div id="picture-frame">
     Hover over me!
@@ -54,10 +60,14 @@
 
 <img src="img/toolup/hammer.png" alt="" id="surprise">
 
+<h1 class="color-change">Click me</h1>
 
 <!--    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>-->
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script>
+        "use strict";
+
+        $(document).ready(function() {
 
         // === 1 ======================================================
         // X - Hover Mouse
@@ -102,10 +112,39 @@
         // Z - change the text color to the next color in this array  ['firebrick','orangered','lime','palevioletred','whitesmoke','burlywood'].
         //
         // (The text should be the first color on the first click, or once it has gone to the last color).
+
+        var headingColors = [
+            'firebrick',
+            'orangered',
+            'lime',
+            'palevioletred',
+            'whitesmoke',
+            'burlywood'
+        ];
+
+        var clickCount = 0;
+
+        $(".color-change").click(function() {
+           $(this).css("color", headingColors[clickCount]);
+           ++clickCount;
+           if (clickCount > 5) {
+               clickCount = 0;
+           }
+        });
+
         // === 6 ======================================================
         // X - press the 'f' key in the document.
         //     Y - the background of the body of the document.
         //     Z - change the color of the background from white to black, and black to white.
+
+        $(document).on("keyup", function() {
+            if (event.key === "f" ) {
+                $("h1").toggleClass("bg-black");
+            }
+
+        });
+        });
+
         // === 7 ======================================================
         // X - click.
         //     Y - picture of a hand (to be provided) with the id of hi-5.
