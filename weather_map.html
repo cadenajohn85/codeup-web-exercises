@@ -90,13 +90,23 @@
         @media (min-width: 1200px) {
             #three-day-forecast-display {
                 flex-direction: column;
+                height: 500px;
+                overflow: scroll;
             }
+
+            /*Necessary to keep scroll-functionality from cutting off top:*/
+            /*(https://stackoverflow.com/questions/33454533/cant-scroll-to-top-of-flex-item-that-is-overflowing-container)*/
+            .card {
+                margin: auto;
+            }
+
         }
 
         /*Make 3-Day Cards display in row at middle breakpoints*/
         @media (max-width: 1199px) {
             #three-day-forecast-display {
                 flex-direction: row;
+                justify-content: space-evenly;
             }
         }
 
@@ -147,7 +157,7 @@
                         United States of America
                     </h2>
                 </div>
-                <div id="three-day-forecast-display" class="card-holder d-flex justify-content-around mx-4 my-2 ">
+                <div id="three-day-forecast-display" class="card-holder d-flex mx-4 my-2 ">
                 </div>
             </section>
         </section>
