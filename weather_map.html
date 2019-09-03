@@ -217,7 +217,12 @@
 
                     var dynamicHtml = "<div class='card my-2'>";
                         //Display header with date
-                    var dateObject = new Date(ajaxObject.daily.data[indexValue].time * 1000);
+                        // In DST, API returns dates 1 day behind (time-stamp of 23:00)
+                        // Add 1 hour to time (3600000 milliseconds) to compensate
+                    var convertedTime = ajaxObject.daily.data[indexValue].time * 1000 + 3600000;
+                    var dateObject = new Date(convertedTime);
+                    // var dateObject = new Date(ajaxObject.daily.data[indexValue].time * 1000);
+                    console.log(dateObject);
                     dynamicHtml += "<div class='card-header text-center py-2 bigger-text'>";
                     dynamicHtml += dateObject.toString().substring(0,10);
                     dynamicHtml += "</div>";
@@ -341,9 +346,6 @@
                 function onSearchNewLocation(ajaxObject) {
                     var newLatitude = ajaxObject.result.center[1];
                     var newLongitude = ajaxObject.result.center[0];
-                    console.log(newLatitude);
-                    console.log(newLongitude);
-                    console.log(ajaxObject);
                     $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/" + newLatitude + "," + newLongitude).done(function(updatedData) {
                         $("#three-day-forecast-display").html("");
                         renderMultipleForecasts(updatedData, 0, 2);
