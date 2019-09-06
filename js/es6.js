@@ -118,7 +118,8 @@ users.forEach(function({ name, email, languages }) {
 // console.log(developers);
 
 // TODO: Use `let` for the following variable
-let list = '<ul>';
+let list = `<ul>
+`;
 
 // TODO: rewrite the following loop to use a for..of loop
 // developers.forEach(function (developer) {
@@ -126,9 +127,13 @@ for (const developer of developers) {
 
   // TODO: rewrite the assignment below to use template strings
   // list += '<li>' + developer + '</li>';
-  list += `<li>${developer}</li>`;
+  list +=
+`    <li>
+        ${developer}
+    </li>
+`;
 // });
 }
 list += '</ul>';
 
-// console.log(list);
+console.log(list);
