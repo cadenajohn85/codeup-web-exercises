@@ -271,27 +271,82 @@
 
         // PROBLEM 14 - create a function that when given an object, returns the property values as an array of elements
 
-        const returnPropertyValues = someObject => someObject.reduce((returnObject, values) => {
-            const {name, age, isMale} = values;
-            return [
-                name, age, isMale
-            ];
-        }, []);
+        // const returnPropertyValues = someObject => someObject.reduce((returnObject, values) => {
+        //     const {name, age, isMale} = values;
+        //     returnObject = [name, age, isMale];
+        //     // return [
+        //     //     name, age, isMale
+        //     // ];
+        //     return returnObject;
+        // }, []);
 
-        console.log(returnPropertyValues({
-            name: "John",
-            age: 34,
-            isMale: true
-        }));
+        // function returnPropertyValues (someObject) {
+        //     console.log(someObject);
+        //     someObject.reduce(function (returnObject, value) {
+        //         console.log(value);
+        //         return returnObject;
+        //     }, []);
+        // }
+
+        // const object1 = {
+        //     a: 'somestring',
+        //     b: 42,
+        //     c: false
+        // };
+        //
+        // console.log(Object.values(object1));
+// expected output: Array ["somestring", 42, false]
+
+        // const returnPropertyValues = someObject => someObject.reduce((returnObject, values) => {
+        //     const values = Object.values(someObject);
+        //
+        // }, []);
+
+        // const returnPropertyValues = someObject => Object.values(someObject);
+
+        // var test = [{
+        //     name: "John",
+        //     age: 34,
+        //     isMale: true
+        // }];
+        //
+        // returnPropertyValues(test);
+
+        // console.log(returnPropertyValues({
+        //     name: "John",
+        //     age: 34,
+        //     isMale: true
+        // }));
 
         // PROBLEM 15 - create a function that when given an object, returns the property values as an array of elements
 
         // PROBLEM 16 - create a function that when given three arguments: a min num, a max num, an array
         // of nums will return the array of nums that are only between the min and max values, inclusive
 
+        const returnInRangeValues = (minNum, maxNum, numArray) => numArray.filter(number => number >= minNum && number <= maxNum);
+
+        // console.log(returnInRangeValues(4, 7, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]));
+
         // PROBLEM 17 - create a function that when given an array of strings, returns an array of objects
         // with properties for the given string value and the length of the string and the string without vowels (not including y)
 
+        const stringProperties = arrayOfStrings => arrayOfStrings.map(string => {
+            const vowels = ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"];
+            const stringAsArray = string.split("");
+            const vowellessArray = [];
+            for (const char of stringAsArray) {
+                if (vowels.indexOf(char) === -1) {
+                    vowellessArray.push(char);
+                }
+            }
+            const vowellessString = vowellessArray.join("");
+            return {
+                value: string,
+                length: string.length,
+                noVowels: vowellessString
+            };
+        });
+        // console.log(stringProperties(["Dan", "Eric", "Lonnie", "Julia"]));
     }
 
 </script>
