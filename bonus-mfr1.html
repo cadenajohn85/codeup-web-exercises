@@ -112,7 +112,7 @@
 
 
 
-        console.log(custNameAndAgeArray);
+        // console.log(custNameAndAgeArray);
 
         // PROBLEM 3 - create an array of civil servant customers (teachers and police officers)
         // containing the same properties as the objects on the customers objects
@@ -176,7 +176,7 @@
             }
         };
 
-        console.log(makeSuperPet(pets));
+        // console.log(makeSuperPet(pets));
 
         // PROBLEM 6 - take in an array of pets and return an array of the length of first names for pugs only
         // your output for the given input should be [3, 6] for 'Bud' and 'Bowser'
@@ -188,24 +188,71 @@
             return pugNamesArray;
         }, []);
 
-        console.log(listOfPugNameLengths);
+        // console.log(listOfPugNameLengths);
 
 
         // PROBLEM 7 - create a function getFemaleFamilyMembers() that when given the family variable as an argument,
         // returns an array of female family member names
 
+        const getFemaleFamilyMembers = family.reduce((nameArray, member) => {
+            if (member.gender === "female") {
+                nameArray.push(member.name)
+            }
+            return nameArray;
+    }, []);
+
+        // console.log(getFemaleFamilyMembers);
+
         // PROBLEM 8 - create a function makeLongPetString() that when given the variable of pets,
         // returns a string of all property values with dashes separating each property value
+
+        // const makeLongPetString = pets.reduce((petString, pet) => {
+        //     const {name, age, breed} = pet;
+        //     petString += `${name}-${age}-${breed}-`;
+        //     return petString;
+        // }, "");
+
+        let petCounter = 1;
+        const makeLongPetString = pets.reduce((petString, pet) => {
+            const {name, age, breed} = pet;
+            if (petCounter < pets.length) {
+                petString += `${name}-${age}-${breed}-`;
+                ++petCounter;
+            } else {
+                petString += `${name}-${age}-${breed}`;
+            }
+            return petString;
+        }, "");
+
+        // console.log(makeLongPetString);
 
         // PROBLEM 9 - create a function that when given an array of first names, returns an array of the same names with a last name of Smith
 
         // input = ['Sally', 'Fred', 'Steve']
         // output = ['Sally Smith', 'Fred Smith', 'Steve']
 
+        const addSmith = nameArray => nameArray.map(name => `${name} Smith`);
+        // console.log(addSmith(['Sally', 'Fred', 'Steve']));
+
 
         // PROBLEM 10 - create a function that when given an array of numbers, returns the sum of even numbers
 
+        const sumEvenNumbers = numberArray => numberArray.filter(number => number % 2 === 0)
+            .reduce((sum, number) => {
+                return sum + number;
+            }, 0);
+
+        // console.log(sumEvenNumbers([1, 2, 3, 4, 5]));
+
         // PROBLEM 11 - create a function that when given an array of numbers, returns the sum of all numbers evenly divisible by 10
+
+        const sumOfNumsDivisibleByTen = numberArray => numberArray.filter(number => number % 10 === 0)
+            .reduce((sum, number) => {
+                return sum + number;
+            }, 0);
+
+        console.log(sumOfNumsDivisibleByTen([1, 2, 3, 4, 5]));
+        console.log(sumOfNumsDivisibleByTen([5,10,15,20,25]));
 
         // PROBLEM 12 - create a function that when given an array of names, returns a string of all the first letters of each name
 
