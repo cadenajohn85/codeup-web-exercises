@@ -89,13 +89,45 @@
 
         // PROBLEM 1 - create an array of the first letters of each fruit
 
+        const firstLetterOfFruits = fruits.map(fruit => {
+            const fruitAsArray = fruit.split("");
+            return fruitAsArray[0];
+        });
+
+        // console.log(firstLetterOfFruits);
+
         // PROBLEM 2 - create array of user objects based on the customers array
         // of objects (each user object should just have name and age properties)
+
+        const custNameAndAgeArray = customers.map(customer => {
+            const {name, age} = customer;
+
+            return {
+                // name: customer.name,
+                // age: customer.age
+                name,
+                age
+            };
+        });
+
+
+
+        console.log(custNameAndAgeArray);
 
         // PROBLEM 3 - create an array of civil servant customers (teachers and police officers)
         // containing the same properties as the objects on the customers objects
 
+        const arrayOfCivilServants = customers.filter(customer => customer.occupation === "Police Officer" || customer.occupation === "Teacher");
+
+        // console.log(arrayOfCivilServants);
+
         // PROBLEM 4 - determine the average age of customers
+
+        const sumOfCustomerAges = customers.reduce((sumOfAges, customer) => {
+            return sumOfAges + customer.age;
+        }, 0);
+        const averageCustomerAge = sumOfCustomerAges / customers.length;
+        // console.log(averageCustomerAge);
 
         // PROBLEM 5 - create a function makeSuperPet() that takes in the pets array as input and returns a single pet object
         // with the following shape...
@@ -109,8 +141,54 @@
 
          */
 
+        // const makeSuperPet = pets => {
+        //     let superPetName = "";
+        //     let superPetAge = 0;
+        //     let superPetBreed = "";
+        //     for (const pet of pets) {
+        //         superPetName += pet.name;
+        //         superPetAge += pet.age;
+        //         const breedAsArray = pet.breed.split("");
+        //         superPetBreed += breedAsArray[0];
+        //     }
+        //     return {
+        //         name: superPetName,
+        //         age: superPetAge,
+        //         breed: superPetBreed
+        //     };
+        // };
+
+        const makeSuperPet = pets => {
+            let superPetName = pets.reduce((superPetName, pet) => {
+                return superPetName + pet.name;
+            }, "");
+            let superPetAge = pets.reduce((superPetAge, pet) => {
+                return superPetAge + pet.age;
+            }, 0);
+            let superPetBreed = pets.reduce((superPetBreed, pet) => {
+                const breedAsArray = pet.breed.split("");
+                return superPetBreed + breedAsArray[0];
+            }, "");
+            return {
+                name: superPetName,
+                age: superPetAge,
+                breed: superPetBreed
+            }
+        };
+
+        console.log(makeSuperPet(pets));
+
         // PROBLEM 6 - take in an array of pets and return an array of the length of first names for pugs only
         // your output for the given input should be [3, 6] for 'Bud' and 'Bowser'
+
+        const listOfPugNameLengths = pets.reduce((pugNamesArray, pet) => {
+                if (pet.breed === "Pug") {
+                    pugNamesArray.push(pet.name.length);
+                }
+            return pugNamesArray;
+        }, []);
+
+        console.log(listOfPugNameLengths);
 
 
         // PROBLEM 7 - create a function getFemaleFamilyMembers() that when given the family variable as an argument,
