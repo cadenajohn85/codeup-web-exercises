@@ -251,14 +251,38 @@
                 return sum + number;
             }, 0);
 
-        console.log(sumOfNumsDivisibleByTen([1, 2, 3, 4, 5]));
-        console.log(sumOfNumsDivisibleByTen([5,10,15,20,25]));
+        // console.log(sumOfNumsDivisibleByTen([1, 2, 3, 4, 5]));
+        // console.log(sumOfNumsDivisibleByTen([5,10,15,20,25]));
 
         // PROBLEM 12 - create a function that when given an array of names, returns a string of all the first letters of each name
 
+        const makeFirstCharString = nameArray => nameArray.reduce((charString, name) => {
+            const nameAsArray = name.split("");
+            return charString + nameAsArray[0];
+        }, "");
+
+        // console.log(makeFirstCharString(["Patrick", "Owen", "William", "Edgar", "Robert"]));
+
         // PROBLEM 13 - create a function that when given an array of values, returns an array of only the truthy values
 
+        const returnTruthyValues = someArray => someArray.filter(value => value == true);
+
+        // console.log(returnTruthyValues([true, false, 1, 0, "Hello", null]));
+
         // PROBLEM 14 - create a function that when given an object, returns the property values as an array of elements
+
+        const returnPropertyValues = someObject => someObject.reduce((returnObject, values) => {
+            const {name, age, isMale} = values;
+            return [
+                name, age, isMale
+            ];
+        }, []);
+
+        console.log(returnPropertyValues({
+            name: "John",
+            age: 34,
+            isMale: true
+        }));
 
         // PROBLEM 15 - create a function that when given an object, returns the property values as an array of elements
 
