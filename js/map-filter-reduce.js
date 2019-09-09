@@ -82,9 +82,20 @@
         }
         return nameString;
     }, "Your instructors are: ");
-    console.log(userNamesString);
+        // console.log(userNamesString);
 
+    // Bonus: Use .reduce to get the unique list of languages from the list of users.
 
+    const uniqueListOfLangs = users.reduce((listOfLangs, user) => {
+        for (const lang of user.languages) {
+            if (listOfLangs.indexOf(lang) === -1) {
+                listOfLangs.push(lang);
+            }
+        }
 
+        return listOfLangs;
+    }, []);
+        // console.log(uniqueListOfLangs);
+        // console.log(uniqueListOfLangs.sort());
 
 }
