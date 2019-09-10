@@ -27,13 +27,34 @@
     // }
     // request();
 
-    fetch("https://swapi.co/api/people/1/")
-        .then((response) => {
-            return response.json();
-        }).then((data) => {
-        console.log(data);
-    });
+    // fetch("https://swapi.co/api/people/1/")
+    //     .then((response) => {
+    //         return response.json();
+    //     }).then((data) => {
+    //     console.log(data);
+    // });
 
+    // fetch(url, {headers: {'Authorization': `token ${gitHubKey}`}});
+
+    // fetch('https://api.github.com/users', {headers: {'Authorization': `token ${gitHubKey}`}})
+    //     .then(response => {
+    //         return response.json();
+    //     })
+    //     .then(data => {
+    //         console.log(data);
+    //     });
+
+    const getLastCommitDate = someUsername => {
+        fetch(`https://api.github.com/users/${someUsername}/events/public`, {headers: {'Authorization': `token ${gitHubKey}`}})
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+        });
+    };
+
+    getLastCommitDate("cadenajohn85");
 }
 
 
