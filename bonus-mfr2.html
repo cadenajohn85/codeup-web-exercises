@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ryan's Bonus: Map-Filter-Reduce</title>
+</head>
+<body>
+    <script
+        src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+    <script>
+        "use strict";
+        {
+            $.get("data/mfrdata1.json").done(function(data) {
+                $.get("data/mfrdata2.json").done(function(data2) {
+                    // 1. Combine both arrays of objects into a single array. Name that variable users.​
+                    const users = data.concat(data2);
+                    console.log(users);
+
+                    // 2. Use .reduce to get a sum total of every price from each object. Call that sum "totalPrices"​
+
+                    const totalPrices = users.reduce((total, user) => {
+                        const priceAsArray = user.price.split("");
+                        // console.log(priceAsArray);
+                        const noDollarSign = priceAsArray.filter(char => char !== "$");
+                        // console.log(noDollarSign);
+                        const priceNumAsString = noDollarSign.join("");
+                        // console.log(priceNumAsString);
+                        const priceNum = parseFloat(priceNumAsString);
+                        // console.log(priceNum);
+                        return total + priceNum;
+                    }, 0);
+                    // console.log(totalPrices);
+
+                    // 3. Use the users array and .reduce to determine how many shirts of each size we'll need to get. Example output should looks something like the following (numbers aren't exact)​{ "S": 200, "M": 892, "L": 290, "XL": 442 }​
+
+                    const shirtSizesObject = users.reduce((shirtCounts, user) => {
+                        if (typeof shirtCounts[user.shirt_size] === "undefined") {
+                            shirtCounts[user.shirt_size] = 1;
+                        } else {
+                            shirtCounts[user.shirt_size] += 1;
+                        }
+                        return shirtCounts;
+                    }, {});
+                    // console.log(shirtSizesObject);
+
+                    // 4. Produce a new array of objects w/ only the car info. Call this array allCars. Each object should only have the make, model, color, price, used properties
+
+                    const allCars = users.map(user => {
+                        const { car_color, car_make, car_model, car_year } = user;
+                        return {
+                            car_color,
+                            car_make,
+                            car_model,
+                            car_year
+                        };
+                    });
+                    console.log(allCars);
+
+                    // 5. Produce a single object called car_data w/ the following properties
+                    //
+                    // avg_price, avg_new_price, avg_used_price, top_make, top_model, total_number, number_used, number_new, highest_price, lowest_price
+
+                    const car_data = users => {
+
+                    };
+
+
+
+
+                });
+            });
+        }
+
+
+    </script>
+</body>
+</html>
