@@ -48,15 +48,17 @@
                     // 4. Produce a new array of objects w/ only the car info. Call this array allCars. Each object should only have the make, model, color, price, used properties
 
                     const allCars = users.map(user => {
-                        const { car_color, car_make, car_model, car_year } = user;
+                        const { car_color, car_make, car_model, car_year, is_used_car, price } = user;
                         return {
                             car_color,
                             car_make,
                             car_model,
-                            car_year
+                            car_year,
+                            is_used_car,
+                            price
                         };
                     });
-                    console.log(allCars);
+                    // console.log(allCars);
 
                     // 5. Produce a single object called car_data w/ the following properties
                     //
@@ -64,9 +66,25 @@
 
                     const car_data = users => {
 
+                        const removeDollarSign = someArray => someArray.map(element => {
+                            const priceAsArray = element.price.split("");
+                            const noDollarSign = priceAsArray.filter(char => char !== "$");
+                            const priceNumAsString = noDollarSign.join("");
+                            return parseFloat(priceNumAsString);
+                        });
+
+                        const newCarArray = users.filter(user => !user.is_used_car);
+                        const priceFixedNCArray = removeDollarSign(newCarArray);
+                        const newCarTotal = priceFixedNCArray.reduce((newTotal, price) => {
+                            return newTotal + price;
+                        }, 0);
+                        return {
+                            avg_price: totalPrices / users.length,
+                            avg_new_price: newCarTotal / newCarArray.length
+                        }
                     };
 
-
+                    console.log(car_data(users));
 
 
                 });
