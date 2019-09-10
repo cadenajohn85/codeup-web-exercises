@@ -46,17 +46,13 @@
 
     const getLastCommitDate = someUsername => {
         return fetch(`https://api.github.com/users/${someUsername}/events/public`, {headers: {'Authorization': `token ${gitHubKey}`}})
+        // return fetch(`https://api.github.com/users/${someUsername}/events/`, {headers: {'Authorization': `token ${gitHubKey}`}})
             .then(response => {
                 return response.json();
             })
             .then(data => {
-                // console.log(data);
-                // console.log(data[0]);
-                // console.log(data[0].created_at);
                 return data[0].created_at;
-                // const value = data[0].created_at;
-                // console.log(value);
-                // return value;
+                // return events.filter(event => event.type === "PushEvent")[0].created_at;
         });
     };
 
