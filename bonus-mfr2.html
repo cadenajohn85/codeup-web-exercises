@@ -62,10 +62,12 @@
 
                     // 5. Produce a single object called car_data w/ the following properties
                     //
-                    // avg_price, avg_new_price, avg_used_price, top_make, top_model, total_number, number_used, number_new, highest_price, lowest_price
+                        // avg_price, avg_new_price, avg_used_price, number_used, number_new, total_number
+                    // top_make, top_model, highest_price, lowest_price
 
                     const car_data = users => {
 
+                        //Function to convert price strings into numbers
                         const removeDollarSign = someArray => someArray.map(element => {
                             const priceAsArray = element.price.split("");
                             const noDollarSign = priceAsArray.filter(char => char !== "$");
@@ -73,14 +75,27 @@
                             return parseFloat(priceNumAsString);
                         });
 
+                        //Create filtered arrays of new and used cars
                         const newCarArray = users.filter(user => !user.is_used_car);
+                        const oldCarArray = users.filter(user => user.is_used_car);
+
                         const priceFixedNCArray = removeDollarSign(newCarArray);
                         const newCarTotal = priceFixedNCArray.reduce((newTotal, price) => {
                             return newTotal + price;
                         }, 0);
+
+                        const priceFixedOCArray = removeDollarSign(oldCarArray);
+                        const oldCarTotal = priceFixedOCArray.reduce((newTotal, price) => {
+                            return newTotal + price;
+                        }, 0);
+
                         return {
                             avg_price: totalPrices / users.length,
-                            avg_new_price: newCarTotal / newCarArray.length
+                            avg_new_price: newCarTotal / newCarArray.length,
+                            avg_used_price: oldCarTotal / oldCarArray.length,
+                            number_new: newCarArray.length,
+                            number_used: oldCarArray.length,
+                            total_number: users.length
                         }
                     };
 
