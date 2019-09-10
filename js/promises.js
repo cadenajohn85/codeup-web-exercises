@@ -1,21 +1,39 @@
+
 "use strict";
 
 {
-    const wait = timeInMS => {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                if (1 + 1 === 2) {
-                    resolve();
-                } else {
-                    reject();
-                }
-            }, timeInMS);
-        });
-    };
+    // const wait = timeInMS => {
+    //     return new Promise((resolve, reject) => {
+    //         setTimeout(() => {
+    //             if (1 + 1 === 2) {
+    //                 resolve();
+    //             } else {
+    //                 reject();
+    //             }
+    //         }, timeInMS);
+    //     });
+    // };
 
-    wait(1000).then(() => console.log('You\'ll see this after 1 second'));
-    wait(3000).then(() => console.log('You\'ll see this after 3 seconds'));
+    // wait(1000).then(() => console.log('You\'ll see this after 1 second'));
+    // wait(3000).then(() => console.log('You\'ll see this after 3 seconds'));
 
+    // function request() {
+    //     fetch("https://swapi.co/api/people/1/")
+    //         .then((response) => {
+    //             return response.json();
+    //         }).then((data) => {
+    //         console.log(data);
+    //     });
+    // }
+    // request();
 
+    fetch("https://swapi.co/api/people/1/")
+        .then((response) => {
+            return response.json();
+        }).then((data) => {
+        console.log(data);
+    });
 
 }
+
+
