@@ -101,20 +101,20 @@
                         return events.filter(event => event.type === "PushEvent");
                     })
                     .then(pushes => {
-                        return [
-                            pushes[0].created_at,
-                            pushes[1].created_at,
-                            pushes[2].created_at
-                        ];
+                        const pushArray = [];
+                        for (let i = 0; i <= 2; i++) {
+                            pushArray.push(new Date(pushes[i].created_at).getHours());
+                        }
+                        console.log(pushArray);
+                        const pushHoursTotal = pushArray.reduce((total, pushHour) => {
+                            return total + pushHour;
+                        }, 0);
+                        return pushHoursTotal / 3;
                     })
-                    //Experimental Code
-                    //.then(pushDates => {
-                    //return Promise.all(pushDates.map()
             };
 
-            // console.log(getPushes("cadenajohn85"));
-
-
+            getPushes("cadenajohn85")
+                .then(console.log);
 
             // -- Ex. 4
 
@@ -153,8 +153,8 @@
                     });
             };
 
-            listHomeWorlds()
-                .then(console.log);
+            // listHomeWorlds()
+            //     .then(console.log);
 
         }
     </script>
