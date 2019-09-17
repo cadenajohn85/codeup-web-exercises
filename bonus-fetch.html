@@ -45,34 +45,34 @@
             //
             // Using the Star Wars API, log the first film a Star Wars character's homeworld appeared in
 
-            const listFirstFilm = character => {
-                return fetch(`https://swapi.co/api/people/?search=${character}`)
-                    .then(response => {
-                        return response.json();
-                    })
-                    .then(data => {
-                        // console.log(data);
-                        return fetch(data.results[0].homeworld)
-
-                    })
-                    .then(response => {
-                        return response.json();
-                    }).then(homeworld => {
-                        return fetch(homeworld.films[0]);
-                    })
-                    .then(response => {
-                        return response.json();
-                    }).then(film => {
-                        // console.log(film);
-                        return film.title;
-                })
-            };
+            // const listFirstFilm = character => {
+            //     return fetch(`https://swapi.co/api/people/?search=${character}`)
+            //         .then(response => {
+            //             return response.json();
+            //         })
+            //         .then(data => {
+            //             console.log(data);
+            //             return fetch(data.results[0].homeworld)
+            //
+            //         })
+            //         .then(response => {
+            //             return response.json();
+            //         }).then(homeworld => {
+            //             return fetch(homeworld.films[0]);
+            //         })
+            //         .then(response => {
+            //             return response.json();
+            //         }).then(film => {
+            //             // console.log(film);
+            //             return film.title;
+            //     })
+            // };
 
             // listFirstFilm("Leia Organa")
-            //     .then(result => {
-            //             // console.log(result);
-            //         }
-            //     );
+                // .then(result => {
+                //         console.log(result);
+                //     }
+                // );
 
             // const listFirstFilm = character => {
             //     return fetch(`https://swapi.co/api/people/?search=${character}`)
@@ -112,7 +112,7 @@
                     //return Promise.all(pushDates.map()
             };
 
-            console.log(getPushes("cadenajohn85"));
+            // console.log(getPushes("cadenajohn85"));
 
 
 
@@ -123,36 +123,38 @@
             //
             // ['Jakku', 'Tatooine', 'Tatooine']
 
-            const listWorld = character => {
-                return fetch(`https://swapi.co/api/people/?search=${character}`)
-                    .then(response => {
-                        return response.json();
+            const listHomeWorlds = () => {
+                return fetch('data/star-chars.json')
+                    .then(response => response.json())
+                    .then(data => data.map(data => data.name))
+
+                //This will only let me get the homeworld of one character...
+
+                    // .then(data => fetch(`https://swapi.co/api/people/?search=${data[0]}`))
+                    // .then(response => response.json())
+                    // .then(data => fetch(data.results[0].homeworld))
+                    // .then(response => response.json())
+                    // .then(data => data.name)
+
+                //How can I do the fetch request on all values of the array above instead?
+
+                    .then(characters => {
+                        return Promise.all(characters.map(character => {
+                            return fetch(`https://swapi.co/api/people/?search=${character}`)
+                                .then(response => response.json())
+                                .then(data => fetch(data.results[0].homeworld))
+                                .then(response => response.json())
+                                .then(data => data.name)
+                        }))
                     })
-                    .then(data => {
-                        return fetch(data.results[0].homeworld);
-                    })
-                    .then(response => {
-                        return response.json();
-                    }).then(homeworld => {
-                        return homeworld.name;
-                    })
+                    .catch(error => {
+                        alert("An error occurred -- please check the console.");
+                        console.log(error);
+                    });
             };
 
-            const listAllWorlds = () => {
-                const worldsArray = [];
-                listWorld("Luke Skywalker")
-                    .then(result => worldsArray.push(result))
-                    .then(console.log(worldsArray))
-                    .then(listWorld("Rey"))
-                    .then(result => console.log(result))
-                    .catch(error => console.error(error));
-                    // .then(result => worldsArray.push(result))
-                    // .then(console.log(worldsArray))
-
-            };
-
-            // listAllWorlds();
-
+            listHomeWorlds()
+                .then(console.log);
 
         }
     </script>
